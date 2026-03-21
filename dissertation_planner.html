@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JJ's Project Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=Josefin+Sans:wght@300;400;600&family=Share+Tech+Mono&family=Righteous&family=Fredoka+One&family=Caveat:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #1e2028; --paper: #ffffff; --cream: #f4f6fb;
+    --blue: #4A6CF7; --blue-light: #e8edff; --blue-mid: #c5d0fa;
+    --teal: #2e9e8f; --muted: #6b7280; --border: #e2e6f0;
+    --card: #ffffff; --red-dead: #e53e3e; --green-done: #38a169;
+    --gold: #4A6CF7; --gold-light: #a5b4fc; --rust: #e53e3e;
+    --sage: #2e9e8f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
+  header { background: #fff; color: var(--ink); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); height: 60px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  header h1 { font-family: 'Lato', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+  .subtitle { font-family: 'DM Mono', monospace; font-size: .62rem; color: var(--blue); margin-top: 2px; letter-spacing: .1em; text-transform: uppercase; }
+  nav { background: #fff; border-bottom: 1px solid var(--border); display: flex; padding: 0 32px; }
+  nav button { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 500; letter-spacing: .01em; background: none; border: none; border-bottom: 2px solid transparent; padding: 14px 16px; cursor: pointer; color: var(--muted); transition: all .15s; }
+  nav button.active { color: var(--blue); border-bottom-color: var(--blue); }
+  nav button:hover { color: var(--ink); }
+  .app { display: flex; min-height: calc(100vh - 108px); }
+  .main-pane { flex: 1; padding: 28px 32px; }
+  .side-pane { width: 280px; background: #fff; border-left: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .card h3 { font-family: 'Lato', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: 14px; color: var(--ink); }
+  .card label { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px; margin-top: 12px; }
+  .card label:first-of-type { margin-top: 0; }
+  textarea, input[type="text"], input[type="date"], input[type="number"], input[type="password"] {
+    width: 100%; font-family: 'Inter', sans-serif; font-size: .85rem; background: var(--cream);
+    border: 1px solid var(--border); border-radius: 7px; padding: 8px 12px; color: var(--ink);
+    resize: vertical; outline: none; transition: border-color .15s, box-shadow .15s;
+  }
+  textarea:focus, input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-light); }
+  textarea { min-height: 68px; }
+  .btn { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .02em; background: var(--blue); color: #fff; border: none; border-radius: 7px; padding: 9px 18px; cursor: pointer; transition: background .15s, box-shadow .15s; margin-top: 10px; }
+  .btn:hover { background: #3a5ce5; box-shadow: 0 2px 8px rgba(74,108,247,.3); }
+  .btn-sm { padding: 5px 12px; font-size: .72rem; margin-top: 0; }
+  .btn-ghost { background: none; color: var(--muted); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--cream); color: var(--ink); box-shadow: none; }
+  .btn-sage { background: var(--teal); }
+  .btn-sage:hover { background: #25897b; box-shadow: 0 2px 8px rgba(46,158,143,.3); }
+  .session-readout { background: linear-gradient(135deg, #4A6CF7 0%, #6d88f9 100%); color: #fff; border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; position: relative; box-shadow: 0 4px 12px rgba(74,108,247,.2); }
+  .session-readout .tag { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 6px; }
+  .session-readout p { font-size: .88rem; line-height: 1.55; color: #fff; }
+  .hr-badge { position: absolute; top: 14px; right: 14px; font-family: 'DM Mono', monospace; font-size: .7rem; background: rgba(255,255,255,.25); color: #fff; padding: 3px 10px; border-radius: 20px; backdrop-filter: blur(4px); }
+  .cal-controls { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .cal-controls .view-btns { display: flex; gap: 4px; background: var(--cream); border-radius: 8px; padding: 3px; }
+  .cal-controls .view-btns button { font-family: 'Inter', sans-serif; font-size: .73rem; font-weight: 500; padding: 5px 14px; border: none; background: none; border-radius: 6px; cursor: pointer; color: var(--muted); transition: all .15s; }
+  .cal-controls .view-btns button.active { background: #fff; color: var(--blue); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+  .cal-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .cal-nav button { width: 30px; height: 30px; border: 1px solid var(--border); background: #fff; border-radius: 7px; cursor: pointer; font-size: 1rem; transition: all .15s; color: var(--muted); }
+  .cal-nav button:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
+  .cal-nav .cal-label { font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; min-width: 200px; text-align: center; color: var(--ink); }
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .week-day { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 10px; min-height: 130px; cursor: pointer; transition: all .15s; }
+  .week-day:hover { border-color: var(--blue); box-shadow: 0 2px 8px rgba(74,108,247,.1); }
+  .week-day.today { border-color: var(--blue); background: var(--blue-light); }
+  .week-day.past { background: #fafafa; }
+  .week-day .day-name { font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .week-day .day-num { font-family: 'Lato', sans-serif; font-size: 1.3rem; font-weight: 700; line-height: 1; margin: 3px 0 8px; color: var(--ink); }
+  .week-day.today .day-num { color: var(--blue); }
+  .week-day .day-hours { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--teal); margin-bottom: 5px; font-weight: 500; }
+  .week-day .day-content { font-size: .73rem; color: var(--muted); line-height: 1.4; }
+  .week-day .goal-item { font-size: .7rem; color: var(--teal); background: #e6f7f5; border-radius: 4px; padding: 2px 6px; margin-top: 3px; }
+  .week-total { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: 10px; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between; }
+  .week-total span { color: var(--blue); font-weight: 600; }
+  .words-week { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); margin-top: 6px; padding: 8px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+  .words-week span { color: var(--teal); font-weight: 600; }
+  .month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .month-header-cell { font-family: 'Inter', sans-serif; font-size: .65rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 6px 0; }
+  .month-day { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 7px; min-height: 66px; cursor: pointer; transition: all .15s; position: relative; }
+  .month-day:hover { border-color: var(--blue); background: var(--blue-light); }
+  .month-day.today { border-color: var(--blue); background: var(--blue-light); }
+  .month-day.other-month { opacity: .35; }
+  .month-day .md-num { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--ink); }
+  .month-day.today .md-num { color: var(--blue); }
+  .month-day .md-hours { font-family: 'DM Mono', monospace; font-size: .58rem; color: var(--teal); margin-top: 3px; font-weight: 500; }
+  .month-summary { font-family: 'Inter', sans-serif; font-size: .78rem; margin-top: 10px; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between; }
+  .month-summary span { color: var(--blue); font-weight: 600; }
+
+  /* ── YEAR VIEW — Google-style mini month grids ── */
+  .year-view-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .year-mini-month { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .ymm-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .ymm-name { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; color: var(--ink); }
+  .ymm-hours { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--teal); font-weight: 500; }
+  .ymm-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+  .ymm-dow { font-family: 'Inter', sans-serif; font-size: .52rem; font-weight: 700; text-transform: uppercase; color: var(--muted); text-align: center; padding-bottom: 3px; }
+  .ymm-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 400; border-radius: 50%; color: var(--ink); cursor: default; transition: background .1s; }
+  .ymm-cell.other { color: #ccc; }
+  .ymm-cell.has-hours { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .ymm-cell.is-today { background: var(--blue); color: #fff; font-weight: 700; border-radius: 50%; }
+  .ymm-cell.has-deadline { background: #fff0f0; color: var(--red-dead); font-weight: 700; border: 1px solid #fca5a5; }
+  .year-mini-month:hover { border-color: var(--blue); box-shadow: 0 2px 10px rgba(74,108,247,.12); }
+
+
+
+  .deadline-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .deadline-item:last-child { border-bottom: none; }
+  .deadline-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .deadline-dot.complete { background: var(--green-done); }
+  .deadline-dot.incomplete { background: var(--red-dead); }
+  .deadline-info { flex: 1; }
+  .deadline-info .dl-desc { font-size: .83rem; font-weight: 500; }
+  .deadline-info .dl-date { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); margin-top: 2px; }
+  .deadline-actions { display: flex; gap: 5px; }
+  .wc-bar-bg { background: var(--cream); border-radius: 4px; height: 8px; margin: 10px 0 6px; overflow: hidden; border: 1px solid var(--border); }
+  .wc-bar-fill { height: 100%; background: linear-gradient(90deg, var(--teal), var(--blue)); border-radius: 4px; transition: width .5s ease; }
+  .wc-stats { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); display: flex; justify-content: space-between; }
+  .year-deadline { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 7px; margin-bottom: 6px; font-size: .8rem; font-family: 'Inter', sans-serif; }
+  .year-deadline.complete { background: #f0fdf4; color: var(--green-done); border: 1px solid #bbf7d0; }
+  .year-deadline.incomplete { background: #fff5f5; color: var(--red-dead); border: 1px solid #fca5a5; }
+  .year-deadline.final { border: 2px solid var(--blue); background: var(--blue-light); color: var(--blue); }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 100; display: flex; align-items: center; justify-content: center; }
+  .modal { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 28px; width: 420px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,.15); }
+  .modal h3 { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+  .modal .actions { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+  .section-title { font-family: 'Lato', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--ink); }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; }
+  .toggle-label { font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 500; }
+  .toggle-sublabel { font-family: 'Inter', sans-serif; font-size: .72rem; color: var(--muted); margin-top: 2px; }
+  .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: background .2s; }
+  .toggle-slider:before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+  .toggle input:checked + .toggle-slider { background: var(--blue); }
+  .toggle input:checked + .toggle-slider:before { transform: translateX(20px); }
+  .email-preview { background: var(--cream); color: var(--ink); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; font-size: .85rem; line-height: 1.6; margin: 12px 0; font-family: 'Inter', sans-serif; }
+  .status-pill { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: .73rem; font-weight: 500; padding: 5px 12px; border-radius: 20px; margin-top: 10px; }
+  .status-pill.connected { background: #f0fdf4; color: var(--green-done); border: 1px solid #bbf7d0; }
+  .status-pill.disconnected { background: #fff5f5; color: var(--red-dead); border: 1px solid #fca5a5; }
+  .status-pill.neutral { background: var(--cream); color: var(--muted); border: 1px solid var(--border); }
+  .step-block { border-left: 3px solid var(--blue); padding-left: 14px; margin: 14px 0; }
+  .step-block .step-num { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 700; text-transform: uppercase; color: var(--blue); margin-bottom: 4px; letter-spacing: .04em; }
+  .step-block p { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+  .step-block a { color: var(--blue); }
+  .step-block code { font-family: 'DM Mono', monospace; font-size: .78rem; background: var(--cream); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
+  .send-log { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); margin-top: 8px; line-height: 1.7; }
+  /* Deadline indicators */
+  .deadline-chip { font-size: .65rem; font-family: 'Inter', sans-serif; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-top: 3px; display: flex; align-items: center; gap: 3px; }
+  .deadline-chip.incomplete { background: #fff5f5; color: var(--red-dead); border: 1px solid #fca5a5; }
+  .deadline-chip.complete { background: #f0fdf4; color: var(--green-done); border: 1px solid #bbf7d0; }
+  .deadline-chip.final { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-mid); }
+  .month-day .dl-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+  .month-day .dl-dot.incomplete { background: var(--red-dead); }
+  .month-day .dl-dot.complete { background: var(--green-done); }
+  .month-day .dl-dot.final { background: var(--blue); }
+  .month-day .dl-dots { display: flex; gap: 2px; margin-top: 3px; flex-wrap: wrap; }
+  .month-day .md-label { font-size: .58rem; font-family: 'Inter', sans-serif; color: var(--red-dead); font-weight: 600; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .month-day .md-label.final { color: var(--blue); }
+
+  /* Meeting log */
+  .meeting-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 0; margin-bottom: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .meeting-card-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; user-select: none; transition: background .15s; }
+  .meeting-card-header:hover { background: var(--cream); }
+  .meeting-date-badge { font-family: 'DM Mono', monospace; font-size: .7rem; font-weight: 500; background: var(--blue-light); color: var(--blue); border-radius: 6px; padding: 4px 10px; flex-shrink: 0; }
+  .meeting-supervisor { font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 600; color: var(--ink); flex: 1; }
+  .meeting-preview { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); flex: 2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .meeting-actions-count { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); flex-shrink: 0; }
+  .meeting-body { padding: 0 18px 16px; border-top: 1px solid var(--border); }
+  .meeting-body.hidden { display: none; }
+  .meeting-section-label { font-family: 'Inter', sans-serif; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 14px 0 6px; }
+  .meeting-notes-text { font-size: .85rem; color: var(--ink); line-height: 1.6; white-space: pre-wrap; }
+  .action-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .action-item:last-child { border-bottom: none; }
+  .action-checkbox { width: 16px; height: 16px; border: 2px solid var(--border); border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+  .action-checkbox.done { background: var(--green-done); border-color: var(--green-done); color: #fff; font-size: .7rem; }
+  .action-text { font-size: .83rem; flex: 1; line-height: 1.45; }
+  .action-text.done { text-decoration: line-through; color: var(--muted); }
+  .meeting-empty { text-align: center; padding: 40px 0; color: var(--muted); font-size: .85rem; }
+  .meeting-chevron { font-size: .7rem; color: var(--muted); transition: transform .2s; flex-shrink: 0; }
+  .meeting-chevron.open { transform: rotate(90deg); }
+
+
+  /* ── Solarized ── */
+  html[data-theme="solarized"] {
+    --ink: #657b83; --paper: #fdf6e3; --cream: #eee8d5;
+    --blue: #268bd2; --blue-light: #d4eaf7; --blue-mid: #93c5e8;
+    --teal: #2aa198; --muted: #93a1a1; --border: #ddd6c1;
+    --card: #fdf6e3; --red-dead: #dc322f; --green-done: #859900;
+    --gold: #268bd2; --gold-light: #93c5e8; --rust: #cb4b16;
+    --sage: #2aa198;
+  }
+  html[data-theme="solarized"] body { background: var(--paper); color: var(--ink); }
+  html[data-theme="solarized"] header { background: #073642; border-bottom-color: #268bd2; }
+  html[data-theme="solarized"] nav { background: #eee8d5; }
+  html[data-theme="solarized"] .side-pane { background: #eee8d5; }
+  html[data-theme="solarized"] .cal-nav button { background: #fdf6e3; }
+  html[data-theme="solarized"] .week-total, html[data-theme="solarized"] .words-week, html[data-theme="solarized"] .month-summary { background: #eee8d5; }
+  html[data-theme="solarized"] textarea, html[data-theme="solarized"] input[type="text"], html[data-theme="solarized"] input[type="date"], html[data-theme="solarized"] input[type="number"], html[data-theme="solarized"] input[type="password"] { background: #eee8d5; color: var(--ink); border-color: var(--border); }
+  html[data-theme="solarized"] .session-readout { background: linear-gradient(135deg, #073642 0%, #0d4a5a 100%); }
+  html[data-theme="solarized"] .cal-controls .view-btns { background: #eee8d5; }
+  html[data-theme="solarized"] .cal-controls .view-btns button.active { background: #fdf6e3; color: var(--blue); }
+
+  /* ── Lavender Fields ── */
+  html[data-theme="lavender"] {
+    --ink: #2d2540; --paper: #f7f4ff; --cream: #ede8fa;
+    --blue: #7c5cbf; --blue-light: #e8e0f8; --blue-mid: #c4b0e8;
+    --teal: #9b6fb5; --muted: #8a7aaa; --border: #d8cfee;
+    --card: #ffffff; --red-dead: #c0392b; --green-done: #5a9e6f;
+    --gold: #7c5cbf; --gold-light: #c4b0e8; --rust: #c0392b;
+    --sage: #9b6fb5;
+  }
+  html[data-theme="lavender"] body { background: var(--paper); font-family: 'Nunito', sans-serif; }
+  html[data-theme="lavender"] header { background: #2d2540; border-bottom-color: #c4b0e8; }
+  html[data-theme="lavender"] header h1, html[data-theme="lavender"] .card h3, html[data-theme="lavender"] .section-title, html[data-theme="lavender"] .cal-nav .cal-label, html[data-theme="lavender"] .week-day .day-num, html[data-theme="lavender"] .month-day .md-num, html[data-theme="lavender"] .modal h3 { font-family: 'Nunito', sans-serif; }
+  html[data-theme="lavender"] nav { background: #fff; }
+  html[data-theme="lavender"] .side-pane { background: #fff; }
+  html[data-theme="lavender"] .cal-nav button { background: #fff; }
+  html[data-theme="lavender"] .week-total, html[data-theme="lavender"] .words-week, html[data-theme="lavender"] .month-summary { background: var(--cream); }
+  html[data-theme="lavender"] textarea, html[data-theme="lavender"] input[type="text"], html[data-theme="lavender"] input[type="date"], html[data-theme="lavender"] input[type="number"], html[data-theme="lavender"] input[type="password"] { background: var(--paper); color: var(--ink); border-color: var(--border); }
+  html[data-theme="lavender"] .session-readout { background: linear-gradient(135deg, #7c5cbf 0%, #9b6fb5 100%); }
+  html[data-theme="lavender"] .cal-controls .view-btns { background: var(--cream); }
+  html[data-theme="lavender"] .cal-controls .view-btns button.active { background: #fff; color: var(--blue); }
+  html[data-theme="lavender"] .btn { background: var(--blue); }
+  html[data-theme="lavender"] .btn:hover { background: #5e3fa3; }
+  html[data-theme="lavender"] .btn-ghost { color: #7c5cbf; border-color: #7c5cbf; background: #f0ebfc; }
+  html[data-theme="lavender"] .btn-ghost:hover { background: #e0d4f8; color: #5e3fa3; border-color: #5e3fa3; }
+
+  /* ── Terminal ── */
+  html[data-theme="terminal"] {
+    --ink: #00ff41; --paper: #000000; --cream: #0a0a0a;
+    --blue: #00ff41; --blue-light: #002200; --blue-mid: #004400;
+    --teal: #00cc33; --muted: #007a1f; --border: #004400;
+    --card: #050505; --red-dead: #ff3333; --green-done: #00ff41;
+    --gold: #00ff41; --gold-light: #004400; --rust: #ff3333;
+    --sage: #00cc33;
+  }
+  html[data-theme="terminal"] body { background: #000; font-family: 'Share Tech Mono', monospace; color: #00ff41; }
+  html[data-theme="terminal"] header { background: #000; border-bottom: 1px solid #00ff41; box-shadow: 0 0 10px rgba(0,255,65,.2); }
+  html[data-theme="terminal"] header h1, html[data-theme="terminal"] .card h3, html[data-theme="terminal"] .section-title, html[data-theme="terminal"] .cal-nav .cal-label, html[data-theme="terminal"] .week-day .day-num, html[data-theme="terminal"] .month-day .md-num, html[data-theme="terminal"] .modal h3, html[data-theme="terminal"] nav button { font-family: 'Share Tech Mono', monospace; }
+  html[data-theme="terminal"] .subtitle { color: #00cc33; }
+  html[data-theme="terminal"] nav { background: #000; border-bottom-color: #004400; }
+  html[data-theme="terminal"] nav button { color: #007a1f; }
+  html[data-theme="terminal"] nav button.active { color: #00ff41; border-bottom-color: #00ff41; }
+  html[data-theme="terminal"] .side-pane { background: #000; border-left-color: #004400; }
+  html[data-theme="terminal"] .card { background: #050505; border-color: #004400; box-shadow: 0 0 8px rgba(0,255,65,.05); }
+  html[data-theme="terminal"] .cal-nav button { background: #000; border-color: #004400; color: #00ff41; }
+  html[data-theme="terminal"] .cal-nav button:hover { background: #002200; border-color: #00ff41; color: #00ff41; }
+  html[data-theme="terminal"] .week-total, html[data-theme="terminal"] .words-week, html[data-theme="terminal"] .month-summary { background: #000; border-color: #004400; }
+  html[data-theme="terminal"] textarea, html[data-theme="terminal"] input[type="text"], html[data-theme="terminal"] input[type="date"], html[data-theme="terminal"] input[type="number"], html[data-theme="terminal"] input[type="password"] { background: #000; color: #00ff41; border-color: #004400; font-family: 'Share Tech Mono', monospace; }
+  html[data-theme="terminal"] .session-readout { background: #000; border: 1px solid #00ff41; box-shadow: 0 0 12px rgba(0,255,65,.15); }
+  html[data-theme="terminal"] .session-readout .tag { color: #00cc33; }
+  html[data-theme="terminal"] .modal { background: #050505; border-color: #00ff41; }
+  html[data-theme="terminal"] .week-day { background: #050505; border-color: #004400; }
+  html[data-theme="terminal"] .week-day.today { background: #002200; border-color: #00ff41; }
+  html[data-theme="terminal"] .week-day.past { background: #020202; }
+  html[data-theme="terminal"] .month-day { background: #050505; border-color: #004400; }
+  html[data-theme="terminal"] .cal-controls .view-btns { background: #000; border: 1px solid #004400; }
+  html[data-theme="terminal"] .cal-controls .view-btns button.active { background: #002200; color: #00ff41; }
+  html[data-theme="terminal"] .btn { background: #002200; color: #00ff41; border: 1px solid #00ff41; }
+  html[data-theme="terminal"] .btn:hover { background: #004400; box-shadow: 0 0 8px rgba(0,255,65,.3); }
+  html[data-theme="terminal"] .btn-ghost { background: none; color: #00ff41; border-color: #004400; }
+  html[data-theme="terminal"] .btn-ghost:hover { background: #002200; color: #00ff41; }
+  html[data-theme="terminal"] .year-mini-month { background: #050505; border-color: #004400; }
+
+  /* ── Neon Noir ── */
+  html[data-theme="neonnoir"] {
+    --ink: #e8e0f0; --paper: #1a1a2e; --cream: #16213e;
+    --blue: #ff2d78; --blue-light: #3d0020; --blue-mid: #7a0040;
+    --teal: #00d4ff; --muted: #8878a8; --border: #2a2a4a;
+    --card: #1e1e3a; --red-dead: #ff2d78; --green-done: #00d4ff;
+    --gold: #ff2d78; --gold-light: #7a0040; --rust: #ff2d78;
+    --sage: #00d4ff;
+  }
+  html[data-theme="neonnoir"] body { background: var(--paper); }
+  html[data-theme="neonnoir"] header { background: #0d0d1a; border-bottom: 2px solid #ff2d78; box-shadow: 0 0 20px rgba(255,45,120,.3); }
+  html[data-theme="neonnoir"] nav { background: #0d0d1a; border-bottom-color: var(--border); }
+  html[data-theme="neonnoir"] nav button.active { color: #ff2d78; border-bottom-color: #ff2d78; }
+  html[data-theme="neonnoir"] .side-pane { background: #0d0d1a; }
+  html[data-theme="neonnoir"] .card { background: #1e1e3a; border-color: #2a2a4a; }
+  html[data-theme="neonnoir"] .cal-nav button { background: #1e1e3a; color: var(--muted); border-color: var(--border); }
+  html[data-theme="neonnoir"] .cal-nav button:hover { background: #3d0020; border-color: #ff2d78; color: #ff2d78; }
+  html[data-theme="neonnoir"] .week-total, html[data-theme="neonnoir"] .words-week, html[data-theme="neonnoir"] .month-summary { background: #0d0d1a; border-color: var(--border); }
+  html[data-theme="neonnoir"] textarea, html[data-theme="neonnoir"] input[type="text"], html[data-theme="neonnoir"] input[type="date"], html[data-theme="neonnoir"] input[type="number"], html[data-theme="neonnoir"] input[type="password"] { background: #0d0d1a; color: var(--ink); border-color: var(--border); }
+  html[data-theme="neonnoir"] .session-readout { background: linear-gradient(135deg, #3d0020 0%, #1a0030 100%); box-shadow: 0 4px 20px rgba(255,45,120,.2); }
+  html[data-theme="neonnoir"] .modal { background: #1e1e3a; }
+  html[data-theme="neonnoir"] .week-day { background: #1e1e3a; border-color: #2a2a4a; }
+  html[data-theme="neonnoir"] .week-day.today { background: #2a0020; border-color: #ff2d78; box-shadow: 0 0 10px rgba(255,45,120,.2); }
+  html[data-theme="neonnoir"] .week-day.past { background: #181830; }
+  html[data-theme="neonnoir"] .month-day { background: #1e1e3a; border-color: #2a2a4a; }
+  html[data-theme="neonnoir"] .cal-controls .view-btns { background: #0d0d1a; }
+  html[data-theme="neonnoir"] .cal-controls .view-btns button.active { background: #3d0020; color: #ff2d78; }
+  html[data-theme="neonnoir"] .btn { background: #ff2d78; }
+  html[data-theme="neonnoir"] .btn:hover { background: #cc1a5e; box-shadow: 0 0 12px rgba(255,45,120,.4); }
+  html[data-theme="neonnoir"] .btn-ghost { color: #ff2d78; border-color: #ff2d78; background: rgba(255,45,120,.08); }
+  html[data-theme="neonnoir"] .btn-ghost:hover { background: #3d0020; color: #ff2d78; border-color: #ff2d78; }
+  html[data-theme="neonnoir"] .week-day .day-hours, html[data-theme="neonnoir"] .month-day .md-hours { color: #00d4ff; }
+  html[data-theme="neonnoir"] .year-mini-month { background: #1e1e3a; border-color: #2a2a4a; }
+
+  /* ── Vaporwave ── */
+  html[data-theme="vaporwave"] {
+    --ink: #f0e6ff; --paper: #1a0533; --cream: #2a0a4a;
+    --blue: #ff71ce; --blue-light: #3d0040; --blue-mid: #7a0080;
+    --teal: #01cdfe; --muted: #a070c0; --border: #3a1050;
+    --card: #220844; --red-dead: #ff71ce; --green-done: #05ffa1;
+    --gold: #ff71ce; --gold-light: #7a0080; --rust: #ff71ce;
+    --sage: #01cdfe;
+  }
+  html[data-theme="vaporwave"] body { background: var(--paper); font-family: 'Righteous', 'Inter', sans-serif; }
+  html[data-theme="vaporwave"] header { background: linear-gradient(90deg, #0d001a 0%, #1a0035 50%, #0d001a 100%); border-bottom: 2px solid #ff71ce; box-shadow: 0 0 30px rgba(255,113,206,.4); }
+  html[data-theme="vaporwave"] header h1, html[data-theme="vaporwave"] .section-title, html[data-theme="vaporwave"] .card h3, html[data-theme="vaporwave"] .cal-nav .cal-label, html[data-theme="vaporwave"] .modal h3 { font-family: 'Righteous', sans-serif; background: linear-gradient(90deg, #ff71ce, #01cdfe); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  html[data-theme="vaporwave"] .subtitle { color: #01cdfe; -webkit-text-fill-color: #01cdfe; }
+  html[data-theme="vaporwave"] nav { background: #0d001a; border-bottom: 1px solid #3a1050; }
+  html[data-theme="vaporwave"] nav button { color: #a070c0; }
+  html[data-theme="vaporwave"] nav button.active { color: #ff71ce; border-bottom-color: #ff71ce; }
+  html[data-theme="vaporwave"] .side-pane { background: #0d001a; border-left-color: #3a1050; }
+  html[data-theme="vaporwave"] .card { background: #220844; border-color: #3a1050; }
+  html[data-theme="vaporwave"] .cal-nav button { background: #220844; color: #a070c0; border-color: #3a1050; }
+  html[data-theme="vaporwave"] .cal-nav button:hover { background: #3d0040; border-color: #ff71ce; color: #ff71ce; }
+  html[data-theme="vaporwave"] .week-total, html[data-theme="vaporwave"] .words-week, html[data-theme="vaporwave"] .month-summary { background: #0d001a; border-color: #3a1050; }
+  html[data-theme="vaporwave"] textarea, html[data-theme="vaporwave"] input[type="text"], html[data-theme="vaporwave"] input[type="date"], html[data-theme="vaporwave"] input[type="number"], html[data-theme="vaporwave"] input[type="password"] { background: #0d001a; color: var(--ink); border-color: #3a1050; }
+  html[data-theme="vaporwave"] .session-readout { background: linear-gradient(135deg, #3d0040 0%, #000d40 100%); box-shadow: 0 4px 20px rgba(255,113,206,.25); }
+  html[data-theme="vaporwave"] .session-readout .tag { color: #01cdfe; }
+  html[data-theme="vaporwave"] .modal { background: #220844; border-color: #3a1050; }
+  html[data-theme="vaporwave"] .week-day { background: #220844; border-color: #3a1050; }
+  html[data-theme="vaporwave"] .week-day.today { background: #3d0040; border-color: #ff71ce; box-shadow: 0 0 12px rgba(255,113,206,.3); }
+  html[data-theme="vaporwave"] .week-day.past { background: #180636; }
+  html[data-theme="vaporwave"] .month-day { background: #220844; border-color: #3a1050; }
+  html[data-theme="vaporwave"] .cal-controls .view-btns { background: #0d001a; }
+  html[data-theme="vaporwave"] .cal-controls .view-btns button.active { background: #3d0040; color: #ff71ce; }
+  html[data-theme="vaporwave"] .btn { background: linear-gradient(90deg, #ff71ce, #b967ff); border: none; }
+  html[data-theme="vaporwave"] .btn:hover { background: linear-gradient(90deg, #cc4fa8, #9040d0); box-shadow: 0 0 14px rgba(255,113,206,.5); }
+  html[data-theme="vaporwave"] .btn-ghost { color: #ff71ce; border-color: #7a0080; background: none; }
+  html[data-theme="vaporwave"] .btn-ghost:hover { background: #3d0040; color: #ff71ce; }
+  html[data-theme="vaporwave"] .week-day .day-hours, html[data-theme="vaporwave"] .month-day .md-hours { color: #01cdfe; }
+  html[data-theme="vaporwave"] .year-mini-month { background: #220844; border-color: #3a1050; }
+
+  /* ── Crayola ── */
+  html[data-theme="crayola"] {
+    --ink: #1a1a1a; --paper: #fff9f0; --cream: #fff0e0;
+    --blue: #0066cc; --blue-light: #cce0ff; --blue-mid: #80b3ff;
+    --teal: #00aa55; --muted: #555555; --border: #ddccbb;
+    --card: #ffffff; --red-dead: #ee1111; --green-done: #00aa55;
+    --gold: #0066cc; --gold-light: #80b3ff; --rust: #ee1111;
+    --sage: #00aa55;
+  }
+  html[data-theme="crayola"] body { background: var(--paper); font-family: 'Fredoka One', 'Nunito', sans-serif; }
+  html[data-theme="crayola"] header { background: #ee1111; border-bottom: 4px solid #ffcc00; }
+  html[data-theme="crayola"] header h1, html[data-theme="crayola"] .card h3, html[data-theme="crayola"] .section-title, html[data-theme="crayola"] .cal-nav .cal-label, html[data-theme="crayola"] .week-day .day-num, html[data-theme="crayola"] .month-day .md-num, html[data-theme="crayola"] .modal h3 { font-family: 'Fredoka One', sans-serif; }
+  html[data-theme="crayola"] nav { background: #ffcc00; border-bottom: 3px solid #ee1111; }
+  html[data-theme="crayola"] nav button { color: #1a1a1a; font-family: 'Fredoka One', sans-serif; }
+  html[data-theme="crayola"] nav button.active { color: #0066cc; border-bottom-color: #0066cc; }
+  html[data-theme="crayola"] nav button:hover { color: #0066cc; }
+  html[data-theme="crayola"] .side-pane { background: #e8f5e8; border-left: 3px solid #00aa55; }
+  html[data-theme="crayola"] .card { background: #fff; border: 3px solid #ddccbb; border-radius: 12px; }
+  html[data-theme="crayola"] .card h3 { color: #ee1111; }
+  html[data-theme="crayola"] .cal-nav button { background: #fff; border: 2px solid #ddccbb; }
+  html[data-theme="crayola"] .cal-nav button:hover { background: #cce0ff; border-color: #0066cc; color: #0066cc; }
+  html[data-theme="crayola"] .week-total, html[data-theme="crayola"] .words-week, html[data-theme="crayola"] .month-summary { background: #fff9f0; border: 2px solid #ddccbb; }
+  html[data-theme="crayola"] textarea, html[data-theme="crayola"] input[type="text"], html[data-theme="crayola"] input[type="date"], html[data-theme="crayola"] input[type="number"], html[data-theme="crayola"] input[type="password"] { background: #fff9f0; color: var(--ink); border: 2px solid #ddccbb; border-radius: 8px; }
+  html[data-theme="crayola"] .session-readout { background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%); }
+  html[data-theme="crayola"] .modal { background: #fff; border: 3px solid #ddccbb; }
+  html[data-theme="crayola"] .week-day { background: #fff; border: 2px solid #ddccbb; border-radius: 10px; }
+  html[data-theme="crayola"] .week-day.today { background: #fff9cc; border: 3px solid #ffcc00; }
+  html[data-theme="crayola"] .week-day.past { background: #f5f5f5; }
+  html[data-theme="crayola"] .month-day { background: #fff; border: 2px solid #ddccbb; }
+  html[data-theme="crayola"] .month-day.today { border: 3px solid #ffcc00; background: #fff9cc; }
+  html[data-theme="crayola"] .cal-controls .view-btns { background: #fff0cc; border-radius: 10px; }
+  html[data-theme="crayola"] .cal-controls .view-btns button.active { background: #ffcc00; color: #1a1a1a; }
+  html[data-theme="crayola"] .btn { background: #0066cc; border-radius: 10px; font-family: 'Fredoka One', sans-serif; letter-spacing: .03em; }
+  html[data-theme="crayola"] .btn:hover { background: #0044aa; }
+  html[data-theme="crayola"] .btn-ghost { color: #0066cc; border: 2px solid #0066cc; background: none; font-family: 'Fredoka One', sans-serif; }
+  html[data-theme="crayola"] .btn-ghost:hover { background: #cce0ff; color: #0044aa; border-color: #0044aa; }
+  html[data-theme="crayola"] .btn-sage { background: #00aa55; }
+  html[data-theme="crayola"] .btn-sage:hover { background: #007733; }
+  html[data-theme="crayola"] .year-mini-month { background: #fff; border: 2px solid #ddccbb; }
+
+  /* ── Chalkboard ── */
+  html[data-theme="chalkboard"] {
+    --ink: #f0ece0; --paper: #2a3d2a; --cream: #243324;
+    --blue: #f5e642; --blue-light: #3a4a1a; --blue-mid: #6a7a2a;
+    --teal: #7dd8d0; --muted: #a8c0a0; --border: #3a5a3a;
+    --card: #2e4030; --red-dead: #ff8080; --green-done: #7dd8d0;
+    --gold: #f5e642; --gold-light: #8a7a00; --rust: #ff8080;
+    --sage: #7dd8d0;
+  }
+  html[data-theme="chalkboard"] body { background: var(--paper); font-family: 'Caveat', cursive; font-size: 1rem; }
+  html[data-theme="chalkboard"] header { background: #1a2a1a; border-bottom: 3px solid #f5e642; }
+  html[data-theme="chalkboard"] header h1, html[data-theme="chalkboard"] .card h3, html[data-theme="chalkboard"] .section-title, html[data-theme="chalkboard"] .cal-nav .cal-label, html[data-theme="chalkboard"] .week-day .day-num, html[data-theme="chalkboard"] .month-day .md-num, html[data-theme="chalkboard"] .modal h3 { font-family: 'Caveat', cursive; font-size: 1.2em; }
+  html[data-theme="chalkboard"] nav { background: #1e301e; border-bottom: 2px solid #3a5a3a; }
+  html[data-theme="chalkboard"] nav button { color: #a8c0a0; font-family: 'Caveat', cursive; font-size: .9rem; }
+  html[data-theme="chalkboard"] nav button.active { color: #f5e642; border-bottom-color: #f5e642; }
+  html[data-theme="chalkboard"] .side-pane { background: #1e301e; border-left: 2px solid #3a5a3a; }
+  html[data-theme="chalkboard"] .card { background: #2e4030; border: 1px solid #3a5a3a; }
+  html[data-theme="chalkboard"] .cal-nav button { background: #2e4030; border-color: #3a5a3a; color: #a8c0a0; }
+  html[data-theme="chalkboard"] .cal-nav button:hover { background: #3a4a1a; border-color: #f5e642; color: #f5e642; }
+  html[data-theme="chalkboard"] .week-total, html[data-theme="chalkboard"] .words-week, html[data-theme="chalkboard"] .month-summary { background: #1e301e; border-color: #3a5a3a; }
+  html[data-theme="chalkboard"] textarea, html[data-theme="chalkboard"] input[type="text"], html[data-theme="chalkboard"] input[type="date"], html[data-theme="chalkboard"] input[type="number"], html[data-theme="chalkboard"] input[type="password"] { background: #1e301e; color: var(--ink); border-color: #3a5a3a; font-family: 'Caveat', cursive; font-size: 1rem; }
+  html[data-theme="chalkboard"] .session-readout { background: #1a2a1a; border: 1px dashed #f5e642; }
+  html[data-theme="chalkboard"] .session-readout .tag { color: #f5e642; }
+  html[data-theme="chalkboard"] .modal { background: #2e4030; border-color: #3a5a3a; }
+  html[data-theme="chalkboard"] .week-day { background: #2e4030; border: 1px dashed #3a5a3a; }
+  html[data-theme="chalkboard"] .week-day.today { background: #3a4a1a; border: 2px dashed #f5e642; }
+  html[data-theme="chalkboard"] .week-day.past { background: #283828; }
+  html[data-theme="chalkboard"] .month-day { background: #2e4030; border: 1px dashed #3a5a3a; }
+  html[data-theme="chalkboard"] .month-day.today { border: 2px dashed #f5e642; background: #3a4a1a; }
+  html[data-theme="chalkboard"] .cal-controls .view-btns { background: #1e301e; }
+  html[data-theme="chalkboard"] .cal-controls .view-btns button.active { background: #3a4a1a; color: #f5e642; }
+  html[data-theme="chalkboard"] .btn { background: #3a4a1a; color: #f5e642; border: 1px solid #f5e642; font-family: 'Caveat', cursive; font-size: .9rem; letter-spacing: .05em; }
+  html[data-theme="chalkboard"] .btn:hover { background: #4a5a2a; box-shadow: 0 0 8px rgba(245,230,66,.2); }
+  html[data-theme="chalkboard"] .btn-ghost { background: none; color: #a8c0a0; border-color: #3a5a3a; }
+  html[data-theme="chalkboard"] .btn-ghost:hover { background: #243324; color: #f0ece0; }
+  html[data-theme="chalkboard"] .year-mini-month { background: #2e4030; border: 1px dashed #3a5a3a; }
+
+  /* ── Geneva ── */
+  html[data-theme="geneva"] {
+    --ink: #1a0e05; --paper: #f8f0e0; --cream: #ede0c8;
+    --blue: #8b1a1a; --blue-light: #f5e8d8; --blue-mid: #d4a880;
+    --teal: #4a6741; --muted: #6b5040; --border: #c8aa88;
+    --card: #fdf8f0; --red-dead: #8b1a1a; --green-done: #4a6741;
+    --gold: #8b1a1a; --gold-light: #d4a880; --rust: #8b1a1a;
+    --sage: #4a6741;
+  }
+  html[data-theme="geneva"] body { background: var(--paper); font-family: 'IM Fell English', Georgia, serif; }
+  html[data-theme="geneva"] header { background: #1a0e05; border-bottom: 4px double #c8aa88; }
+  html[data-theme="geneva"] header h1 { font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem; letter-spacing: .04em; color: #f8f0e0; }
+  html[data-theme="geneva"] .subtitle { color: #c8aa88; font-family: 'IM Fell English', serif; font-style: italic; text-transform: none; letter-spacing: .02em; }
+  html[data-theme="geneva"] .card h3, html[data-theme="geneva"] .section-title, html[data-theme="geneva"] .cal-nav .cal-label, html[data-theme="geneva"] .week-day .day-num, html[data-theme="geneva"] .month-day .md-num, html[data-theme="geneva"] .modal h3, html[data-theme="geneva"] .ymm-name { font-family: 'IM Fell English', Georgia, serif; }
+  html[data-theme="geneva"] nav { background: #ede0c8; border-bottom: 2px solid #c8aa88; }
+  html[data-theme="geneva"] nav button { color: #6b5040; font-family: 'IM Fell English', serif; font-size: .82rem; }
+  html[data-theme="geneva"] nav button.active { color: #8b1a1a; border-bottom-color: #8b1a1a; }
+  html[data-theme="geneva"] .side-pane { background: #ede0c8; border-left: 2px solid #c8aa88; }
+  html[data-theme="geneva"] .card { background: #fdf8f0; border: 1px solid #c8aa88; box-shadow: 2px 2px 0 #c8aa88; }
+  html[data-theme="geneva"] .cal-nav button { background: #f8f0e0; border-color: #c8aa88; }
+  html[data-theme="geneva"] .cal-nav button:hover { background: #f5e8d8; border-color: #8b1a1a; color: #8b1a1a; }
+  html[data-theme="geneva"] .week-total, html[data-theme="geneva"] .words-week, html[data-theme="geneva"] .month-summary { background: #ede0c8; border-color: #c8aa88; }
+  html[data-theme="geneva"] textarea, html[data-theme="geneva"] input[type="text"], html[data-theme="geneva"] input[type="date"], html[data-theme="geneva"] input[type="number"], html[data-theme="geneva"] input[type="password"] { background: #f8f0e0; color: var(--ink); border-color: #c8aa88; font-family: 'IM Fell English', serif; }
+  html[data-theme="geneva"] .session-readout { background: linear-gradient(135deg, #1a0e05 0%, #2e1a08 100%); border: 1px solid #c8aa88; }
+  html[data-theme="geneva"] .session-readout .tag { color: #c8aa88; font-family: 'IM Fell English', serif; font-style: italic; }
+  html[data-theme="geneva"] .modal { background: #fdf8f0; border: 2px solid #c8aa88; }
+  html[data-theme="geneva"] .week-day { background: #fdf8f0; border: 1px solid #c8aa88; }
+  html[data-theme="geneva"] .week-day.today { background: #f5e8d8; border: 2px solid #8b1a1a; }
+  html[data-theme="geneva"] .week-day.past { background: #f0e8d8; }
+  html[data-theme="geneva"] .month-day { background: #fdf8f0; border: 1px solid #c8aa88; }
+  html[data-theme="geneva"] .month-day.today { border: 2px solid #8b1a1a; background: #f5e8d8; }
+  html[data-theme="geneva"] .cal-controls .view-btns { background: #ede0c8; }
+  html[data-theme="geneva"] .cal-controls .view-btns button.active { background: #f8f0e0; color: #8b1a1a; }
+  html[data-theme="geneva"] .btn { background: #8b1a1a; font-family: 'IM Fell English', serif; letter-spacing: .03em; }
+  html[data-theme="geneva"] .btn:hover { background: #6a1010; }
+  html[data-theme="geneva"] .btn-ghost { color: #8b1a1a; border-color: #c8aa88; background: none; font-family: 'IM Fell English', serif; }
+  html[data-theme="geneva"] .btn-ghost:hover { background: #f5e8d8; color: #6a1010; border-color: #8b1a1a; }
+  html[data-theme="geneva"] .btn-sage { background: #4a6741; }
+  html[data-theme="geneva"] .btn-sage:hover { background: #344d2f; }
+  html[data-theme="geneva"] .year-mini-month { background: #fdf8f0; border: 1px solid #c8aa88; box-shadow: 1px 1px 0 #c8aa88; }
+
+  /* ── Westminster Abbey ── */
+  html[data-theme="westminster"] {
+    --ink: #f0ece4; --paper: #1c1a16; --cream: #252218;
+    --blue: #c8a84a; --blue-light: #2e2810; --blue-mid: #5a4e20;
+    --teal: #6a9ab0; --muted: #8a8070; --border: #3a3424;
+    --card: #222018; --red-dead: #cc4444; --green-done: #5a9a6a;
+    --gold: #c8a84a; --gold-light: #5a4e20; --rust: #cc4444;
+    --sage: #6a9ab0;
+  }
+  html[data-theme="westminster"] body { background: var(--paper); font-family: 'Cinzel', 'Georgia', serif; }
+  html[data-theme="westminster"] header { background: linear-gradient(180deg, #0e0c08 0%, #1c1a14 100%); border-bottom: 3px solid #c8a84a; box-shadow: 0 2px 20px rgba(200,168,74,.15); }
+  html[data-theme="westminster"] header h1 { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #c8a84a; }
+  html[data-theme="westminster"] .subtitle { color: #8a7850; font-family: 'Cinzel', serif; letter-spacing: .18em; font-size: .6rem; }
+  html[data-theme="westminster"] .card h3, html[data-theme="westminster"] .section-title, html[data-theme="westminster"] .cal-nav .cal-label, html[data-theme="westminster"] .week-day .day-num, html[data-theme="westminster"] .month-day .md-num, html[data-theme="westminster"] .modal h3, html[data-theme="westminster"] .ymm-name { font-family: 'Cinzel', serif; letter-spacing: .06em; }
+  html[data-theme="westminster"] nav { background: #151310; border-bottom: 1px solid #3a3424; }
+  html[data-theme="westminster"] nav button { color: #6a6050; font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .1em; }
+  html[data-theme="westminster"] nav button.active { color: #c8a84a; border-bottom-color: #c8a84a; }
+  html[data-theme="westminster"] nav button:hover { color: #e0c870; }
+  html[data-theme="westminster"] .side-pane { background: #161410; border-left: 1px solid #3a3424; }
+  html[data-theme="westminster"] .card { background: #222018; border: 1px solid #3a3424; box-shadow: inset 0 0 30px rgba(0,0,0,.3); }
+  html[data-theme="westminster"] .cal-nav button { background: #222018; border-color: #3a3424; color: #8a8070; }
+  html[data-theme="westminster"] .cal-nav button:hover { background: #2e2810; border-color: #c8a84a; color: #c8a84a; }
+  html[data-theme="westminster"] .week-total, html[data-theme="westminster"] .words-week, html[data-theme="westminster"] .month-summary { background: #151310; border-color: #3a3424; }
+  html[data-theme="westminster"] textarea, html[data-theme="westminster"] input[type="text"], html[data-theme="westminster"] input[type="date"], html[data-theme="westminster"] input[type="number"], html[data-theme="westminster"] input[type="password"] { background: #151310; color: var(--ink); border-color: #3a3424; font-family: 'Cinzel', serif; font-size: .8rem; }
+  html[data-theme="westminster"] .session-readout { background: linear-gradient(135deg, #0e0c08 0%, #1e1a10 100%); border: 1px solid #c8a84a; box-shadow: 0 4px 20px rgba(200,168,74,.1); }
+  html[data-theme="westminster"] .session-readout .tag { color: #c8a84a; font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .14em; }
+  html[data-theme="westminster"] .modal { background: #222018; border: 1px solid #c8a84a; }
+  html[data-theme="westminster"] .week-day { background: #222018; border: 1px solid #3a3424; }
+  html[data-theme="westminster"] .week-day.today { background: #2a2414; border: 1px solid #c8a84a; box-shadow: 0 0 12px rgba(200,168,74,.15); }
+  html[data-theme="westminster"] .week-day.past { background: #1c1a14; }
+  html[data-theme="westminster"] .week-day.today .day-num { color: #c8a84a; }
+  html[data-theme="westminster"] .month-day { background: #222018; border: 1px solid #3a3424; }
+  html[data-theme="westminster"] .month-day.today { border: 1px solid #c8a84a; background: #2a2414; }
+  html[data-theme="westminster"] .month-day.today .md-num { color: #c8a84a; }
+  html[data-theme="westminster"] .cal-controls .view-btns { background: #151310; border: 1px solid #3a3424; }
+  html[data-theme="westminster"] .cal-controls .view-btns button.active { background: #2e2810; color: #c8a84a; }
+  html[data-theme="westminster"] .btn { background: linear-gradient(180deg, #b89030 0%, #8a6818 100%); color: #f0ece4; font-family: 'Cinzel', serif; letter-spacing: .08em; font-size: .68rem; border: 1px solid #c8a84a; }
+  html[data-theme="westminster"] .btn:hover { background: linear-gradient(180deg, #c8a840 0%, #9a7828 100%); box-shadow: 0 2px 10px rgba(200,168,74,.3); }
+  html[data-theme="westminster"] .btn-ghost { color: #c8a84a; border-color: #3a3424; background: none; }
+  html[data-theme="westminster"] .btn-ghost:hover { background: #2e2810; color: #e0c870; border-color: #c8a84a; }
+  html[data-theme="westminster"] .btn-sage { background: linear-gradient(180deg, #5a8870 0%, #3a6050 100%); border-color: #6a9ab0; }
+  html[data-theme="westminster"] .btn-sage:hover { background: linear-gradient(180deg, #6a9880 0%, #4a7060 100%); }
+  html[data-theme="westminster"] .year-mini-month { background: #222018; border: 1px solid #3a3424; }
+  html[data-theme="westminster"] .year-mini-month:hover { border-color: #c8a84a; box-shadow: 0 2px 10px rgba(200,168,74,.15); }
+  html[data-theme="westminster"] .wc-bar-fill { background: linear-gradient(90deg, #6a9ab0, #c8a84a); }
+
+  /* ══════════════════════════════════════════
+     THEME DEFINITIONS
+     Each theme overrides :root variables and
+     sets font families via data-theme on <html>
+  ══════════════════════════════════════════ */
+
+  /* Theme 1: Airy (default — already in :root) */
+
+  /* Theme 2: Dark Academic */
+  html[data-theme="dark"] {
+    --ink: #e8e0d0; --paper: #1a1814; --cream: #232018;
+    --blue: #c8a96e; --blue-light: #2e2a20; --blue-mid: #4a3f28;
+    --teal: #7eb8a4; --muted: #8a8070; --border: #332e24;
+    --card: #211f1a; --red-dead: #e07070; --green-done: #7ec89a;
+    --gold: #c8a96e; --gold-light: #8a7050; --rust: #e07070;
+    --sage: #7eb8a4;
+    --ui-font: 'Crimson Pro', Georgia, serif;
+    --mono-font: 'DM Mono', monospace;
+    --heading-font: 'Crimson Pro', Georgia, serif;
+  }
+  html[data-theme="dark"] body { background: var(--paper); }
+  html[data-theme="dark"] header { background: #141210; border-bottom-color: var(--blue); box-shadow: 0 1px 0 var(--border); }
+  html[data-theme="dark"] nav { background: #1a1814; }
+  html[data-theme="dark"] .side-pane { background: #1e1c17; }
+  html[data-theme="dark"] .cal-nav button { background: #232018; }
+  html[data-theme="dark"] .week-total,
+  html[data-theme="dark"] .words-week,
+  html[data-theme="dark"] .month-summary { background: #232018; }
+  html[data-theme="dark"] textarea,
+  html[data-theme="dark"] input[type="text"],
+  html[data-theme="dark"] input[type="date"],
+  html[data-theme="dark"] input[type="number"],
+  html[data-theme="dark"] input[type="password"] { background: #232018; color: var(--ink); border-color: var(--border); }
+  html[data-theme="dark"] .modal { background: #232018; }
+  html[data-theme="dark"] .week-day.past { background: #1d1b16; }
+  html[data-theme="dark"] .cal-controls .view-btns { background: #232018; }
+  html[data-theme="dark"] .cal-controls .view-btns button.active { background: #2e2a20; }
+
+  /* Theme 3: Warm Parchment */
+  html[data-theme="parchment"] {
+    --ink: #2c1e0f; --paper: #fdf6e3; --cream: #f5ead0;
+    --blue: #8b5e3c; --blue-light: #f0e0c8; --blue-mid: #d4b896;
+    --teal: #5c7a4e; --muted: #8a6e52; --border: #ddd0b8;
+    --card: #fdf8f0; --red-dead: #c0392b; --green-done: #4a7c59;
+    --gold: #8b5e3c; --gold-light: #c49a6c; --rust: #c0392b;
+    --sage: #5c7a4e;
+    --ui-font: 'IBM Plex Serif', Georgia, serif;
+    --mono-font: 'DM Mono', monospace;
+    --heading-font: 'IBM Plex Serif', Georgia, serif;
+  }
+  html[data-theme="parchment"] body { background: var(--paper); }
+  html[data-theme="parchment"] header { background: #2c1e0f; border-bottom-color: var(--blue); }
+  html[data-theme="parchment"] nav { background: var(--cream); }
+  html[data-theme="parchment"] .side-pane { background: var(--cream); }
+  html[data-theme="parchment"] .cal-nav button { background: var(--paper); }
+  html[data-theme="parchment"] .week-total,
+  html[data-theme="parchment"] .words-week,
+  html[data-theme="parchment"] .month-summary { background: var(--cream); }
+  html[data-theme="parchment"] textarea,
+  html[data-theme="parchment"] input[type="text"],
+  html[data-theme="parchment"] input[type="date"],
+  html[data-theme="parchment"] input[type="number"],
+  html[data-theme="parchment"] input[type="password"] { background: var(--paper); color: var(--ink); border-color: var(--border); }
+  html[data-theme="parchment"] .session-readout { background: linear-gradient(135deg, #8b5e3c 0%, #a67c5b 100%); }
+  html[data-theme="parchment"] .cal-controls .view-btns { background: var(--cream); }
+  html[data-theme="parchment"] .cal-controls .view-btns button.active { background: var(--paper); color: var(--blue); }
+
+  /* Theme 4: Forest */
+  html[data-theme="forest"] {
+    --ink: #1a2e1e; --paper: #f2f7f3; --cream: #e4efe6;
+    --blue: #2d6a4f; --blue-light: #d8eedf; --blue-mid: #a8d4b4;
+    --teal: #1b7a6e; --muted: #5a7a62; --border: #c8dece;
+    --card: #ffffff; --red-dead: #c0392b; --green-done: #1a7a3c;
+    --gold: #2d6a4f; --gold-light: #74c69d; --rust: #c0392b;
+    --sage: #1b7a6e;
+    --ui-font: 'Nunito', 'Inter', sans-serif;
+    --mono-font: 'DM Mono', monospace;
+    --heading-font: 'Nunito', 'Inter', sans-serif;
+  }
+  html[data-theme="forest"] body { background: var(--paper); }
+  html[data-theme="forest"] header { background: #1a2e1e; border-bottom-color: var(--blue-mid); }
+  html[data-theme="forest"] nav { background: #fff; }
+  html[data-theme="forest"] .side-pane { background: #fff; }
+  html[data-theme="forest"] .cal-nav button { background: #fff; }
+  html[data-theme="forest"] .week-total,
+  html[data-theme="forest"] .words-week,
+  html[data-theme="forest"] .month-summary { background: var(--cream); }
+  html[data-theme="forest"] textarea,
+  html[data-theme="forest"] input[type="text"],
+  html[data-theme="forest"] input[type="date"],
+  html[data-theme="forest"] input[type="number"],
+  html[data-theme="forest"] input[type="password"] { background: var(--paper); color: var(--ink); border-color: var(--border); }
+  html[data-theme="forest"] .session-readout { background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%); }
+  html[data-theme="forest"] .cal-controls .view-btns { background: var(--cream); }
+  html[data-theme="forest"] .cal-controls .view-btns button.active { background: #fff; color: var(--blue); }
+  html[data-theme="forest"] .btn { background: var(--blue); }
+  html[data-theme="forest"] .btn:hover { background: #1b4d38; }
+  html[data-theme="forest"] .btn-ghost { background: none; color: var(--blue); border-color: var(--blue-mid); }
+  html[data-theme="forest"] .btn-ghost:hover { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
+
+  /* Theme 5: Slate */
+  html[data-theme="slate"] {
+    --ink: #f0f4ff; --paper: #0f1117; --cream: #161b27;
+    --blue: #7c9ef5; --blue-light: #1a2140; --blue-mid: #2a3560;
+    --teal: #4ecdc4; --muted: #7a8499; --border: #232b3e;
+    --card: #161b27; --red-dead: #f87171; --green-done: #4ade80;
+    --gold: #7c9ef5; --gold-light: #3a4f8a; --rust: #f87171;
+    --sage: #4ecdc4;
+    --ui-font: 'JetBrains Mono', 'DM Mono', monospace;
+    --mono-font: 'JetBrains Mono', 'DM Mono', monospace;
+    --heading-font: 'Inter', sans-serif;
+  }
+  html[data-theme="slate"] body { background: var(--paper); }
+  html[data-theme="slate"] header { background: #090b10; border-bottom-color: var(--blue); box-shadow: none; }
+  html[data-theme="slate"] nav { background: #0f1117; border-bottom-color: var(--border); }
+  html[data-theme="slate"] .side-pane { background: #0f1117; }
+  html[data-theme="slate"] .cal-nav button { background: #161b27; color: var(--muted); }
+  html[data-theme="slate"] .week-total,
+  html[data-theme="slate"] .words-week,
+  html[data-theme="slate"] .month-summary { background: #0f1117; border-color: var(--border); }
+  html[data-theme="slate"] textarea,
+  html[data-theme="slate"] input[type="text"],
+  html[data-theme="slate"] input[type="date"],
+  html[data-theme="slate"] input[type="number"],
+  html[data-theme="slate"] input[type="password"] { background: #0f1117; color: var(--ink); border-color: var(--border); }
+  html[data-theme="slate"] .modal { background: #161b27; }
+  html[data-theme="slate"] .week-day.past { background: #131720; }
+  html[data-theme="slate"] .month-day.other-month { opacity: .2; }
+  html[data-theme="slate"] .cal-controls .view-btns { background: #0f1117; }
+  html[data-theme="slate"] .cal-controls .view-btns button.active { background: #1a2140; color: var(--blue); }
+  html[data-theme="slate"] .session-readout { background: linear-gradient(135deg, #1a2140 0%, #253060 100%); }
+
+  /* ── Font application per theme ── */
+  html[data-theme="dark"] body,
+  html[data-theme="parchment"] body,
+  html[data-theme="forest"] body,
+  html[data-theme="slate"] body { font-family: var(--ui-font, 'Inter', sans-serif); }
+  html[data-theme="dark"] header h1,
+  html[data-theme="dark"] .card h3,
+  html[data-theme="dark"] .section-title,
+  html[data-theme="dark"] .cal-nav .cal-label,
+  html[data-theme="dark"] .week-day .day-num,
+  html[data-theme="dark"] .month-day .md-num,
+  html[data-theme="dark"] .modal h3,
+  html[data-theme="dark"] .ymm-name { font-family: 'Crimson Pro', Georgia, serif; }
+  html[data-theme="parchment"] header h1 { color: #f5ead0 !important; }
+  html[data-theme="forest"] header h1 { color: #d4eedc !important; }
+  html[data-theme="lavender"] header h1 { color: #f0ecff !important; }
+  html[data-theme="parchment"] header h1,
+  html[data-theme="parchment"] .card h3,
+  html[data-theme="parchment"] .section-title,
+  html[data-theme="parchment"] .cal-nav .cal-label,
+  html[data-theme="parchment"] .week-day .day-num,
+  html[data-theme="parchment"] .month-day .md-num,
+  html[data-theme="parchment"] .modal h3,
+  html[data-theme="parchment"] .ymm-name { font-family: 'IBM Plex Serif', Georgia, serif; }
+  html[data-theme="forest"] header h1,
+  html[data-theme="forest"] .card h3,
+  html[data-theme="forest"] .section-title,
+  html[data-theme="forest"] .cal-nav .cal-label,
+  html[data-theme="forest"] .week-day .day-num,
+  html[data-theme="forest"] .month-day .md-num,
+  html[data-theme="forest"] .modal h3,
+  html[data-theme="forest"] .ymm-name { font-family: 'Nunito', sans-serif; }
+  html[data-theme="slate"] header h1,
+  html[data-theme="slate"] .section-title,
+  html[data-theme="slate"] .cal-nav .cal-label { font-family: 'Inter', sans-serif; letter-spacing: .04em; }
+  html[data-theme="slate"] .card h3,
+  html[data-theme="slate"] .modal h3 { font-family: 'JetBrains Mono', monospace; font-size: .9rem; }
+
+  /* Theme pane cards */
+  .theme-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 8px; }
+  @media (max-width: 1200px) { .theme-grid { grid-template-columns: repeat(4, 1fr); } }
+  .theme-card {
+    border: 2px solid var(--border); border-radius: 12px; overflow: hidden;
+    cursor: pointer; transition: border-color .2s, box-shadow .2s;
+  }
+  .theme-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+  .theme-card.active { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-light); }
+  .theme-preview { height: 90px; position: relative; overflow: hidden; }
+  .theme-preview-header { height: 22px; }
+  .theme-preview-nav { height: 10px; opacity: .7; }
+  .theme-preview-body { display: flex; height: 58px; }
+  .theme-preview-main { flex: 1; padding: 5px; display: flex; flex-direction: column; gap: 3px; }
+  .theme-preview-side { width: 28%; border-left: 1px solid; opacity: .4; }
+  .theme-preview-card { border-radius: 3px; height: 10px; opacity: .8; }
+  .theme-preview-card2 { border-radius: 3px; height: 7px; opacity: .5; margin-top: 2px; }
+  .theme-name { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 600; text-align: center; padding: 8px 6px 10px; color: var(--ink); }
+  .theme-check { display: none; color: var(--blue); font-size: .75rem; }
+  .theme-card.active .theme-check { display: inline; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>JJ's Project Planner</h1>
+    <div class="subtitle">Research · Progress · Accountability</div>
+  </div>
+  <div id="today-display" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--gold-light);letter-spacing:.08em;"></div>
+</header>
+
+<nav>
+  <button class="active" onclick="showPane('session')">Session Log</button>
+  <button onclick="showPane('calendar')">Calendar</button>
+  <button onclick="showPane('deadlines')">Deadlines</button>
+  <button onclick="showPane('wordcount')">Word Count</button>
+  <button onclick="showPane('meetings')">Meetings</button>
+  <button onclick="showPane('themes')">Themes</button>
+  <button onclick="showPane('alexa')">Email Connector</button>
+  <button onclick="showPane('backup')">Import / Export</button>
+  <button onclick="showPane('help')">Help</button>
+</nav>
+
+<div class="app">
+  <div class="main-pane" id="main-pane"></div>
+  <div class="side-pane" id="side-pane"></div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<script>
+// ===================== DATE UTILS =====================
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+const todayKey = () => fmtKey(TODAY);
+const fmtKey = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const parseKey = k => { const [y,m,d]=k.split('-').map(Number); return new Date(y,m-1,d); };
+const addDays = (d,n) => { const r=new Date(d); r.setDate(r.getDate()+n); return r; };
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+// ===================== STORAGE =====================
+const store = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} };
+const retrieve = key => { try { const v=localStorage.getItem(key); return v?JSON.parse(v):null; } catch(e){ return null; } };
+
+// ===================== STATE =====================
+let state = {
+  lastAccomplished: '', lastPlan: '', lastHours: '',
+  currentTheme: 'airy',
+  meetings: [],  // [{id, date, supervisor, notes, actions:[{text,done}]}]
+  days: {}, deadlines: [], finalDeadline: '',
+  wcGoal: 0, wcCurrent: 0,
+  calView: 'week', calDate: new Date(TODAY),
+  // Alexa emailer — secret & token live only in memory; stored encrypted
+  alexaEnabled: false,
+  alexaRecipient: '',
+  alexaClientId: '',
+  alexaClientSecret: '',   // in-memory only; persisted encrypted
+  alexaRefreshToken: '',   // in-memory only; persisted encrypted
+  alexaSenderEmail: '',
+  alexaLastSent: '',
+  alexaLastStatus: '',
+  _hasEncryptedSecret: false,
+  _hasEncryptedToken: false,
+};
+
+// ── AES-GCM helpers ──────────────────────────────────────────
+async function deriveKey(password, saltBytes) {
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    'raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: saltBytes, iterations: 200000, hash: 'SHA-256' },
+    keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+function toHex(buf) {
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function fromHex(hex) {
+  const bytes = new Uint8Array(hex.length/2);
+  for (let i=0;i<hex.length;i+=2) bytes[i/2] = parseInt(hex.slice(i,i+2),16);
+  return bytes;
+}
+async function encryptSecret(plaintext, password) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv   = crypto.getRandomValues(new Uint8Array(12));
+  const key  = await deriveKey(password, salt);
+  const cipherBuf = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(plaintext));
+  return { salt: toHex(salt), iv: toHex(iv), ct: toHex(cipherBuf) };
+}
+async function decryptSecret(stored, password) {
+  const key = await deriveKey(password, fromHex(stored.salt));
+  const plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromHex(stored.iv) }, key, fromHex(stored.ct));
+  return new TextDecoder().decode(plainBuf);
+}
+
+// ── State load / save ─────────────────────────────────────────
+function loadState() {
+  const plainKeys = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId',
+                     'alexaSenderEmail','alexaLastSent','alexaLastStatus','currentTheme','meetings'];
+  for (const k of plainKeys) { const v = retrieve('diss_'+k); if (v !== null) state[k] = v; }
+  state._hasEncryptedSecret = !!localStorage.getItem('diss_enc_clientSecret');
+  state._hasEncryptedToken  = !!localStorage.getItem('diss_enc_refreshToken');
+}
+function saveState() {
+  const plainKeys = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId',
+                     'alexaSenderEmail','alexaLastSent','alexaLastStatus','currentTheme','meetings'];
+  for (const k of plainKeys) store('diss_'+k, state[k]);
+}
+async function saveEncryptedCreds(password) {
+  if (state.alexaClientSecret) {
+    localStorage.setItem('diss_enc_clientSecret', JSON.stringify(await encryptSecret(state.alexaClientSecret, password)));
+  }
+  if (state.alexaRefreshToken) {
+    localStorage.setItem('diss_enc_refreshToken', JSON.stringify(await encryptSecret(state.alexaRefreshToken, password)));
+  }
+  state._hasEncryptedSecret = !!state.alexaClientSecret;
+  state._hasEncryptedToken  = !!state.alexaRefreshToken;
+}
+async function loadEncryptedCreds(password) {
+  const rawSecret = localStorage.getItem('diss_enc_clientSecret');
+  const rawToken  = localStorage.getItem('diss_enc_refreshToken');
+  try {
+    if (rawSecret) state.alexaClientSecret = await decryptSecret(JSON.parse(rawSecret), password);
+    if (rawToken)  state.alexaRefreshToken  = await decryptSecret(JSON.parse(rawToken),  password);
+    return true;
+  } catch(e) {
+    state.alexaClientSecret = '';
+    state.alexaRefreshToken  = '';
+    return false;
+  }
+}
+function clearEncryptedCreds() {
+  localStorage.removeItem('diss_enc_clientSecret');
+  localStorage.removeItem('diss_enc_refreshToken');
+  state.alexaClientSecret = '';
+  state.alexaRefreshToken  = '';
+  state._hasEncryptedSecret = false;
+  state._hasEncryptedToken  = false;
+}
+
+// ===================== COMPUTED =====================
+const hoursForDay = k => parseFloat(state.days[k]?.hours || 0) || 0;
+const hoursForWeek = ws => Array.from({length:7},(_,i)=>hoursForDay(fmtKey(addDays(ws,i)))).reduce((a,b)=>a+b,0);
+const hoursForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=hoursForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
+const hoursForYear = y => Array.from({length:12},(_,m)=>hoursForMonth(y,m)).reduce((a,b)=>a+b,0);
+const getWeekStart = d => { const r=new Date(d); r.setDate(r.getDate()-r.getDay()); return r; };
+const wordsPerDay = () => {
+  if (!state.finalDeadline||!state.wcGoal||!state.wcCurrent) return 0;
+  const diff = Math.max(1,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000));
+  return Math.max(0,state.wcGoal-state.wcCurrent)/diff;
+};
+
+// ===================== PASSWORD MODAL =====================
+// mode: 'set' (new password) or 'enter' (existing password)
+function showPasswordModal(mode, onSuccess) {
+  const isSet = mode === 'set';
+  document.getElementById('modal-content').innerHTML = `
+    <h3>${isSet ? 'Set a Storage Password' : 'Enter Your Storage Password'}</h3>
+    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">
+      ${isSet
+        ? 'Your Client Secret and refresh token will be encrypted with this password. You will need it each time you open the app.'
+        : 'Enter your password to decrypt your stored Gmail credentials.'}
+    </p>
+    <label style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">Password</label>
+    <input type="password" id="storage-pw-input" placeholder="Enter password…" style="width:100%">
+    ${isSet ? `<label style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;margin-top:10px">Confirm Password</label>
+    <input type="password" id="storage-pw-confirm" placeholder="Confirm password…" style="width:100%">` : ''}
+    <div id="pw-modal-error" style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--red-dead);margin-top:8px;min-height:18px"></div>
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="submitPasswordModal(${isSet})">OK</button>
+    </div>`;
+  document.getElementById('modal')._pwCallback = onSuccess;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('storage-pw-input')?.focus(), 50);
+}
+
+async function submitPasswordModal(isSet) {
+  const pw = document.getElementById('storage-pw-input')?.value || '';
+  if (!pw) { document.getElementById('pw-modal-error').textContent = 'Password cannot be empty.'; return; }
+  if (isSet) {
+    const confirm = document.getElementById('storage-pw-confirm')?.value || '';
+    if (pw !== confirm) { document.getElementById('pw-modal-error').textContent = 'Passwords do not match.'; return; }
+  }
+  const cb = document.getElementById('modal')._pwCallback;
+  if (!isSet) {
+    // Decrypt mode — verify password works
+    const ok = await loadEncryptedCreds(pw);
+    if (!ok) { document.getElementById('pw-modal-error').textContent = 'Incorrect password.'; return; }
+  }
+  closeModal();
+  if (cb) cb(pw);
+}
+
+// ===================== GMAIL OAUTH2 + SEND =====================
+// Flow: user provides Client ID + Secret from Google Cloud Console.
+// We open an OAuth popup, get an auth code, exchange it for tokens,
+// store the refresh token. From then on we get fresh access tokens
+// silently and call Gmail REST API to send.
+
+const GMAIL_SCOPE = 'https://www.googleapis.com/auth/gmail.send';
+const TOKEN_URL   = 'https://oauth2.googleapis.com/token';
+const GMAIL_SEND  = 'https://www.googleapis.com/gmail/v1/users/me/messages/send';
+
+// Step 1 — open OAuth popup and get auth code
+function gmailAuthorize() {
+  const clientId = document.getElementById('alexa-client-id')?.value.trim() || state.alexaClientId;
+  const email    = document.getElementById('alexa-sender-email')?.value.trim() || state.alexaSenderEmail;
+  if (!clientId) { alert('Please enter your Google Client ID first.'); return; }
+
+  // Save what the user has typed so far — only overwrite secret if they actually typed something
+  if (document.getElementById('alexa-client-id'))    state.alexaClientId   = document.getElementById('alexa-client-id').value.trim();
+  if (document.getElementById('alexa-sender-email')) state.alexaSenderEmail = document.getElementById('alexa-sender-email').value.trim();
+  const typedSecret = document.getElementById('alexa-client-secret')?.value.trim();
+  if (typedSecret) state.alexaClientSecret = typedSecret;  // only overwrite if user re-entered it
+  saveState();
+
+  // If secret still not in memory, we need to unlock first
+  if (!state.alexaClientSecret) {
+    if (state._hasEncryptedSecret) {
+      showPasswordModal('enter', async (pw) => {
+        const ok = await loadEncryptedCreds(pw);
+        if (!ok) { alert('Incorrect password — could not decrypt credentials.'); return; }
+        _doGmailAuthorize(clientId, email);
+      });
+    } else {
+      alert('Please enter your Client Secret before connecting.');
+    }
+    return;
+  }
+
+  _doGmailAuthorize(clientId, email);
+}
+
+function _doGmailAuthorize(clientId, email) {
+  const redirectUri = 'urn:ietf:wg:oauth:2.0:oob';
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+    `client_id=${encodeURIComponent(clientId)}` +
+    `&redirect_uri=${encodeURIComponent(redirectUri)}` +
+    `&response_type=code` +
+    `&scope=${encodeURIComponent(GMAIL_SCOPE)}` +
+    `&access_type=offline` +
+    `&prompt=consent` +
+    (email ? `&login_hint=${encodeURIComponent(email)}` : '');
+  // Open in a new tab — OOB flow gives user a code to paste back
+  window.open(authUrl, '_blank');
+  // Show the code-paste modal
+  showAuthCodeModal();
+}
+
+function showAuthCodeModal() {
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Paste Authorization Code</h3>
+    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">
+      After authorizing in the Google tab, you'll see a code on the page. Copy it and paste it below.
+    </p>
+    <label style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">Authorization Code</label>
+    <input type="text" id="auth-code-input" placeholder="4/0AX4Xf..." style="width:100%">
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="gmailExchangeCode()">Connect</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+async function gmailExchangeCode() {
+  const code = document.getElementById('auth-code-input')?.value.trim();
+  if (!code) { alert('Please paste the authorization code.'); return; }
+
+  const clientId     = state.alexaClientId;
+  const clientSecret = state.alexaClientSecret;
+  if (!clientId || !clientSecret) { alert('Client ID and Secret are required.'); return; }
+
+  try {
+    const resp = await fetch(TOKEN_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        code, client_id: clientId, client_secret: clientSecret,
+        redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', grant_type: 'authorization_code'
+      })
+    });
+    const data = await resp.json();
+    if (data.refresh_token) {
+      state.alexaRefreshToken = data.refresh_token;
+      saveState();
+      closeModal();
+      showPasswordModal('set', async (pw) => {
+        await saveEncryptedCreds(pw);
+        renderMain();
+        renderSide();
+        alert('✓ Gmail connected successfully! You can now send emails.');
+      });
+    } else {
+      alert('Failed to get refresh token. Response: ' + JSON.stringify(data));
+    }
+  } catch(e) {
+    alert('Connection error: ' + e.message);
+  }
+}
+
+async function gmailGetAccessToken() {
+  const resp = await fetch(TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id:     state.alexaClientId,
+      client_secret: state.alexaClientSecret,
+      refresh_token: state.alexaRefreshToken,
+      grant_type:    'refresh_token'
+    })
+  });
+  const data = await resp.json();
+  if (!data.access_token) throw new Error('Could not refresh access token: ' + JSON.stringify(data));
+  return data.access_token;
+}
+
+function buildEmailBody() {
+  const acc  = state.lastAccomplished || '(nothing recorded)';
+  const plan = state.lastPlan         || '(nothing recorded)';
+  return `Hello! Glad to see you working on your project! Last time, you ${acc}. Today, you should ${plan}.`;
+}
+
+function toBase64url(str) {
+  // Encode a string to base64url safely via UTF-8 bytes
+  const bytes = new TextEncoder().encode(str);
+  const binary = Array.from(bytes, b => String.fromCharCode(b)).join('');
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function makeRawEmail(to, subject, attachmentText) {
+  const boundary = 'diss_planner_' + Math.random().toString(36).slice(2);
+  // Encode the attachment content as base64 (standard, not url-safe — MIME uses standard)
+  const attachBytes = new TextEncoder().encode(attachmentText);
+  const attachBinary = Array.from(attachBytes, b => String.fromCharCode(b)).join('');
+  const attachB64 = btoa(attachBinary);
+  // Split into 76-char lines as required by MIME
+  const attachB64Wrapped = attachB64.match(/.{1,76}/g).join('\r\n');
+
+  const msg = [
+    `To: ${to}`,
+    `From: ${state.alexaSenderEmail}`,
+    `Subject: ${subject}`,
+    `MIME-Version: 1.0`,
+    `Content-Type: multipart/mixed; boundary="${boundary}"`,
+    ``,
+    `--${boundary}`,
+    `Content-Type: text/plain; charset=utf-8`,
+    ``,
+    `Please see the attached check-in note.`,
+    ``,
+    `--${boundary}`,
+    `Content-Type: text/plain; charset=utf-8; name="checkin.txt"`,
+    `Content-Disposition: attachment; filename="checkin.txt"`,
+    `Content-Transfer-Encoding: base64`,
+    ``,
+    attachB64Wrapped,
+    ``,
+    `--${boundary}--`
+  ].join('\r\n');
+
+  return toBase64url(msg);
+}
+
+function resetEmailBody() {
+  const el = document.getElementById('email-body-edit');
+  if (el) el.value = buildEmailBody();
+}
+
+function setSendStatus(msg, color) {
+  const el = document.getElementById('send-status');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.color = color || 'var(--muted)';
+  el.style.display = 'block';
+}
+
+async function sendAlexaEmail(isManual = true) {
+  if (!state.alexaClientId || !state.alexaClientSecret || !state.alexaRefreshToken) {
+    if (isManual) {
+      setSendStatus('✗ Gmail is not connected. Complete setup below.', 'var(--red-dead)');
+    }
+    return false;
+  }
+  if (isManual) {
+    const btn = document.querySelector('.send-now-btn');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    setSendStatus('Sending…', 'var(--muted)');
+  }
+  try {
+    const accessToken = await gmailGetAccessToken();
+    // Use edited body if the textarea exists, otherwise fall back to generated body
+    const bodyEl = document.getElementById('email-body-edit');
+    const emailBody = bodyEl ? bodyEl.value.trim() || buildEmailBody() : buildEmailBody();
+    const raw = makeRawEmail(
+      state.alexaRecipient || 'alexa@alexa.com',
+      'Project Check-In',
+      emailBody
+    );
+    const resp = await fetch(GMAIL_SEND, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ raw })
+    });
+    if (!resp.ok) {
+      const err = await resp.json();
+      throw new Error(err.error?.message || resp.status);
+    }
+    state.alexaLastSent   = new Date().toLocaleString();
+    state.alexaLastStatus = 'success';
+    saveState();
+    if (isManual) {
+      setSendStatus('✓ Email sent successfully at ' + state.alexaLastSent, 'var(--sage)');
+      const btn = document.querySelector('.send-now-btn');
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Now'; }
+      renderSide();
+    }
+    return true;
+  } catch(e) {
+    state.alexaLastStatus = 'error: ' + e.message;
+    saveState();
+    if (isManual) {
+      setSendStatus('✗ Failed to send: ' + e.message, 'var(--red-dead)');
+      const btn = document.querySelector('.send-now-btn');
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Now'; }
+    }
+    return false;
+  }
+}
+
+function disconnectGmail() {
+  if (!confirm('Disconnect Gmail? Encrypted credentials will be cleared from storage.')) return;
+  clearEncryptedCreds();
+  state.alexaLastSent = '';
+  state.alexaLastStatus = '';
+  saveState();
+  renderMain();
+  renderSide();
+}
+
+// ===================== PANE SWITCHING =====================
+let currentPane = 'session';
+function showPane(pane) {
+  currentPane = pane;
+  document.querySelectorAll('nav button').forEach((b,i) =>
+    b.classList.toggle('active', ['session','calendar','deadlines','wordcount','meetings','themes','alexa','backup','help'][i]===pane));
+  renderMain(); renderSide();
+}
+function renderMain() {
+  const mp = document.getElementById('main-pane');
+  if (currentPane==='session')   renderSession(mp);
+  else if (currentPane==='calendar')  renderCalendar(mp);
+  else if (currentPane==='deadlines') renderDeadlines(mp);
+  else if (currentPane==='wordcount') renderWordCount(mp);
+  else if (currentPane==='alexa')     renderAlexa(mp);
+  else if (currentPane==='meetings')  renderMeetings(mp);
+  else if (currentPane==='themes')    renderThemes(mp);
+  else if (currentPane==='backup')    renderBackup(mp);
+  else if (currentPane==='help')      renderHelp(mp);
+}
+
+// ===================== SESSION PANE =====================
+function renderSession(mp) {
+  const has = state.lastAccomplished || state.lastPlan;
+  mp.innerHTML = `
+    <div class="section-title">Session Log</div>
+    ${has ? `<div class="session-readout">
+      <div class="hr-badge">${state.lastHours ? state.lastHours+'h' : '—'}</div>
+      <div class="tag">Last Session — Accomplished</div>
+      <p>${state.lastAccomplished || '<em style="opacity:.6">Nothing recorded.</em>'}</p>
+      <div class="tag" style="margin-top:14px">Today's Plan</div>
+      <p>${state.lastPlan || '<em style="opacity:.6">Nothing recorded.</em>'}</p>
+    </div>` : `<div class="session-readout" style="opacity:.7">
+      <div class="tag">No Previous Session Found</div>
+      <p>Log your first session below to get started.</p>
+    </div>`}
+    <div class="card">
+      <h3>Log This Session</h3>
+      <label>What did you accomplish today?</label>
+      <textarea id="inp-accomplished" placeholder="Describe what you worked on…">${state._sessionInputClear ? '' : (state.lastAccomplished||'')}</textarea>
+      <label>Hours worked this session</label>
+      <input type="number" id="inp-hours" min="0" max="24" step="0.25" placeholder="e.g. 2.5" value="${state._sessionInputClear ? '' : (state.lastHours||'')}">
+      <label>What do you plan to do next time?</label>
+      <textarea id="inp-plan" placeholder="Your goals for next session…">${state._sessionInputClear ? '' : (state.lastPlan||'')}</textarea>
+      <button class="btn" onclick="saveSession()">Save Session</button>
+    </div>`;
+}
+
+function saveSession() {
+  const acc  = document.getElementById('inp-accomplished').value.trim();
+  const hrs  = document.getElementById('inp-hours').value.trim();
+  const plan = document.getElementById('inp-plan').value.trim();
+  if (!acc && !plan) { alert('Please enter at least something for this session.'); return; }
+  state.lastAccomplished = acc; state.lastHours = hrs; state.lastPlan = plan;
+  const key = todayKey();
+  if (!state.days[key]) state.days[key] = { goals: [] };
+  state.days[key].accomplished = acc; state.days[key].hours = hrs;
+  saveState();
+  // Clear the input fields after saving by temporarily nulling the fill values
+  state._sessionInputClear = true;
+  renderMain(); renderSide();
+  state._sessionInputClear = false;
+}
+
+// ===================== CALENDAR PANE =====================
+function renderCalendar(mp) {
+  const wpd = wordsPerDay();
+  mp.innerHTML = `
+    <div class="cal-controls">
+      <div class="view-btns">
+        ${['week','month','year'].map((v,i)=>`<button class="${state.calView===v?'active':''}" onclick="setCalView('${v}')">${['Week','Month','Year'][i]}</button>`).join('')}
+      </div>
+      <div class="cal-nav">
+        <button onclick="calNav(-1)">&#8592;</button>
+        <div class="cal-label" id="cal-label"></div>
+        <button onclick="calNav(1)">&#8594;</button>
+        <button onclick="calGoToday()" style="font-size:.65rem;font-family:'DM Mono',monospace;letter-spacing:.08em;padding:0 8px;width:auto;">Today</button>
+      </div>
+    </div>
+    <div id="cal-body"></div>
+    <div id="cal-footer" style="margin-top:8px"></div>`;
+  renderCalBody(wpd);
+}
+
+function setCalView(v) { state.calView=v; renderCalendar(document.getElementById('main-pane')); }
+function calNav(dir) {
+  const d=state.calDate;
+  if(state.calView==='week') d.setDate(d.getDate()+dir*7);
+  else if(state.calView==='month') d.setMonth(d.getMonth()+dir);
+  else if(state.calView==='year') d.setFullYear(d.getFullYear()+dir);
+  else d.setFullYear(d.getFullYear()+dir*5);
+  renderCalendar(document.getElementById('main-pane'));
+}
+function calGoToday() { state.calDate=new Date(TODAY); renderCalendar(document.getElementById('main-pane')); }
+
+function renderCalBody(wpd) {
+  const v=state.calView, d=state.calDate;
+  const label=document.getElementById('cal-label');
+  const body=document.getElementById('cal-body');
+  const footer=document.getElementById('cal-footer');
+  if (v==='week') {
+    const ws=getWeekStart(d);
+    label.textContent=`${MONTHS[ws.getMonth()]} ${ws.getDate()} – ${MONTHS[addDays(ws,6).getMonth()]} ${addDays(ws,6).getDate()}, ${ws.getFullYear()}`;
+    body.innerHTML=`<div class="week-grid">${Array.from({length:7},(_,i)=>renderWeekDay(addDays(ws,i))).join('')}</div>`;
+    const wt=wpd?(wpd*7).toFixed(0):null;
+    footer.innerHTML=`<div class="week-total"><span style="color:var(--muted)">Week Total</span><span>${hoursForWeek(ws).toFixed(1)} hrs</span></div>${wt?`<div class="words-week">Words needed this week: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
+  } else if (v==='month') {
+    label.textContent=`${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+    renderMonthView(body, d.getFullYear(), d.getMonth());
+    const dim=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
+    const wt=wpd?(wpd*dim).toFixed(0):null;
+    footer.innerHTML=`<div class="month-summary"><span style="color:var(--muted)">Month Total</span><span>${hoursForMonth(d.getFullYear(),d.getMonth()).toFixed(1)} hrs</span></div>${wt?`<div class="words-week">Words needed this month: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
+  } else if (v==='year') {
+    label.textContent=String(d.getFullYear());
+    renderYearView(body, d.getFullYear());
+    footer.innerHTML=`<div class="month-summary"><span style="color:var(--muted)">Year Total</span><span>${hoursForYear(d.getFullYear()).toFixed(1)} hrs</span></div>`;
+  }
+}
+
+function renderWeekDay(day) {
+  const key=fmtKey(day), isToday=key===todayKey(), isPast=day<TODAY;
+  const entry=state.days[key]||{}, goals=entry.goals||[], hrs=entry.hours?`${entry.hours}h`:'';
+  // Gather deadlines on this day
+  const dayDls = state.deadlines.filter(dl=>dl.date===key);
+  const isFinal = state.finalDeadline===key;
+  let content='';
+  if (isPast||isToday) {
+    content=entry.accomplished
+      ?`<div class="day-content">${entry.accomplished.slice(0,80)}${entry.accomplished.length>80?'…':''}</div>`
+      :`<div class="day-content" style="opacity:.4">No entry</div>`;
+  } else {
+    content=goals.length
+      ?goals.map(g=>`<div class="goal-item">${g.slice(0,40)}</div>`).join('')
+      :`<div class="day-content" style="opacity:.3">No goals</div>`;
+  }
+  const dlChips = [
+    ...(isFinal ? [`<div class="deadline-chip final">★ Final Deadline</div>`] : []),
+    ...dayDls.map(dl=>`<div class="deadline-chip ${dl.complete?'complete':'incomplete'}">
+      ${dl.complete?'✓':'!'} ${dl.desc.slice(0,22)}${dl.desc.length>22?'…':''}
+    </div>`)
+  ].join('');
+  return `<div class="week-day${isToday?' today':''}${isPast?' past':''}" onclick="openDayModal('${key}')">
+    <div class="day-name">${DAYS_SHORT[day.getDay()]}</div>
+    <div class="day-num">${day.getDate()}</div>
+    ${hrs?`<div class="day-hours">${hrs}</div>`:''}${content}${dlChips}</div>`;
+}
+
+function renderMonthView(body, year, month) {
+  const firstDay=new Date(year,month,1).getDay(), dim=new Date(year,month+1,0).getDate(), prev=new Date(year,month,0).getDate();
+  let cells=DAYS_SHORT.map(d=>`<div class="month-header-cell">${d}</div>`).join('');
+  for(let i=0;i<firstDay;i++) cells+=`<div class="month-day other-month"><div class="md-num">${prev-firstDay+1+i}</div></div>`;
+  for(let d=1;d<=dim;d++) {
+    const k=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const hrs=hoursForDay(k);
+    const dayDls=state.deadlines.filter(dl=>dl.date===k);
+    const isFinal=state.finalDeadline===k;
+    // Build dot row
+    const dots=[
+      ...(isFinal?[`<div class="dl-dot final" title="Final Deadline"></div>`]:[]),
+      ...dayDls.map(dl=>`<div class="dl-dot ${dl.complete?'complete':'incomplete'}" title="${dl.desc}"></div>`)
+    ].join('');
+    // First deadline label (truncated)
+    const firstDl = isFinal ? '★ Final' : dayDls.length ? dayDls[0].desc.slice(0,14)+(dayDls[0].desc.length>14?'…':'') : '';
+    const labelCls = isFinal ? 'md-label final' : 'md-label';
+    cells+=`<div class="month-day${k===todayKey()?' today':''}" onclick="jumpToWeek('${k}')">
+      <div class="md-num">${d}</div>
+      ${hrs>0?`<div class="md-hours">${hrs}h</div>`:''}
+      ${dots?`<div class="dl-dots">${dots}</div>`:''}
+      ${firstDl?`<div class="${labelCls}">${firstDl}</div>`:''}
+    </div>`;
+  }
+  const rem=(7-(firstDay+dim)%7)%7;
+  for(let i=1;i<=rem;i++) cells+=`<div class="month-day other-month"><div class="md-num">${i}</div></div>`;
+  body.innerHTML=`<div class="month-grid">${cells}</div>`;
+}
+function jumpToWeek(key) { state.calDate=new Date(parseKey(key)); state.calView='week'; renderCalendar(document.getElementById('main-pane')); }
+function jumpToMonth(year, month) { state.calDate=new Date(year,month,1); state.calView='month'; renderCalendar(document.getElementById('main-pane')); }
+
+function renderYearView(body, year) {
+  const DS2 = ['S','M','T','W','T','F','S'];
+  // Collect deadline dates for highlight
+  const dlDates = new Set(state.deadlines.filter(dl=>dl.date).map(dl=>dl.date));
+  const finalDate = state.finalDeadline || '';
+
+  const monthCards = Array.from({length:12}, (_, m) => {
+    const firstDay = new Date(year, m, 1).getDay();
+    const dim = new Date(year, m+1, 0).getDate();
+    const prev = new Date(year, m, 0).getDate();
+    const hrs = hoursForMonth(year, m).toFixed(1);
+
+    let cells = DS2.map(d=>`<div class="ymm-dow">${d}</div>`).join('');
+    // prev month filler
+    for(let i=0;i<firstDay;i++) cells+=`<div class="ymm-cell other">${prev-firstDay+1+i}</div>`;
+    // current month days
+    for(let d=1;d<=dim;d++){
+      const k=`${year}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isToday = k===todayKey();
+      const hasHrs = hoursForDay(k) > 0;
+      const isDl = dlDates.has(k) || k===finalDate;
+      let cls = 'ymm-cell';
+      if(isToday) cls+=' is-today';
+      else if(isDl) cls+=' has-deadline';
+      else if(hasHrs) cls+=' has-hours';
+      cells+=`<div class="${cls}">${d}</div>`;
+    }
+    // trailing filler
+    const rem=(7-(firstDay+dim)%7)%7;
+    for(let i=1;i<=rem;i++) cells+=`<div class="ymm-cell other">${i}</div>`;
+
+    return `<div class="year-mini-month" onclick="jumpToMonth(${year},${m})" style="cursor:pointer" title="View ${MONTHS[m]} ${year}">
+      <div class="ymm-header">
+        <span class="ymm-name">${MONTHS[m]}</span>
+        <span class="ymm-hours">${hrs}h</span>
+      </div>
+      <div class="ymm-grid">${cells}</div>
+    </div>`;
+  });
+
+  const dls=state.deadlines.filter(dl=>dl.date&&new Date(dl.date).getFullYear()===year);
+  const finalDl=state.finalDeadline&&new Date(state.finalDeadline).getFullYear()===year;
+  let dlHtml='';
+  if(finalDl||dls.length) dlHtml=`<div style="margin-top:24px"><div class="section-title" style="font-size:1rem;margin-bottom:10px">Deadlines ${year}</div>
+    ${finalDl?`<div class="year-deadline final">★ Final Deadline — ${state.finalDeadline}</div>`:''}
+    ${dls.map(dl=>`<div class="year-deadline ${dl.complete?'complete':'incomplete'}">${dl.complete?'✓':'✗'} ${dl.desc} — ${dl.date}</div>`).join('')}</div>`;
+
+  body.innerHTML=`<div class="year-view-grid">${monthCards.join('')}</div>${dlHtml}`;
+}
+
+
+// DAY MODAL
+function openDayModal(key) {
+  const d=parseKey(key), isToday=key===todayKey(), isPast=d<=TODAY, entry=state.days[key]||{goals:[]};
+  const title=`${DAYS_SHORT[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  const mc=document.getElementById('modal-content');
+
+  // Deadlines on this day
+  const dayDls = state.deadlines.filter(dl=>dl.date===key);
+  const isFinal = state.finalDeadline===key;
+  const dlSection = (isFinal || dayDls.length) ? `
+    <label>Deadlines</label>
+    <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:4px">
+      ${isFinal ? `<div style="font-size:.82rem;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:6px 10px;font-weight:600">★ Final Deadline</div>` : ''}
+      ${dayDls.map(dl=>`<div style="font-size:.82rem;background:${dl.complete?'#f0fdf4':'#fff5f5'};color:${dl.complete?'var(--green-done)':'var(--red-dead)'};border:1px solid ${dl.complete?'#bbf7d0':'#fca5a5'};border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:6px">
+        <span style="font-weight:700">${dl.complete?'✓':'!'}</span> ${dl.desc}
+        <span style="margin-left:auto;font-size:.72rem;opacity:.7;font-family:'DM Mono',monospace">${dl.complete?'complete':'due'}</span>
+      </div>`).join('')}
+    </div>` : '';
+
+  if (isPast||isToday) {
+    mc.innerHTML=`<h3>${title}</h3>
+      ${dlSection}
+      <label>Accomplished</label><textarea id="modal-acc" style="min-height:80px">${entry.accomplished||''}</textarea>
+      <label>Hours Worked</label><input type="number" id="modal-hrs" min="0" step="0.25" value="${entry.hours||''}">
+      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).join('\n')}</textarea>
+      <div class="actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveDayModal('${key}')">Save</button></div>`;
+  } else {
+    mc.innerHTML=`<h3>${title}</h3>
+      ${dlSection}
+      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).join('\n')}</textarea>
+      <div class="actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveDayModal('${key}')">Save Goals</button></div>`;
+  }
+  document.getElementById('modal').style.display='flex';
+}
+function saveDayModal(key) {
+  const d=parseKey(key), isPast=d<=TODAY;
+  if (!state.days[key]) state.days[key]={goals:[]};
+  const ge=document.getElementById('modal-goals');
+  if(ge) state.days[key].goals=ge.value.split('\n').map(g=>g.trim()).filter(Boolean);
+  if(isPast||key===todayKey()) {
+    const ae=document.getElementById('modal-acc'), he=document.getElementById('modal-hrs');
+    if(ae) state.days[key].accomplished=ae.value.trim();
+    if(he) state.days[key].hours=he.value.trim();
+  }
+  saveState(); closeModal(); renderMain();
+}
+function closeModal() { document.getElementById('modal').style.display='none'; }
+
+// ===================== DEADLINES PANE =====================
+function renderDeadlines(mp) {
+  const dls=state.deadlines;
+  mp.innerHTML=`
+    <div class="section-title">Deadlines</div>
+    <div class="card" style="margin-bottom:16px">
+      <h3>★ Final Project Deadline</h3>
+      <label>Date</label><input type="date" id="final-dl-date" value="${state.finalDeadline||''}">
+      <button class="btn" onclick="saveFinalDeadline()">Save</button>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <h3>Add Deadline</h3>
+      <label>Description</label><input type="text" id="new-dl-desc" placeholder="e.g. Chapter 2 draft">
+      <label>Date</label><input type="date" id="new-dl-date">
+      <button class="btn" onclick="addDeadline()">Add Deadline</button>
+    </div>
+    <div class="card">
+      <h3>All Deadlines</h3>
+      ${dls.length===0?'<p style="font-size:.82rem;color:var(--muted)">No deadlines yet.</p>':''}
+      ${dls.map((dl,i)=>`<div class="deadline-item">
+        <div class="deadline-dot ${dl.complete?'complete':'incomplete'}"></div>
+        <div class="deadline-info"><div class="dl-desc">${dl.desc}</div><div class="dl-date">${dl.date}</div></div>
+        <div class="deadline-actions">
+          <button class="btn btn-sm btn-ghost" onclick="toggleDeadline(${i})">${dl.complete?'Mark Incomplete':'Mark Complete'}</button>
+          <button class="btn btn-sm" style="background:var(--rust)" onclick="deleteDeadline(${i})">✕</button>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+function saveFinalDeadline() { state.finalDeadline=document.getElementById('final-dl-date').value; saveState(); renderMain(); renderSide(); }
+function addDeadline() {
+  const desc=document.getElementById('new-dl-desc').value.trim(), date=document.getElementById('new-dl-date').value;
+  if(!desc||!date){alert('Please fill in both fields.');return;}
+  state.deadlines.push({desc,date,complete:false}); saveState(); renderMain();
+}
+function toggleDeadline(i) { state.deadlines[i].complete=!state.deadlines[i].complete; saveState(); renderMain(); }
+function deleteDeadline(i) { if(!confirm('Delete this deadline?'))return; state.deadlines.splice(i,1); saveState(); renderMain(); }
+
+// ===================== WORD COUNT PANE =====================
+function renderWordCount(mp) {
+  const pct=state.wcGoal>0?Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1):0;
+  const remaining=Math.max(0,state.wcGoal-state.wcCurrent), wpd=wordsPerDay();
+  mp.innerHTML=`
+    <div class="section-title">Word Count Tracker</div>
+    <div class="card" style="margin-bottom:16px">
+      <h3>Project Word Count</h3>
+      <label>Total Word Count Goal</label><input type="number" id="wc-goal" placeholder="e.g. 80000" value="${state.wcGoal||''}">
+      <label>Current Word Count</label><input type="number" id="wc-current" placeholder="e.g. 12450" value="${state.wcCurrent||''}">
+      <button class="btn" onclick="saveWordCount()">Update</button>
+    </div>
+    ${state.wcGoal>0?`<div class="card">
+      <h3>Progress</h3>
+      <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
+      <div class="wc-stats"><span>${Number(state.wcCurrent).toLocaleString()} / ${Number(state.wcGoal).toLocaleString()} words</span><span>${pct}%</span></div>
+      <div style="margin-top:14px;font-size:.82rem;color:var(--muted);line-height:1.7">
+        <div>Words remaining: <strong>${Number(remaining).toLocaleString()}</strong></div>
+        ${state.finalDeadline
+          ?`<div>Days until deadline: <strong>${Math.max(0,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000))}</strong></div><div>Words/day needed: <strong>${wpd.toFixed(0)}</strong></div>`
+          :'<div style="opacity:.6">Set a final deadline to see daily targets.</div>'}
+      </div>
+    </div>`:''}`;
+}
+function saveWordCount() {
+  state.wcGoal=parseFloat(document.getElementById('wc-goal').value)||0;
+  state.wcCurrent=parseFloat(document.getElementById('wc-current').value)||0;
+  saveState(); renderMain();
+}
+
+// ===================== ALEXA EMAILER PANE =====================
+function renderAlexa(mp) {
+  const connected = !!state.alexaRefreshToken;
+  const locked = !connected && (state._hasEncryptedSecret || state._hasEncryptedToken);
+  const previewBody = buildEmailBody();
+
+  mp.innerHTML = `
+    <div class="section-title">Email Connector</div>
+
+    <!-- STATUS + TOGGLE -->
+    <div class="card" style="margin-bottom:16px">
+      <h3>Status</h3>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="status-pill ${connected?'connected':locked?'neutral':'disconnected'}">
+          ${connected ? '● Gmail Connected' : locked ? '🔒 Credentials Locked' : '● Gmail Not Connected'}
+        </span>
+        ${connected ? `<button class="btn btn-ghost btn-sm" onclick="disconnectGmail()">Disconnect</button>` : ''}
+        ${locked ? `<button class="btn btn-sm btn-sage" onclick="showPasswordModal('enter', async (pw) => { await loadEncryptedCreds(pw); renderMain(); renderSide(); })">Unlock</button>` : ''}
+      </div>
+
+      <div class="toggle-row" style="border-top:1px solid var(--border);padding-top:14px">
+        <div>
+          <div class="toggle-label">Auto-send on close</div>
+          <div class="toggle-sublabel">Sends the check-in email automatically when you close the app</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${state.alexaEnabled?'checked':''} onchange="toggleAlexaEnabled(this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      ${state.alexaLastSent ? `<div class="send-log">
+        Last sent: ${state.alexaLastSent}<br>
+        Status: ${state.alexaLastStatus==='success'?'✓ Delivered':'✗ '+state.alexaLastStatus}
+      </div>` : ''}
+    </div>
+
+    <!-- COMPOSE EMAIL -->
+    <div class="card" style="margin-bottom:16px">
+      <h3>Compose Email</h3>
+      <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">TO: ${state.alexaRecipient||'<em>no recipient set</em>'} &nbsp;·&nbsp; SUBJECT: Project Check-In</p>
+      <textarea id="email-body-edit" style="min-height:100px;font-family:'Inter',sans-serif;font-size:.85rem;line-height:1.6">${previewBody}</textarea>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="resetEmailBody()">Reset to Default</button>
+      <button class="btn btn-sage send-now-btn" style="margin-left:8px" onclick="sendAlexaEmail(true)" ${connected?'':'disabled title="Connect Gmail first"'}>
+        Send Now
+      </button>
+      <div id="send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:10px;display:none;line-height:1.5"></div>
+    </div>
+
+    <!-- GMAIL SETUP -->
+    <div class="card">
+      <h3>Gmail Setup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:8px">
+        This app sends email through your own Gmail account via the Gmail API.
+        You'll need a free Google Cloud project. Follow the steps below once — your credentials are saved locally.
+      </p>
+
+      <div class="step-block">
+        <div class="step-num">Step 1</div>
+        <p>Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>, create a project, then go to <strong>APIs &amp; Services → Enable APIs</strong> and enable the <strong>Gmail API</strong>.</p>
+      </div>
+      <div class="step-block">
+        <div class="step-num">Step 2</div>
+        <p>Go to <strong>APIs &amp; Services → OAuth consent screen</strong>. Choose <em>External</em>, fill in any app name, add your Gmail address as a test user, and save.</p>
+      </div>
+      <div class="step-block">
+        <div class="step-num">Step 3</div>
+        <p>Go to <strong>APIs &amp; Services → Credentials → Create Credentials → OAuth client ID</strong>. Choose <strong>Desktop app</strong> as the application type. Download or copy your <code>Client ID</code> and <code>Client Secret</code>.</p>
+      </div>
+      <div class="step-block">
+        <div class="step-num">Step 4</div>
+        <p>Enter your credentials below and click <strong>Connect Gmail</strong>. A Google sign-in page will open — authorize it, then paste the code back here.</p>
+      </div>
+
+      <label>Recipient Email Address</label>
+      <input type="text" id="alexa-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}">
+      <label>Your Gmail Address (sender)</label>
+      <input type="text" id="alexa-sender-email" placeholder="you@gmail.com" value="${state.alexaSenderEmail||''}">
+      <label>Client ID</label>
+      <input type="text" id="alexa-client-id" placeholder="123456789-abc.apps.googleusercontent.com" value="${state.alexaClientId||''}">
+      <label>Client Secret</label>
+      <input type="password" id="alexa-client-secret" placeholder="${state._hasEncryptedSecret ? '(encrypted — enter to replace)' : 'GOCSPX-…'}" value="">
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:5px;min-height:14px">
+        ${state._hasEncryptedSecret ? '🔒 Client secret is stored encrypted.' : ''}
+        ${state._hasEncryptedToken  ? '&nbsp;🔒 Refresh token is stored encrypted.' : ''}
+      </div>
+      <button class="btn" onclick="saveAlexaCreds()">Save &amp; Encrypt Credentials</button>
+      <button class="btn btn-sage" style="margin-left:8px" onclick="gmailAuthorize()">${connected?'Re-connect Gmail':'Connect Gmail'}</button>
+    </div>`;
+}
+
+function toggleAlexaEnabled(val) {
+  state.alexaEnabled = val;
+  saveState();
+  renderSide();
+}
+
+function saveAlexaCreds() {
+  const recipient = document.getElementById('alexa-recipient')?.value.trim() || '';
+  const email  = document.getElementById('alexa-sender-email')?.value.trim() || '';
+  const id     = document.getElementById('alexa-client-id')?.value.trim()     || '';
+  const secret = document.getElementById('alexa-client-secret')?.value.trim() || '';
+  if (!email || !id || !secret) { alert('Please fill in all three credential fields.'); return; }
+  if (recipient) state.alexaRecipient = recipient;
+  state.alexaSenderEmail  = email;
+  state.alexaClientId     = id;
+  state.alexaClientSecret = secret;
+  saveState();
+  showPasswordModal('set', async (pw) => {
+    await saveEncryptedCreds(pw);
+    renderMain();
+    renderSide();
+  });
+}
+
+// ===================== SIDE PANE =====================
+function renderSide() {
+  const sp=document.getElementById('side-pane');
+  const upcoming=state.deadlines.filter(dl=>!dl.complete&&dl.date>=todayKey()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,5);
+  const pct=state.wcGoal>0?Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1):null;
+  const connected=!!state.alexaRefreshToken;
+
+  sp.innerHTML=`
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:.95rem;margin-bottom:10px">Upcoming Deadlines</div>
+      ${upcoming.length===0?'<p style="font-size:.78rem;color:var(--muted)">None upcoming.</p>':''}
+      ${upcoming.map(dl=>`<div class="deadline-item">
+        <div class="deadline-dot incomplete"></div>
+        <div class="deadline-info"><div class="dl-desc" style="font-size:.78rem">${dl.desc}</div><div class="dl-date">${dl.date}</div></div>
+      </div>`).join('')}
+    </div>
+    ${state.finalDeadline?`<div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Final Deadline</div>
+      <div style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--rust)">${state.finalDeadline}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:3px">${Math.max(0,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000))} days remaining</div>
+    </div>`:''}
+    ${pct!==null?`<div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Word Count</div>
+      <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
+      <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:4px;display:flex;justify-content:space-between"><span>${Number(state.wcCurrent).toLocaleString()} words</span><span>${pct}%</span></div>
+    </div>`:''}
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Quick Add Goal</div>
+      <input type="date" id="quick-goal-date" style="margin-bottom:6px">
+      <input type="text" id="quick-goal-text" placeholder="Goal description…" style="margin-bottom:6px">
+      <button class="btn" style="width:100%;margin-top:0" onclick="quickAddGoal()">Add Goal</button>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Email Connector</div>
+      <span class="status-pill ${connected?'connected':'disconnected'}" style="font-size:.6rem">${connected?'● Connected':'● Not Connected'}</span>
+      <div style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);margin-top:6px">
+        Auto-send: <strong>${state.alexaEnabled?'On':'Off'}</strong>
+      </div>
+    </div>`;
+}
+
+function quickAddGoal() {
+  const date=document.getElementById('quick-goal-date').value, text=document.getElementById('quick-goal-text').value.trim();
+  if(!date||!text){alert('Please enter a date and goal.');return;}
+  if(!state.days[date]) state.days[date]={goals:[]};
+  if(!state.days[date].goals) state.days[date].goals=[];
+  state.days[date].goals.push(text);
+  saveState(); renderSide();
+  if(currentPane==='calendar') renderMain();
+}
+
+// ===================== INIT =====================
+// ===================== MEETINGS =====================
+function renderMeetings(mp) {
+  const meetings = [...(state.meetings||[])].sort((a,b) => b.date.localeCompare(a.date));
+
+  const cards = meetings.length === 0
+    ? `<div class="meeting-empty">
+        <div style="font-size:2rem;margin-bottom:8px">📋</div>
+        No meetings logged yet. Add your first one below.
+       </div>`
+    : meetings.map((m, idx) => {
+        const realIdx = state.meetings.indexOf(m);
+        const pending = (m.actions||[]).filter(a=>!a.done).length;
+        const total   = (m.actions||[]).length;
+        const actionSummary = total ? `${total - pending}/${total} actions done` : 'No actions';
+        const notesPreview = (m.notes||'').split('\n')[0].slice(0, 60) + ((m.notes||'').length > 60 ? '...' : '');
+        const actionItems = (m.actions||[]).map((a, ai) => `
+          <div class="action-item">
+            <div class="action-checkbox${a.done?' done':''}" onclick="toggleAction(${realIdx},${ai})">
+              ${a.done ? '✓' : ''}
+            </div>
+            <span class="action-text${a.done?' done':''}">${a.text}</span>
+            <button class="btn btn-ghost btn-sm" style="margin-top:0;padding:3px 8px;font-size:.6rem" onclick="deleteAction(${realIdx},${ai})">✕</button>
+          </div>`).join('');
+
+        return `<div class="meeting-card">
+          <div class="meeting-card-header" onclick="toggleMeetingExpand(${realIdx})">
+            <span class="meeting-date-badge">${m.date}</span>
+            <span class="meeting-supervisor">${m.supervisor || 'Meeting'}</span>
+            <span class="meeting-preview">${notesPreview}</span>
+            <span class="meeting-actions-count">${actionSummary}</span>
+            <span class="meeting-chevron${m._open?' open':''}" id="chev-${realIdx}">▶</span>
+          </div>
+          <div class="meeting-body${m._open?'':' hidden'}" id="mbody-${realIdx}">
+            <div class="meeting-section-label">Discussion Notes</div>
+            <div class="meeting-notes-text">${(m.notes||'<em style="opacity:.5">No notes.</em>')}</div>
+            <div class="meeting-section-label">Action Items</div>
+            ${actionItems || '<div style="font-size:.8rem;color:var(--muted);padding:4px 0">No action items.</div>'}
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+              <button class="btn btn-sm" style="margin-top:0" onclick="openAddActionModal(${realIdx})">+ Action Item</button>
+              <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openEditMeetingModal(${realIdx})">Edit</button>
+              <button class="btn btn-sm" style="margin-top:0;background:var(--red-dead)" onclick="deleteMeeting(${realIdx})">Delete</button>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+
+  mp.innerHTML = `
+    <div class="section-title">Supervisor Meeting Log</div>
+    <div class="card" style="margin-bottom:18px">
+      <h3>Log a Meeting</h3>
+      <label>Date</label>
+      <input type="date" id="mtg-date" value="${new Date().toISOString().slice(0,10)}">
+      <label>Supervisor / Attendees</label>
+      <input type="text" id="mtg-supervisor" placeholder="e.g. Dr. Smith">
+      <label>Discussion Notes</label>
+      <textarea id="mtg-notes" placeholder="What was discussed…" style="min-height:90px"></textarea>
+      <button class="btn" onclick="addMeeting()">Save Meeting</button>
+    </div>
+    <div id="meeting-list">${cards}</div>`;
+}
+
+function addMeeting() {
+  const date = document.getElementById('mtg-date').value;
+  const supervisor = document.getElementById('mtg-supervisor').value.trim();
+  const notes = document.getElementById('mtg-notes').value.trim();
+  if (!date) { alert('Please enter a date.'); return; }
+  state.meetings = state.meetings || [];
+  state.meetings.push({ date, supervisor, notes, actions: [], _open: true });
+  saveState();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function toggleMeetingExpand(idx) {
+  state.meetings[idx]._open = !state.meetings[idx]._open;
+  // Don't save _open to storage — just re-render
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function deleteMeeting(idx) {
+  if (!confirm('Delete this meeting log?')) return;
+  state.meetings.splice(idx, 1);
+  saveState();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function toggleAction(meetingIdx, actionIdx) {
+  state.meetings[meetingIdx].actions[actionIdx].done = !state.meetings[meetingIdx].actions[actionIdx].done;
+  saveState();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function deleteAction(meetingIdx, actionIdx) {
+  state.meetings[meetingIdx].actions.splice(actionIdx, 1);
+  saveState();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function openAddActionModal(meetingIdx) {
+  const m = state.meetings[meetingIdx];
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Add Action Item</h3>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:12px">Meeting: ${m.date}${m.supervisor ? ' · ' + m.supervisor : ''}</p>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px">Action Item</label>
+    <input type="text" id="action-text-input" placeholder="e.g. Send revised Chapter 2 by Friday" style="width:100%">
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveNewAction(${meetingIdx})">Add</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('action-text-input')?.focus(), 50);
+}
+
+function saveNewAction(meetingIdx) {
+  const text = document.getElementById('action-text-input')?.value.trim();
+  if (!text) { alert('Please enter an action item.'); return; }
+  state.meetings[meetingIdx].actions.push({ text, done: false });
+  saveState();
+  closeModal();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+function openEditMeetingModal(idx) {
+  const m = state.meetings[idx];
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Edit Meeting</h3>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;margin-top:0">Date</label>
+    <input type="date" id="edit-mtg-date" value="${m.date}" style="width:100%">
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;margin-top:12px">Supervisor / Attendees</label>
+    <input type="text" id="edit-mtg-supervisor" value="${m.supervisor||''}" style="width:100%">
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;margin-top:12px">Discussion Notes</label>
+    <textarea id="edit-mtg-notes" style="width:100%;min-height:120px">${m.notes||''}</textarea>
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveEditMeeting(${idx})">Save</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function saveEditMeeting(idx) {
+  state.meetings[idx].date       = document.getElementById('edit-mtg-date').value;
+  state.meetings[idx].supervisor = document.getElementById('edit-mtg-supervisor').value.trim();
+  state.meetings[idx].notes      = document.getElementById('edit-mtg-notes').value.trim();
+  saveState();
+  closeModal();
+  renderMeetings(document.getElementById('main-pane'));
+}
+
+// ===================== BACKUP =====================
+function renderBackup(mp) {
+  const hasSomeData = state.lastAccomplished || state.lastPlan ||
+    Object.keys(state.days||{}).length > 0 || (state.deadlines||[]).length > 0 ||
+    (state.meetings||[]).length > 0 || state.wcGoal > 0;
+
+  mp.innerHTML = `
+    <div class="section-title">Import / Export</div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Export Backup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px">
+        Downloads all your data as a <code style="font-family:'DM Mono',monospace;font-size:.78rem;background:var(--cream);padding:1px 5px;border-radius:4px">.json</code> file.
+        Save it somewhere safe — you can use it to restore your data on any device or browser.
+      </p>
+      <button class="btn" onclick="exportBackup()" ${hasSomeData ? '' : 'disabled title="No data to export yet"'}>
+        Download Backup
+      </button>
+    </div>
+
+    <div class="card">
+      <h3>Import Backup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:6px">
+        Restores data from a previously exported backup file.
+      </p>
+      <div style="background:#fff5f5;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--red-dead);line-height:1.55">
+        ⚠ <strong>This will replace all current data.</strong> Export a backup first if you want to keep what you have.
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <label style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);margin:0;cursor:pointer;background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:9px 18px;transition:background .15s" 
+          onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='var(--cream)'">
+          Choose File
+          <input type="file" accept=".json" onchange="importBackup(event)" style="display:none">
+        </label>
+        <span id="import-filename" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">No file chosen</span>
+      </div>
+      <div id="import-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:12px;min-height:18px"></div>
+    </div>`;
+}
+
+function exportBackup() {
+  const backup = {
+    _version: 1,
+    _exported: new Date().toISOString(),
+    // Plain state fields
+    lastAccomplished: state.lastAccomplished,
+    lastPlan:         state.lastPlan,
+    lastHours:        state.lastHours,
+    days:             state.days,
+    deadlines:        state.deadlines,
+    finalDeadline:    state.finalDeadline,
+    wcGoal:           state.wcGoal,
+    wcCurrent:        state.wcCurrent,
+    alexaEnabled:     state.alexaEnabled,
+    alexaRecipient:   state.alexaRecipient,
+    alexaClientId:    state.alexaClientId,
+    alexaSenderEmail: state.alexaSenderEmail,
+    alexaLastSent:    state.alexaLastSent,
+    alexaLastStatus:  state.alexaLastStatus,
+    currentTheme:     state.currentTheme,
+    meetings:         state.meetings,
+    // Encrypted blobs (stored as-is — still encrypted)
+    enc_clientSecret: localStorage.getItem('diss_enc_clientSecret') || null,
+    enc_refreshToken: localStorage.getItem('diss_enc_refreshToken') || null,
+  };
+
+  const json = JSON.stringify(backup, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  const date = new Date().toISOString().slice(0, 10);
+  a.href     = url;
+  a.download = `dissertation-backup-${date}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function importBackup(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const filenameEl = document.getElementById('import-filename');
+  const statusEl   = document.getElementById('import-status');
+  if (filenameEl) filenameEl.textContent = file.name;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const backup = JSON.parse(e.target.result);
+
+      // Basic validation
+      if (typeof backup !== 'object' || backup === null) throw new Error('Invalid backup file.');
+      if (!backup._version) throw new Error('File does not appear to be a dissertation planner backup.');
+
+      if (!confirm('This will replace ALL current data with the backup. Are you sure?')) {
+        if (statusEl) statusEl.textContent = '';
+        return;
+      }
+
+      // Restore plain fields
+      const fields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                      'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId','alexaSenderEmail',
+                      'alexaLastSent','alexaLastStatus','currentTheme','meetings'];
+      for (const k of fields) {
+        if (backup[k] !== undefined) state[k] = backup[k];
+      }
+
+      // Restore encrypted blobs if present
+      if (backup.enc_clientSecret) localStorage.setItem('diss_enc_clientSecret', backup.enc_clientSecret);
+      else localStorage.removeItem('diss_enc_clientSecret');
+      if (backup.enc_refreshToken) localStorage.setItem('diss_enc_refreshToken', backup.enc_refreshToken);
+      else localStorage.removeItem('diss_enc_refreshToken');
+      state._hasEncryptedSecret = !!backup.enc_clientSecret;
+      state._hasEncryptedToken  = !!backup.enc_refreshToken;
+
+      // Persist and refresh
+      saveState();
+      if (state.currentTheme && state.currentTheme !== 'airy') {
+        document.documentElement.setAttribute('data-theme', state.currentTheme);
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+
+      if (statusEl) {
+        statusEl.style.color = 'var(--green-done)';
+        statusEl.textContent = '✓ Backup restored successfully. ' +
+          `Imported ${Object.keys(state.days||{}).length} day entries, ` +
+          `${(state.deadlines||[]).length} deadlines, ` +
+          `${(state.meetings||[]).length} meetings.`;
+      }
+      renderSide();
+
+      // If encrypted creds were restored, prompt to unlock
+      if (state._hasEncryptedSecret || state._hasEncryptedToken) {
+        setTimeout(() => {
+          showPasswordModal('enter', async (pw) => {
+            await loadEncryptedCreds(pw);
+            renderMain();
+          });
+        }, 600);
+      } else {
+        renderMain();
+      }
+
+    } catch(err) {
+      if (statusEl) {
+        statusEl.style.color = 'var(--red-dead)';
+        statusEl.textContent = '✗ Import failed: ' + err.message;
+      }
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ===================== HELP =====================
+function renderHelp(mp) {
+  mp.innerHTML = `
+    <div class="section-title">Help & Overview</div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>About This App</h3>
+      <p style="font-size:.85rem;line-height:1.7;color:var(--ink)">
+        <strong>JJ's Project Planner</strong> is a personal research and writing management tool built to help you stay organized across all the moving parts of a long-form project. Everything is saved locally in your browser — nothing is sent to any server except the optional Email Connector check-in. Use the <strong>Import / Export</strong> pane to back up your data regularly.
+      </p>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Pane Guide</h3>
+
+      <div style="display:flex;flex-direction:column;gap:0">
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Session Log</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Your primary daily log. Each time you sit down to work, record what you accomplished, how many hours you spent, and what you plan to tackle next session. The previous session's entries are displayed at the top as a reminder when you return. This data flows into the calendar and the Email Connector.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Calendar</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">View your work history and planning across three scales. The <strong>Week view</strong> shows accomplishments, hours worked, goals, and deadlines day by day — click any day to edit it. The <strong>Month view</strong> shows hours worked per day with deadline indicators; click any day to jump to its week. The <strong>Year view</strong> shows mini monthly calendars with work and deadline highlights; click any month to jump to it. Word-count targets for the visible period are shown at the bottom when a final deadline and word count goal are set.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Deadlines</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track all your project deadlines in one place. Set your <strong>Final Project Deadline</strong> separately — it's used throughout the app for word-count calculations and is highlighted specially in the calendar. Add other deadlines with a description and date, then mark them complete or incomplete as you go. Incomplete deadlines appear red; completed ones appear green.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Word Count</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Enter your total word count goal and your current word count to track writing progress. Once you've set a Final Project Deadline, the app calculates how many words per day you need to write to finish on time. This daily rate is multiplied across whichever calendar view you're looking at — 7 days for the week view, the full month for month view — so you always know your target for the period in front of you.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Email Connector</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Sends an automated check-in email to any recipient you choose using your own Gmail account. The email summarizes what you accomplished last session and what you plan to do next. Set a recipient address and your Gmail credentials once — a step-by-step guide is included in the pane. Toggle <strong>Auto-send on close</strong> to have the email fire automatically whenever you close the app, or send manually using the <strong>Send Now</strong> button. Credentials are stored encrypted with a password you set.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Meetings</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">A log of supervisor or advisor meetings. Record the date, who attended, and discussion notes. Add individual action items to each meeting and check them off as you complete them — the collapsed card header shows a running count of completed vs. total actions so you can see at a glance what still needs doing. Meetings are sorted newest-first.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Themes</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Choose from fourteen visual themes ranging from clean and minimal to historically inspired. Your selection is saved automatically and restored each time you open the app. Themes change colors, fonts, and the overall mood of the interface.</p>
+        </div>
+
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Import / Export</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Back up and restore all your data. <strong>Export</strong> downloads a timestamped JSON file containing everything — sessions, calendar entries, deadlines, meetings, word count, and settings. <strong>Import</strong> restores from one of these files, replacing all current data. Export regularly, especially before switching browsers or devices.</p>
+        </div>
+
+        <div style="padding:16px 0">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Sidebar</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Always visible on the right. Shows your next five upcoming deadlines, the final deadline countdown, word count progress, a quick goal-adding tool for any future calendar date, and the Email Connector status.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Tips</h3>
+      <div style="font-size:.83rem;line-height:1.8;color:var(--ink)">
+        <div style="margin-bottom:6px">📌 <strong>Always click Save Session</strong> before closing — this logs your hours to the calendar and prepares the next session readout.</div>
+        <div style="margin-bottom:6px">📌 <strong>Set your Final Deadline first</strong> — it unlocks word-per-day calculations across the whole app.</div>
+        <div style="margin-bottom:6px">📌 <strong>Use the Quick Add Goal</strong> in the sidebar to plan future days without navigating the calendar.</div>
+        <div style="margin-bottom:6px">📌 <strong>Export a backup</strong> after each significant session. localStorage can be cleared by browser settings.</div>
+        <div>📌 <strong>Click any day</strong> in the calendar to view or edit its entry, goals, and deadlines in one place.</div>
+      </div>
+    </div>`;
+}
+
+// ===================== THEMES =====================
+const THEMES = [
+  {
+    id: 'airy',
+    name: 'Airy',
+    desc: 'Clean white with blue accents',
+    preview: {
+      header: '#4A6CF7', nav: '#ffffff', bg: '#f4f6fb',
+      card: '#ffffff', accent: '#4A6CF7', text: '#1e2028', border: '#e2e6f0'
+    }
+  },
+  {
+    id: 'dark',
+    name: 'Dark Academic',
+    desc: 'Deep ink with gold warmth',
+    preview: {
+      header: '#141210', nav: '#1a1814', bg: '#1a1814',
+      card: '#211f1a', accent: '#c8a96e', text: '#e8e0d0', border: '#332e24'
+    }
+  },
+  {
+    id: 'parchment',
+    name: 'Parchment',
+    desc: 'Warm paper tones & serif type',
+    preview: {
+      header: '#2c1e0f', nav: '#f5ead0', bg: '#fdf6e3',
+      card: '#fdf8f0', accent: '#8b5e3c', text: '#2c1e0f', border: '#ddd0b8'
+    }
+  },
+  {
+    id: 'forest',
+    name: 'Forest',
+    desc: 'Earthy greens & rounded type',
+    preview: {
+      header: '#1a2e1e', nav: '#ffffff', bg: '#f2f7f3',
+      card: '#ffffff', accent: '#2d6a4f', text: '#1a2e1e', border: '#c8dece'
+    }
+  },
+  {
+    id: 'slate',
+    name: 'Slate',
+    desc: 'Dark tech with monospace type',
+    preview: {
+      header: '#090b10', nav: '#0f1117', bg: '#0f1117',
+      card: '#161b27', accent: '#7c9ef5', text: '#f0f4ff', border: '#232b3e'
+    }
+  },
+  ,
+  {
+    id: 'solarized',
+    name: 'Solarized',
+    desc: 'The classic warm-cream developer scheme',
+    preview: {
+      header: '#073642', nav: '#eee8d5', bg: '#fdf6e3',
+      card: '#fdf6e3', accent: '#268bd2', text: '#657b83', border: '#ddd6c1'
+    }
+  },
+  {
+    id: 'lavender',
+    name: 'Lavender Fields',
+    desc: 'Soft violet tones, rounded type',
+    preview: {
+      header: '#2d2540', nav: '#ffffff', bg: '#f7f4ff',
+      card: '#ffffff', accent: '#7c5cbf', text: '#2d2540', border: '#d8cfee'
+    }
+  },
+  {
+    id: 'terminal',
+    name: 'Terminal',
+    desc: 'Matrix green on pure black',
+    preview: {
+      header: '#000000', nav: '#000000', bg: '#000000',
+      card: '#050505', accent: '#00ff41', text: '#00ff41', border: '#004400'
+    }
+  },
+  {
+    id: 'neonnoir',
+    name: 'Neon Noir',
+    desc: 'Dark charcoal with hot pink & cyan',
+    preview: {
+      header: '#0d0d1a', nav: '#0d0d1a', bg: '#1a1a2e',
+      card: '#1e1e3a', accent: '#ff2d78', text: '#e8e0f0', border: '#2a2a4a'
+    }
+  },
+  {
+    id: 'vaporwave',
+    name: 'Vaporwave',
+    desc: 'Hot pink & cyan, retro 80s gradient',
+    preview: {
+      header: '#0d001a', nav: '#0d001a', bg: '#1a0533',
+      card: '#220844', accent: '#ff71ce', text: '#f0e6ff', border: '#3a1050'
+    }
+  },
+  {
+    id: 'crayola',
+    name: 'Crayola',
+    desc: 'Primary colors, bubbly font, pure fun',
+    preview: {
+      header: '#ee1111', nav: '#ffcc00', bg: '#fff9f0',
+      card: '#ffffff', accent: '#0066cc', text: '#1a1a1a', border: '#ddccbb'
+    }
+  },
+  {
+    id: 'chalkboard',
+    name: 'Chalkboard',
+    desc: 'Dark green board, chalk handwriting',
+    preview: {
+      header: '#1a2a1a', nav: '#1e301e', bg: '#2a3d2a',
+      card: '#2e4030', accent: '#f5e642', text: '#f0ece0', border: '#3a5a3a'
+    }
+  },
+  {
+    id: 'geneva',
+    name: 'Geneva',
+    desc: 'Aged leather, blackletter, deep crimson',
+    preview: {
+      header: '#1a0e05', nav: '#ede0c8', bg: '#f8f0e0',
+      card: '#fdf8f0', accent: '#8b1a1a', text: '#1a0e05', border: '#c8aa88'
+    }
+  },
+  {
+    id: 'westminster',
+    name: 'Westminster Abbey',
+    desc: 'Stone & gold, Gothic gravitas',
+    preview: {
+      header: '#0e0c08', nav: '#151310', bg: '#1c1a16',
+      card: '#222018', accent: '#c8a84a', text: '#f0ece4', border: '#3a3424'
+    }
+  },
+];
+
+function applyTheme(id) {
+  state.currentTheme = id;
+  document.documentElement.setAttribute('data-theme', id === 'airy' ? '' : id);
+  saveState();
+}
+
+function renderThemes(mp) {
+  const cards = THEMES.map(t => {
+    const p = t.preview;
+    const isActive = state.currentTheme === t.id;
+    return `<div class="theme-card${isActive?' active':''}" onclick="applyTheme('${t.id}');renderThemes(document.getElementById('main-pane'))">
+      <div class="theme-preview" style="background:${p.bg}">
+        <div class="theme-preview-header" style="background:${p.header}"></div>
+        <div class="theme-preview-nav" style="background:${p.nav};border-bottom:1px solid ${p.border}"></div>
+        <div class="theme-preview-body">
+          <div class="theme-preview-main">
+            <div class="theme-preview-card" style="background:${p.card};border:1px solid ${p.border}"></div>
+            <div class="theme-preview-card" style="background:${p.accent};opacity:.7"></div>
+            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
+            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
+          </div>
+          <div class="theme-preview-side" style="border-color:${p.border};background:${p.nav}"></div>
+        </div>
+      </div>
+      <div class="theme-name">
+        ${t.name} <span class="theme-check">✓</span>
+        <div style="font-size:.65rem;font-weight:400;color:var(--muted);margin-top:2px">${t.desc}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  mp.innerHTML = `
+    <div class="section-title">Themes</div>
+    <div class="card">
+      <h3>Choose a Theme</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.55">
+        Select a theme below. Your choice is saved automatically.
+      </p>
+      <div class="theme-grid">${cards}</div>
+    </div>`;
+}
+
+loadState();
+// Apply saved theme on startup
+if (state.currentTheme && state.currentTheme !== 'airy') {
+  document.documentElement.setAttribute('data-theme', state.currentTheme);
+}
+const el=document.getElementById('today-display');
+if(el) el.textContent=`${DAYS_SHORT[TODAY.getDay()]} ${MONTHS[TODAY.getMonth()]} ${TODAY.getDate()}, ${TODAY.getFullYear()}`;
+showPane('session');
+// If encrypted creds exist, prompt for password to unlock them on startup
+if (state._hasEncryptedSecret || state._hasEncryptedToken) {
+  setTimeout(() => {
+    showPasswordModal('enter', async (pw) => {
+      const ok = await loadEncryptedCreds(pw);
+      if (ok) { renderMain(); renderSide(); }
+    });
+  }, 300);
+}
+
+window.addEventListener('beforeunload', () => {
+  if (state.alexaEnabled && state.alexaRefreshToken && (state.lastAccomplished || state.lastPlan)) {
+    sendAlexaEmail(false);
+  }
+});
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target===this) closeModal();
+});
+</script>
+</body>
+</html>
