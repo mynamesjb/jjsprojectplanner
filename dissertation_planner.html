@@ -67,7 +67,7 @@
   .week-day .day-hours { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--teal); margin-bottom: 5px; font-weight: 500; }
   .week-day .day-content { font-size: .73rem; color: var(--muted); line-height: 1.4; }
   .week-day .goal-item { font-size: .7rem; color: var(--teal); background: #e6f7f5; border-radius: 4px; padding: 2px 6px; margin-top: 3px; }
-  .week-total { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: 10px; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; justify-content: space-between; }
+  .week-total { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: 10px; padding: 10px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
   .week-total span { color: var(--blue); font-weight: 600; }
   .words-week { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); margin-top: 6px; padding: 8px 16px; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
   .words-week span { color: var(--teal); font-weight: 600; }
@@ -141,6 +141,11 @@
   .step-block a { color: var(--blue); }
   .step-block code { font-family: 'DM Mono', monospace; font-size: .78rem; background: var(--cream); padding: 1px 5px; border-radius: 4px; color: var(--ink); }
   .send-log { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); margin-top: 8px; line-height: 1.7; }
+  /* Meeting indicators */
+  .meeting-chip { font-size: .65rem; font-family: 'Inter', sans-serif; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-top: 3px; display: flex; align-items: center; gap: 3px; background: #e8f4fd; color: #1a6fa8; border: 1px solid #a8d4f0; }
+  .month-day .mtg-dot { width: 6px; height: 6px; border-radius: 50%; background: #1a6fa8; flex-shrink: 0; }
+  .ymm-cell.has-meeting { background: #daeeff; color: #1a6fa8; font-weight: 600; }
+
   /* Deadline indicators */
   .deadline-chip { font-size: .65rem; font-family: 'Inter', sans-serif; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-top: 3px; display: flex; align-items: center; gap: 3px; }
   .deadline-chip.incomplete { background: #fff5f5; color: var(--red-dead); border: 1px solid #fca5a5; }
@@ -495,6 +500,167 @@
   html[data-theme="westminster"] .year-mini-month:hover { border-color: #c8a84a; box-shadow: 0 2px 10px rgba(200,168,74,.15); }
   html[data-theme="westminster"] .wc-bar-fill { background: linear-gradient(90deg, #6a9ab0, #c8a84a); }
 
+  /* Books pane */
+  .book-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .book-title { font-family: 'Lato', sans-serif; font-size: .95rem; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .book-meta { font-family: 'DM Mono', monospace; font-size: .68rem; color: var(--muted); margin-bottom: 8px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .book-pct { font-weight: 600; color: var(--blue); }
+  .book-actions { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
+  .pages-input-row { display: flex; gap: 6px; align-items: center; margin-top: 8px; }
+  .pages-input-row input { width: 80px; text-align: center; }
+  .today-pages-badge { font-family: 'DM Mono', monospace; font-size: .68rem; background: var(--blue-light); color: var(--blue); border-radius: 6px; padding: 3px 8px; font-weight: 600; }
+
+
+  /* Overview pane */
+  .overview-wrap { padding: 28px 32px; width: 100%; box-sizing: border-box; }
+  .overview-hero { background: linear-gradient(135deg, #1e2028 0%, #2a2d3a 100%); color: #fff; border-radius: 14px; padding: 28px 32px; margin-bottom: 24px; position: relative; overflow: hidden; }
+  .overview-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(74,108,247,.12); border-radius: 50%; }
+  .overview-hero-label { font-family: 'DM Mono', monospace; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+  .overview-hero-text { font-family: 'Lato', sans-serif; font-size: 1rem; line-height: 1.6; color: rgba(255,255,255,.92); }
+  .overview-hero-plan { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.12); }
+
+  /* ── Overview hero theme overrides ── */
+
+  /* Dark Academic — deep ink, gold accent orb */
+  html[data-theme="dark"] .overview-hero { background: linear-gradient(135deg, #0e0c08 0%, #1e1a10 100%); border: 1px solid #332e24; }
+  html[data-theme="dark"] .overview-hero::before { background: rgba(200,168,74,.08); }
+  html[data-theme="dark"] .overview-hero-label { color: #c8a96e; opacity: 1; }
+  html[data-theme="dark"] .overview-hero-text { color: #e8e0d0; }
+  html[data-theme="dark"] .overview-hero-plan { border-top-color: rgba(200,168,74,.2); }
+
+  /* Parchment — warm leather dark, amber orb */
+  html[data-theme="parchment"] .overview-hero { background: linear-gradient(135deg, #2c1e0f 0%, #3d2a14 100%); border: 1px solid #c8aa88; }
+  html[data-theme="parchment"] .overview-hero::before { background: rgba(139,94,60,.15); }
+  html[data-theme="parchment"] .overview-hero-label { color: #c8aa88; opacity: 1; }
+  html[data-theme="parchment"] .overview-hero-text { color: #f5ead0; }
+  html[data-theme="parchment"] .overview-hero-plan { border-top-color: rgba(200,170,136,.25); }
+
+  /* Forest — deep forest green, sage orb */
+  html[data-theme="forest"] .overview-hero { background: linear-gradient(135deg, #1a2e1e 0%, #243d28 100%); border: 1px solid #3a5a3e; }
+  html[data-theme="forest"] .overview-hero::before { background: rgba(45,106,79,.2); }
+  html[data-theme="forest"] .overview-hero-label { color: #74c69d; opacity: 1; }
+  html[data-theme="forest"] .overview-hero-text { color: #d4eedc; }
+  html[data-theme="forest"] .overview-hero-plan { border-top-color: rgba(116,198,157,.2); }
+
+  /* Slate — deep navy, blue orb */
+  html[data-theme="slate"] .overview-hero { background: linear-gradient(135deg, #090b10 0%, #0f1420 100%); border: 1px solid #232b3e; }
+  html[data-theme="slate"] .overview-hero::before { background: rgba(124,158,245,.1); }
+  html[data-theme="slate"] .overview-hero-label { color: #7c9ef5; opacity: 1; }
+  html[data-theme="slate"] .overview-hero-text { color: #f0f4ff; }
+  html[data-theme="slate"] .overview-hero-plan { border-top-color: rgba(124,158,245,.2); }
+
+  /* Solarized — dark teal header feel */
+  html[data-theme="solarized"] .overview-hero { background: linear-gradient(135deg, #073642 0%, #0d4a5a 100%); border: 1px solid #0a4a5a; }
+  html[data-theme="solarized"] .overview-hero::before { background: rgba(38,139,210,.12); }
+  html[data-theme="solarized"] .overview-hero-label { color: #93c5e8; opacity: 1; }
+  html[data-theme="solarized"] .overview-hero-text { color: #fdf6e3; }
+  html[data-theme="solarized"] .overview-hero-plan { border-top-color: rgba(147,197,232,.2); }
+
+  /* Lavender Fields — deep plum, lavender orb */
+  html[data-theme="lavender"] .overview-hero { background: linear-gradient(135deg, #2d2540 0%, #3a2e52 100%); border: 1px solid #4a3a6a; }
+  html[data-theme="lavender"] .overview-hero::before { background: rgba(124,92,191,.18); }
+  html[data-theme="lavender"] .overview-hero-label { color: #c4b0e8; opacity: 1; }
+  html[data-theme="lavender"] .overview-hero-text { color: #f0ecff; }
+  html[data-theme="lavender"] .overview-hero-plan { border-top-color: rgba(196,176,232,.2); }
+
+  /* Terminal — pure black, green glow */
+  html[data-theme="terminal"] .overview-hero { background: #000; border: 1px solid #00ff41; box-shadow: 0 0 20px rgba(0,255,65,.1); }
+  html[data-theme="terminal"] .overview-hero::before { background: rgba(0,255,65,.04); }
+  html[data-theme="terminal"] .overview-hero-label { color: #00cc33; opacity: 1; font-family: 'Share Tech Mono', monospace; }
+  html[data-theme="terminal"] .overview-hero-text { color: #00ff41; font-family: 'Share Tech Mono', monospace; }
+  html[data-theme="terminal"] .overview-hero-plan { border-top-color: rgba(0,255,65,.2); }
+
+  /* Neon Noir — near-black, hot pink orb */
+  html[data-theme="neonnoir"] .overview-hero { background: linear-gradient(135deg, #0d0d1a 0%, #18102a 100%); border: 1px solid #2a1040; box-shadow: 0 4px 24px rgba(255,45,120,.12); }
+  html[data-theme="neonnoir"] .overview-hero::before { background: rgba(255,45,120,.08); }
+  html[data-theme="neonnoir"] .overview-hero-label { color: #ff2d78; opacity: 1; }
+  html[data-theme="neonnoir"] .overview-hero-text { color: #e8e0f0; }
+  html[data-theme="neonnoir"] .overview-hero-plan { border-top-color: rgba(255,45,120,.18); }
+
+  /* Vaporwave — deep purple-black, pink-to-cyan gradient orb */
+  html[data-theme="vaporwave"] .overview-hero { background: linear-gradient(135deg, #0d001a 0%, #1a0035 100%); border: 1px solid #3a1050; box-shadow: 0 4px 28px rgba(255,113,206,.12); }
+  html[data-theme="vaporwave"] .overview-hero::before { background: radial-gradient(circle, rgba(255,113,206,.12), rgba(1,205,254,.06)); }
+  html[data-theme="vaporwave"] .overview-hero-label { background: linear-gradient(90deg,#ff71ce,#01cdfe); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:1; }
+  html[data-theme="vaporwave"] .overview-hero-text { color: #f0e6ff; }
+  html[data-theme="vaporwave"] .overview-hero-plan { border-top-color: rgba(255,113,206,.2); }
+
+  /* Crayola — bright red hero, yellow accent */
+  html[data-theme="crayola"] .overview-hero { background: linear-gradient(135deg, #cc0000 0%, #ee2222 100%); border: 3px solid #ffcc00; border-radius: 12px; box-shadow: 4px 4px 0 #ffcc00; }
+  html[data-theme="crayola"] .overview-hero::before { background: rgba(255,204,0,.12); }
+  html[data-theme="crayola"] .overview-hero-label { color: #ffcc00; opacity: 1; font-family: 'Fredoka One', sans-serif; letter-spacing: .06em; }
+  html[data-theme="crayola"] .overview-hero-text { color: #fff; font-family: 'Fredoka One', sans-serif; }
+  html[data-theme="crayola"] .overview-hero-plan { border-top-color: rgba(255,204,0,.3); }
+
+  /* Chalkboard — very dark green board, chalk-yellow label */
+  html[data-theme="chalkboard"] .overview-hero { background: #1a2a1a; border: 2px dashed #f5e642; }
+  html[data-theme="chalkboard"] .overview-hero::before { background: rgba(245,230,66,.04); }
+  html[data-theme="chalkboard"] .overview-hero-label { color: #f5e642; opacity: 1; font-family: 'Caveat', cursive; font-size: .75rem; text-transform: none; letter-spacing: .04em; }
+  html[data-theme="chalkboard"] .overview-hero-text { color: #f0ece0; font-family: 'Caveat', cursive; font-size: 1.05rem; }
+  html[data-theme="chalkboard"] .overview-hero-plan { border-top-color: rgba(245,230,66,.2); }
+
+  /* Geneva — aged leather dark, crimson accent */
+  html[data-theme="geneva"] .overview-hero { background: linear-gradient(135deg, #1a0e05 0%, #2e1a08 100%); border: 2px solid #c8aa88; }
+  html[data-theme="geneva"] .overview-hero::before { background: rgba(139,26,26,.1); }
+  html[data-theme="geneva"] .overview-hero-label { color: #c8aa88; opacity: 1; font-family: 'IM Fell English', serif; font-style: italic; text-transform: none; letter-spacing: .04em; }
+  html[data-theme="geneva"] .overview-hero-text { color: #f8f0e0; font-family: 'IM Fell English', serif; }
+  html[data-theme="geneva"] .overview-hero-plan { border-top-color: rgba(200,170,136,.25); }
+
+  /* Westminster Abbey — stone-black, gold orb glow */
+  html[data-theme="westminster"] .overview-hero { background: linear-gradient(180deg, #0a0806 0%, #1a1610 100%); border: 1px solid #c8a84a; box-shadow: 0 4px 24px rgba(200,168,74,.12); }
+  html[data-theme="westminster"] .overview-hero::before { background: rgba(200,168,74,.07); }
+  html[data-theme="westminster"] .overview-hero-label { color: #c8a84a; opacity: 1; font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .16em; }
+  html[data-theme="westminster"] .overview-hero-text { color: #f0ece4; font-family: 'Cinzel', serif; font-size: .92rem; letter-spacing: .04em; }
+  html[data-theme="westminster"] .overview-hero-plan { border-top-color: rgba(200,168,74,.2); }
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .overview-timeline { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .ov-tl-title { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--ink); margin-bottom: 20px; }
+  /* New event-card layout */
+  .ov-tl-events { display: flex; flex-direction: column; gap: 0; }
+  .ov-tl-event { display: flex; align-items: stretch; gap: 0; }
+  .ov-tl-spine { display: flex; flex-direction: column; align-items: center; width: 32px; flex-shrink: 0; }
+  .ov-tl-node { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; border: 2px solid #fff; box-shadow: 0 0 0 2px var(--border); }
+  .ov-tl-node.node-today { background: var(--blue); box-shadow: 0 0 0 2px var(--blue); width: 10px; height: 10px; margin-top: 6px; }
+  .ov-tl-node.node-dl { background: var(--red-dead); box-shadow: 0 0 0 2px var(--red-dead); }
+  .ov-tl-node.node-mtg { background: #1a6fa8; box-shadow: 0 0 0 2px #1a6fa8; }
+  .ov-tl-connector { width: 2px; background: var(--border); flex: 1; margin: 3px 0; min-height: 18px; }
+  .ov-tl-content { flex: 1; padding: 0 0 22px 4px; }
+  .ov-tl-event:last-child .ov-tl-content { padding-bottom: 0; }
+  .ov-tl-event:last-child .ov-tl-connector { display: none; }
+  .ov-tl-event-label { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+  .ov-tl-event-name { font-family: 'Lato', sans-serif; font-size: .92rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .ov-tl-event-meta { font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 500; }
+  .ov-tl-event-meta.meta-dl { color: var(--red-dead); }
+  .ov-tl-event-meta.meta-mtg { color: #1a6fa8; }
+  .ov-tl-event-meta.meta-today { color: var(--blue); }
+  .overview-stats { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .ov-stat-title { font-family: 'Lato', sans-serif; font-size: .88rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+  .ov-stat-row { display: flex; align-items: center; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .ov-stat-row:last-child { border-bottom: none; }
+  .ov-stat-label { font-family: 'DM Mono', monospace; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); width: 110px; flex-shrink: 0; }
+  .ov-stat-val { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .ov-stat-sub { font-family: 'DM Mono', monospace; font-size: .65rem; color: var(--muted); margin-left: auto; }
+  .overview-week { margin-bottom: 0; }
+  .overview-week .week-grid { gap: 6px; }
+
+
+  /* Configuration pane tabs */
+  .config-wrap { display: flex; min-height: calc(100vh - 120px); width: 100%; box-sizing: border-box; }
+  .config-tab-bar { display: flex; flex-direction: column; gap: 2px; width: 180px; flex-shrink: 0; padding: 28px 0 28px 28px; border-right: 1px solid var(--border); }
+  .config-tab-bar-title { font-family: 'DM Mono', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: 0 12px 10px 12px; }
+  .config-tab { font-family: 'Inter', sans-serif; font-size: .82rem; font-weight: 500; padding: 9px 14px; background: none; border: none; border-radius: 7px; text-align: left; cursor: pointer; color: var(--muted); transition: all .15s; border-left: 3px solid transparent; }
+  .config-tab.active { color: var(--blue); background: var(--blue-light); border-left-color: var(--blue); }
+  .config-tab:hover:not(.active) { color: var(--ink); background: var(--cream); }
+  .config-section { flex: 1; padding: 28px 32px; max-width: 720px; }
+
+  /* Progress report pane */
+  .report-window-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 18px; }
+  .report-window-row label { margin-top: 0; }
+  .report-toggle-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: .84rem; color: var(--ink); }
+  .report-toggle-item:last-child { border-bottom: none; }
+  .report-toggle-item input[type=checkbox] { width: auto; cursor: pointer; }
+  .report-preview { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; font-family: 'Inter', sans-serif; font-size: .84rem; line-height: 1.7; color: var(--ink); white-space: pre-wrap; margin-bottom: 18px; max-height: 400px; overflow-y: auto; }
+
+
   /* ══════════════════════════════════════════
      THEME DEFINITIONS
      Each theme overrides :root variables and
@@ -698,18 +864,19 @@
 </header>
 
 <nav>
+  <button onclick="showPane('overview')">Overview</button>
   <button class="active" onclick="showPane('session')">Session Log</button>
   <button onclick="showPane('calendar')">Calendar</button>
-  <button onclick="showPane('deadlines')">Deadlines</button>
+  <button onclick="showPane('deadlines')">Deadlines &amp; Goals</button>
   <button onclick="showPane('wordcount')">Word Count</button>
+  <button onclick="showPane('books')">Books</button>
   <button onclick="showPane('meetings')">Meetings</button>
-  <button onclick="showPane('themes')">Themes</button>
-  <button onclick="showPane('alexa')">Email Connector</button>
-  <button onclick="showPane('backup')">Import / Export</button>
+  <button onclick="showPane('report')">Progress Report</button>
+  <button onclick="showPane('config')">Configuration</button>
   <button onclick="showPane('help')">Help</button>
 </nav>
 
-<div class="app">
+<div class="app" id="app-layout">
   <div class="main-pane" id="main-pane"></div>
   <div class="side-pane" id="side-pane"></div>
 </div>
@@ -732,25 +899,67 @@ const DAYS_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 const store = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} };
 const retrieve = key => { try { const v=localStorage.getItem(key); return v?JSON.parse(v):null; } catch(e){ return null; } };
 
+// ── Key helpers ───────────────────────────────────────────────
+// Per-project keys:  diss_proj_{id}_{field}
+// Global keys:       diss_global_{field}
+const projKey  = (id, field) => `diss_proj_${id}_${field}`;
+const globalKey = field => `diss_global_${field}`;
+
+// ── Project metadata ──────────────────────────────────────────
+// Stored globally: { id, name, created }[]
+function getProjectList() {
+  return retrieve(globalKey('projects')) || [];
+}
+function saveProjectList(list) {
+  store(globalKey('projects'), list);
+}
+function getActiveProjectId() {
+  return retrieve(globalKey('activeProject')) || null;
+}
+function setActiveProjectId(id) {
+  store(globalKey('activeProject'), id);
+}
+function generateProjectId() {
+  return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+}
+
+// ── Per-project state fields ──────────────────────────────────
+const PROJECT_FIELDS = ['lastAccomplished','lastPlan','lastHours','days','deadlines',
+                        'finalDeadline','wcGoal','wcCurrent','alexaEnabled','alexaRecipient',
+                        'alexaLastSent','alexaLastStatus','currentTheme','meetings',
+                        'books','wcSnapshots','pagesSnapshots','userName','reportRecipient'];
+
+// ── Global (cross-project) state fields ──────────────────────
+const GLOBAL_FIELDS  = ['alexaClientId','alexaSenderEmail'];
+
 // ===================== STATE =====================
 let state = {
+  // Per-project
   lastAccomplished: '', lastPlan: '', lastHours: '',
   currentTheme: 'airy',
-  meetings: [],  // [{id, date, supervisor, notes, actions:[{text,done}]}]
+  meetings: [],
   days: {}, deadlines: [], finalDeadline: '',
   wcGoal: 0, wcCurrent: 0,
-  calView: 'week', calDate: new Date(TODAY),
-  // Alexa emailer — secret & token live only in memory; stored encrypted
+  books: [],           // [{id, title, currentPage, totalPages}]
+  wcSnapshots: {},     // { 'YYYY-MM-DD': wordCount } — snapshot of wcCurrent per day
+  pagesSnapshots: {},  // { 'YYYY-MM-DD': totalPagesRead } — snapshot of total pages across books
   alexaEnabled: false,
   alexaRecipient: '',
-  alexaClientId: '',
-  alexaClientSecret: '',   // in-memory only; persisted encrypted
-  alexaRefreshToken: '',   // in-memory only; persisted encrypted
-  alexaSenderEmail: '',
+  reportRecipient: '',
+  userName: '',
   alexaLastSent: '',
   alexaLastStatus: '',
+  // Global
+  alexaClientId: '',
+  alexaClientSecret: '',   // in-memory only; persisted encrypted globally
+  alexaRefreshToken: '',   // in-memory only; persisted encrypted globally
+  alexaSenderEmail: '',
+  // Session-only
+  calView: 'week', calDate: new Date(TODAY),
   _hasEncryptedSecret: false,
   _hasEncryptedToken: false,
+  // Project meta (in-memory)
+  _activeProjectId: null,
 };
 
 // ── AES-GCM helpers ──────────────────────────────────────────
@@ -785,32 +994,40 @@ async function decryptSecret(stored, password) {
 
 // ── State load / save ─────────────────────────────────────────
 function loadState() {
-  const plainKeys = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
-                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId',
-                     'alexaSenderEmail','alexaLastSent','alexaLastStatus','currentTheme','meetings'];
-  for (const k of plainKeys) { const v = retrieve('diss_'+k); if (v !== null) state[k] = v; }
-  state._hasEncryptedSecret = !!localStorage.getItem('diss_enc_clientSecret');
-  state._hasEncryptedToken  = !!localStorage.getItem('diss_enc_refreshToken');
+  const id = state._activeProjectId;
+  if (!id) return;
+  // Load per-project fields
+  for (const k of PROJECT_FIELDS) {
+    const v = retrieve(projKey(id, k));
+    if (v !== null) state[k] = v;
+  }
+  // Load global fields
+  for (const k of GLOBAL_FIELDS) {
+    const v = retrieve(globalKey(k));
+    if (v !== null) state[k] = v;
+  }
+  state._hasEncryptedSecret = !!localStorage.getItem(globalKey('enc_clientSecret'));
+  state._hasEncryptedToken  = !!localStorage.getItem(globalKey('enc_refreshToken'));
 }
 function saveState() {
-  const plainKeys = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
-                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId',
-                     'alexaSenderEmail','alexaLastSent','alexaLastStatus','currentTheme','meetings'];
-  for (const k of plainKeys) store('diss_'+k, state[k]);
+  const id = state._activeProjectId;
+  if (!id) return;
+  for (const k of PROJECT_FIELDS) store(projKey(id, k), state[k]);
+  for (const k of GLOBAL_FIELDS)  store(globalKey(k), state[k]);
 }
 async function saveEncryptedCreds(password) {
   if (state.alexaClientSecret) {
-    localStorage.setItem('diss_enc_clientSecret', JSON.stringify(await encryptSecret(state.alexaClientSecret, password)));
+    localStorage.setItem(globalKey('enc_clientSecret'), JSON.stringify(await encryptSecret(state.alexaClientSecret, password)));
   }
   if (state.alexaRefreshToken) {
-    localStorage.setItem('diss_enc_refreshToken', JSON.stringify(await encryptSecret(state.alexaRefreshToken, password)));
+    localStorage.setItem(globalKey('enc_refreshToken'), JSON.stringify(await encryptSecret(state.alexaRefreshToken, password)));
   }
   state._hasEncryptedSecret = !!state.alexaClientSecret;
   state._hasEncryptedToken  = !!state.alexaRefreshToken;
 }
 async function loadEncryptedCreds(password) {
-  const rawSecret = localStorage.getItem('diss_enc_clientSecret');
-  const rawToken  = localStorage.getItem('diss_enc_refreshToken');
+  const rawSecret = localStorage.getItem(globalKey('enc_clientSecret'));
+  const rawToken  = localStorage.getItem(globalKey('enc_refreshToken'));
   try {
     if (rawSecret) state.alexaClientSecret = await decryptSecret(JSON.parse(rawSecret), password);
     if (rawToken)  state.alexaRefreshToken  = await decryptSecret(JSON.parse(rawToken),  password);
@@ -822,8 +1039,8 @@ async function loadEncryptedCreds(password) {
   }
 }
 function clearEncryptedCreds() {
-  localStorage.removeItem('diss_enc_clientSecret');
-  localStorage.removeItem('diss_enc_refreshToken');
+  localStorage.removeItem(globalKey('enc_clientSecret'));
+  localStorage.removeItem(globalKey('enc_refreshToken'));
   state.alexaClientSecret = '';
   state.alexaRefreshToken  = '';
   state._hasEncryptedSecret = false;
@@ -836,6 +1053,38 @@ const hoursForWeek = ws => Array.from({length:7},(_,i)=>hoursForDay(fmtKey(addDa
 const hoursForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=hoursForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
 const hoursForYear = y => Array.from({length:12},(_,m)=>hoursForMonth(y,m)).reduce((a,b)=>a+b,0);
 const getWeekStart = d => { const r=new Date(d); r.setDate(r.getDate()-r.getDay()); return r; };
+// ── Pages read helpers ───────────────────────────────────────────────────────
+const totalPagesNow = () => (state.books||[]).reduce((t,b)=>t+(parseInt(b.currentPage)||0),0);
+const pagesForDay = k => {
+  const snaps = state.pagesSnapshots || {};
+  const d = parseKey(k);
+  // Find the most recent snapshot before this day
+  const prevKey = fmtKey(addDays(d, -1));
+  const todaySnap = snaps[k];
+  const prevSnap  = snaps[prevKey];
+  if (todaySnap === undefined) return 0;
+  if (prevSnap  === undefined) return 0;
+  return Math.max(0, todaySnap - prevSnap);
+};
+const pagesForWeek  = ws  => Array.from({length:7},(_,i)=>pagesForDay(fmtKey(addDays(ws,i)))).reduce((a,b)=>a+b,0);
+const pagesForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=pagesForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
+const pagesForYear  = y   => Array.from({length:12},(_,m)=>pagesForMonth(y,m)).reduce((a,b)=>a+b,0);
+
+// ── Words written helpers ─────────────────────────────────────────────────────
+const wordsForDay = k => {
+  const snaps = state.wcSnapshots || {};
+  const d = parseKey(k);
+  const prevKey = fmtKey(addDays(d, -1));
+  const todaySnap = snaps[k];
+  const prevSnap  = snaps[prevKey];
+  if (todaySnap === undefined) return 0;
+  if (prevSnap  === undefined) return 0;
+  return Math.max(0, todaySnap - prevSnap);
+};
+const wordsForWeek  = ws  => Array.from({length:7},(_,i)=>wordsForDay(fmtKey(addDays(ws,i)))).reduce((a,b)=>a+b,0);
+const wordsForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=wordsForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
+const wordsForYear  = y   => Array.from({length:12},(_,m)=>wordsForMonth(y,m)).reduce((a,b)=>a+b,0);
+
 const wordsPerDay = () => {
   if (!state.finalDeadline||!state.wcGoal||!state.wcCurrent) return 0;
   const diff = Math.max(1,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000));
@@ -844,19 +1093,40 @@ const wordsPerDay = () => {
 
 // ===================== PASSWORD MODAL =====================
 // mode: 'set' (new password) or 'enter' (existing password)
+const PW_SESSION_KEY  = 'diss_session_pw';   // sessionStorage — cleared on tab close
+const PW_PERSIST_KEY  = globalKey('persist_pw');  // localStorage  — survives restarts
+
+function getSavedPassword() {
+  return sessionStorage.getItem(PW_SESSION_KEY) || localStorage.getItem(PW_PERSIST_KEY) || null;
+}
+function savePassword(pw, persist) {
+  sessionStorage.setItem(PW_SESSION_KEY, pw);
+  if (persist) localStorage.setItem(PW_PERSIST_KEY, pw);
+  else localStorage.removeItem(PW_PERSIST_KEY);
+}
+function forgetSavedPassword() {
+  sessionStorage.removeItem(PW_SESSION_KEY);
+  localStorage.removeItem(PW_PERSIST_KEY);
+}
+
 function showPasswordModal(mode, onSuccess) {
   const isSet = mode === 'set';
+  const hasPersisted = !!localStorage.getItem(PW_PERSIST_KEY);
   document.getElementById('modal-content').innerHTML = `
     <h3>${isSet ? 'Set a Storage Password' : 'Enter Your Storage Password'}</h3>
     <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">
       ${isSet
-        ? 'Your Client Secret and refresh token will be encrypted with this password. You will need it each time you open the app.'
+        ? 'Your Client Secret and refresh token will be encrypted with this password.'
         : 'Enter your password to decrypt your stored Gmail credentials.'}
     </p>
     <label style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px">Password</label>
     <input type="password" id="storage-pw-input" placeholder="Enter password…" style="width:100%">
     ${isSet ? `<label style="font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;margin-top:10px">Confirm Password</label>
     <input type="password" id="storage-pw-confirm" placeholder="Confirm password…" style="width:100%">` : ''}
+    <div style="display:flex;align-items:center;gap:8px;margin-top:12px">
+      <input type="checkbox" id="pw-remember-me" ${hasPersisted ? 'checked' : ''} style="width:auto;cursor:pointer">
+      <label for="pw-remember-me" style="font-family:'Inter',sans-serif;font-size:.82rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer;margin:0">Remember me on this device</label>
+    </div>
     <div id="pw-modal-error" style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--red-dead);margin-top:8px;min-height:18px"></div>
     <div class="actions">
       <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
@@ -874,12 +1144,15 @@ async function submitPasswordModal(isSet) {
     const confirm = document.getElementById('storage-pw-confirm')?.value || '';
     if (pw !== confirm) { document.getElementById('pw-modal-error').textContent = 'Passwords do not match.'; return; }
   }
+  const remember = document.getElementById('pw-remember-me')?.checked || false;
   const cb = document.getElementById('modal')._pwCallback;
   if (!isSet) {
     // Decrypt mode — verify password works
     const ok = await loadEncryptedCreds(pw);
     if (!ok) { document.getElementById('pw-modal-error').textContent = 'Incorrect password.'; return; }
   }
+  // Save password to session (and optionally persist) based on remember-me
+  savePassword(pw, remember);
   closeModal();
   if (cb) cb(pw);
 }
@@ -1135,20 +1408,194 @@ let currentPane = 'session';
 function showPane(pane) {
   currentPane = pane;
   document.querySelectorAll('nav button').forEach((b,i) =>
-    b.classList.toggle('active', ['session','calendar','deadlines','wordcount','meetings','themes','alexa','backup','help'][i]===pane));
+    b.classList.toggle('active', ['overview','session','calendar','deadlines','wordcount','books','meetings','report','config','help'][i]===pane));
+  const appEl = document.getElementById('app-layout');
+  const sideEl = document.getElementById('side-pane');
+  if (pane === 'overview' || pane === 'config') {
+    if (appEl) appEl.style.display = 'block';
+    if (sideEl) sideEl.style.display = 'none';
+  } else {
+    if (appEl) appEl.style.display = 'flex';
+    if (sideEl) sideEl.style.display = 'flex';
+  }
   renderMain(); renderSide();
 }
 function renderMain() {
   const mp = document.getElementById('main-pane');
-  if (currentPane==='session')   renderSession(mp);
+  if (currentPane==='overview')   renderOverview();
+  else if (currentPane==='session')   renderSession(mp);
   else if (currentPane==='calendar')  renderCalendar(mp);
   else if (currentPane==='deadlines') renderDeadlines(mp);
   else if (currentPane==='wordcount') renderWordCount(mp);
-  else if (currentPane==='alexa')     renderAlexa(mp);
+  else if (currentPane==='books')     renderBooks(mp);
   else if (currentPane==='meetings')  renderMeetings(mp);
-  else if (currentPane==='themes')    renderThemes(mp);
-  else if (currentPane==='backup')    renderBackup(mp);
+  else if (currentPane==='report')    renderReport(mp);
+  else if (currentPane==='config')    renderConfig(mp);
   else if (currentPane==='help')      renderHelp(mp);
+}
+
+// ===================== OVERVIEW PANE =====================
+function renderOverview() {
+  const mp = document.getElementById('main-pane');
+
+  // ── Week ranges ────────────────────────────────────────────────
+  const lastWeekStart = addDays(getWeekStart(TODAY), -7);
+  const thisWeekStart = getWeekStart(TODAY);
+  const nextWeekStart = addDays(thisWeekStart, 7);
+
+  // ── Last week stats ─────────────────────────────────────────────
+  const lwHrs   = hoursForWeek(lastWeekStart);
+  const lwPages = pagesForWeek(lastWeekStart);
+  const lwWords = wordsForWeek(lastWeekStart);
+
+  // ── This week's calendar ────────────────────────────────────────
+  const weekHtml     = Array.from({length:7},(_,i) => renderWeekDay(addDays(thisWeekStart,i))).join('');
+  const nextWeekHtml = Array.from({length:7},(_,i) => renderWeekDay(addDays(nextWeekStart,i))).join('');
+
+  // ── Next week label helpers ──────────────────────────────────────
+  const nwLabel = `${MONTHS[nextWeekStart.getMonth()]} ${nextWeekStart.getDate()} – ${MONTHS[addDays(nextWeekStart,6).getMonth()]} ${addDays(nextWeekStart,6).getDate()}`;
+
+  // ── Next deadline (excluding final) ───────────────────────────
+  const nextDl = (state.deadlines||[])
+    .filter(dl => !dl.complete && dl.date >= todayKey())
+    .sort((a,b) => a.date.localeCompare(b.date))[0] || null;
+
+  // ── Next meeting ───────────────────────────────────────────────
+  const nextMtg = (state.meetings||[])
+    .filter(m => m.date >= todayKey())
+    .sort((a,b) => a.date.localeCompare(b.date))[0] || null;
+
+  // ── Timeline (today → next 60 days) ───────────────────────────
+  const RANGE = 60;
+  const rangeEnd = addDays(TODAY, RANGE);
+
+  function daysPct(dateStr) {
+    const d = parseKey(dateStr);
+    const diff = Math.ceil((d - TODAY) / 86400000);
+    return Math.min(100, Math.max(0, (diff / RANGE) * 100));
+  }
+
+  // Build timeline events as a vertical spine
+  const dlDaysAway  = nextDl  ? Math.ceil((parseKey(nextDl.date)  - TODAY) / 86400000) : null;
+  const mtgDaysAway = nextMtg ? Math.ceil((parseKey(nextMtg.date) - TODAY) / 86400000) : null;
+
+  // Sort by date — whichever comes first goes on top
+  const tlEvents = [];
+  if (nextDl)  tlEvents.push({ type: 'dl',  daysAway: dlDaysAway,  date: nextDl.date,  name: nextDl.desc, pendingActions: null });
+  if (nextMtg) tlEvents.push({ type: 'mtg', daysAway: mtgDaysAway, date: nextMtg.date, name: nextMtg.supervisor||'Meeting',
+    pendingActions: (nextMtg.actions||[]).filter(a=>!a.done).length });
+  tlEvents.sort((a,b) => a.daysAway - b.daysAway);
+
+  // ── Hero section ───────────────────────────────────────────────
+  const hasSession = state.lastAccomplished || state.lastPlan;
+  const heroHtml = `<div class="overview-hero">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div>
+        <div class="overview-hero-label">Last Session</div>
+        <div class="overview-hero-text">${state.lastAccomplished || '<em style="opacity:.5">Nothing recorded yet.</em>'}</div>
+        ${state.lastHours ? `<div style="font-family:'DM Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.45);margin-top:6px">${state.lastHours}h worked</div>` : ''}
+      </div>
+      <div class="overview-hero-plan">
+        <div class="overview-hero-label">Today's Plan</div>
+        <div class="overview-hero-text">${state.lastPlan || '<em style="opacity:.5">No plan set.</em>'}</div>
+      </div>
+    </div>
+  </div>`;
+
+  // ── Stats section ──────────────────────────────────────────────
+  const twHrs   = hoursForWeek(thisWeekStart);
+  const twPages = pagesForWeek(thisWeekStart);
+  const twWords = wordsForWeek(thisWeekStart);
+
+  function statBlock(title, hrs, pages, words, muted) {
+    const empty = hrs === 0 && pages === 0 && words === 0;
+    return `<div class="overview-stats" style="flex:1;min-width:0">
+      <div class="ov-stat-title" style="color:${muted?'var(--muted)':'var(--ink)'}">${title}</div>
+      ${empty ? `<div style="font-size:.78rem;color:var(--muted);padding:4px 0;font-style:italic">No data yet.</div>` : ''}
+      ${hrs > 0 ? `<div class="ov-stat-row">
+        <span class="ov-stat-label">Hours</span>
+        <span class="ov-stat-val">${hrs.toFixed(1)}</span>
+        <span class="ov-stat-sub">hrs</span>
+      </div>` : ''}
+      ${pages > 0 ? `<div class="ov-stat-row">
+        <span class="ov-stat-label">Pages</span>
+        <span class="ov-stat-val" style="color:var(--teal)">${pages}</span>
+        <span class="ov-stat-sub">pages</span>
+      </div>` : ''}
+      ${words > 0 ? `<div class="ov-stat-row">
+        <span class="ov-stat-label">Words</span>
+        <span class="ov-stat-val" style="color:var(--blue)">${words.toLocaleString()}</span>
+        <span class="ov-stat-sub">words</span>
+      </div>` : ''}
+    </div>`;
+  }
+
+  const statsHtml = `<div style="display:flex;gap:14px;flex-wrap:wrap">
+    ${statBlock('Last Week', lwHrs, lwPages, lwWords, true)}
+    ${statBlock('This Week', twHrs, twPages, twWords, false)}
+  </div>`;
+
+  // ── Timeline section ───────────────────────────────────────────
+  const tlHtml = (nextDl || nextMtg) ? `<div class="overview-timeline">
+    <div class="ov-tl-title">Coming Up <span style="font-family:'DM Mono',monospace;font-size:.62rem;font-weight:400;color:var(--muted);letter-spacing:.06em">— next 60 days</span></div>
+    <div class="ov-tl-events">
+
+      <!-- Today anchor -->
+      <div class="ov-tl-event">
+        <div class="ov-tl-spine">
+          <div class="ov-tl-node node-today"></div>
+          <div class="ov-tl-connector"></div>
+        </div>
+        <div class="ov-tl-content">
+          <div class="ov-tl-event-name" style="font-size:.78rem;font-weight:600">Today</div>
+          <div class="ov-tl-event-meta meta-today">${DAYS_SHORT[TODAY.getDay()]}, ${MONTHS[TODAY.getMonth()]} ${TODAY.getDate()}</div>
+        </div>
+      </div>
+
+      ${tlEvents.map((ev, i) => `
+      <div class="ov-tl-event">
+        <div class="ov-tl-spine">
+          <div class="ov-tl-node ${ev.type==='dl'?'node-dl':'node-mtg'}"></div>
+          ${i < tlEvents.length - 1 ? '<div class="ov-tl-connector"></div>' : ''}
+        </div>
+        <div class="ov-tl-content">
+          <div class="ov-tl-event-label">${ev.type==='dl' ? 'Deadline' : 'Meeting'}</div>
+          <div class="ov-tl-event-name">${ev.name.slice(0, 40)}${ev.name.length > 40 ? '…' : ''}</div>
+          <div class="ov-tl-event-meta ${ev.type==='dl'?'meta-dl':'meta-mtg'}">
+            ${ev.date} &nbsp;·&nbsp; in ${ev.daysAway} day${ev.daysAway!==1?'s':''}
+            ${ev.pendingActions>0?` &nbsp;·&nbsp; ${ev.pendingActions} action${ev.pendingActions!==1?'s':''} pending`:''}
+          </div>
+        </div>
+      </div>`).join('')}
+
+    </div>
+  </div>` : '';
+
+  mp.innerHTML = `<div class="overview-wrap">
+    ${heroHtml}
+    <div class="overview-grid">
+      ${tlHtml ? `<div style="grid-column:1/-1">${tlHtml}</div>` : ''}
+      <div style="grid-column:1/-1">${statsHtml}</div>
+    </div>
+    <div class="card overview-week" style="margin-bottom:18px">
+      <div style="font-family:'Lato',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:14px">
+        This Week &nbsp;<span style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:400;color:var(--muted)">${MONTHS[thisWeekStart.getMonth()]} ${thisWeekStart.getDate()} – ${MONTHS[addDays(thisWeekStart,6).getMonth()]} ${addDays(thisWeekStart,6).getDate()}</span>
+      </div>
+      <div class="week-grid">${weekHtml}</div>
+      <div class="week-total" style="margin-top:10px">
+        <span style="color:var(--muted)">This Week</span>
+        <span>${twHrs.toFixed(1)} hrs worked</span>
+        ${twPages>0?`<span style="color:var(--teal)">${twPages} pages read</span>`:''}
+        ${twWords>0?`<span style="color:var(--blue)">${twWords.toLocaleString()} words written</span>`:''}
+      </div>
+    </div>
+    <div class="card overview-week" style="margin-bottom:0">
+      <div style="font-family:'Lato',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:14px">
+        Next Week &nbsp;<span style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:400;color:var(--muted)">${nwLabel}</span>
+      </div>
+      <div class="week-grid">${nextWeekHtml}</div>
+    </div>
+  </div>`;
 }
 
 // ===================== SESSION PANE =====================
@@ -1187,6 +1634,11 @@ function saveSession() {
   const key = todayKey();
   if (!state.days[key]) state.days[key] = { goals: [] };
   state.days[key].accomplished = acc; state.days[key].hours = hrs;
+  // Snapshot word count and pages for today
+  if (!state.wcSnapshots) state.wcSnapshots = {};
+  if (!state.pagesSnapshots) state.pagesSnapshots = {};
+  state.wcSnapshots[key] = state.wcCurrent || 0;
+  state.pagesSnapshots[key] = totalPagesNow();
   saveState();
   // Clear the input fields after saving by temporarily nulling the fill values
   state._sessionInputClear = true;
@@ -1235,26 +1687,45 @@ function renderCalBody(wpd) {
     label.textContent=`${MONTHS[ws.getMonth()]} ${ws.getDate()} – ${MONTHS[addDays(ws,6).getMonth()]} ${addDays(ws,6).getDate()}, ${ws.getFullYear()}`;
     body.innerHTML=`<div class="week-grid">${Array.from({length:7},(_,i)=>renderWeekDay(addDays(ws,i))).join('')}</div>`;
     const wt=wpd?(wpd*7).toFixed(0):null;
-    footer.innerHTML=`<div class="week-total"><span style="color:var(--muted)">Week Total</span><span>${hoursForWeek(ws).toFixed(1)} hrs</span></div>${wt?`<div class="words-week">Words needed this week: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
+    const wkPages=pagesForWeek(ws); const wkWords=wordsForWeek(ws);
+    footer.innerHTML=`<div class="week-total">
+      <span style="color:var(--muted)">Week Total</span>
+      <span>${hoursForWeek(ws).toFixed(1)} hrs worked</span>
+      ${wkPages>0?`<span style="color:var(--teal)">${wkPages} pages read</span>`:''}
+      ${wkWords>0?`<span style="color:var(--blue)">${wkWords.toLocaleString()} words written</span>`:''}
+    </div>${wt?`<div class="words-week">Words needed this week: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
   } else if (v==='month') {
     label.textContent=`${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
     renderMonthView(body, d.getFullYear(), d.getMonth());
     const dim=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();
     const wt=wpd?(wpd*dim).toFixed(0):null;
-    footer.innerHTML=`<div class="month-summary"><span style="color:var(--muted)">Month Total</span><span>${hoursForMonth(d.getFullYear(),d.getMonth()).toFixed(1)} hrs</span></div>${wt?`<div class="words-week">Words needed this month: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
+    const moPages=pagesForMonth(d.getFullYear(),d.getMonth()); const moWords=wordsForMonth(d.getFullYear(),d.getMonth());
+    footer.innerHTML=`<div class="month-summary">
+      <span style="color:var(--muted)">Month Total</span>
+      <span>${hoursForMonth(d.getFullYear(),d.getMonth()).toFixed(1)} hrs worked</span>
+      ${moPages>0?`<span style="color:var(--teal)">${moPages} pages read</span>`:''}
+      ${moWords>0?`<span style="color:var(--blue)">${moWords.toLocaleString()} words written</span>`:''}
+    </div>${wt?`<div class="words-week">Words needed this month: <span>${Number(wt).toLocaleString()}</span></div>`:''}`;
   } else if (v==='year') {
     label.textContent=String(d.getFullYear());
     renderYearView(body, d.getFullYear());
-    footer.innerHTML=`<div class="month-summary"><span style="color:var(--muted)">Year Total</span><span>${hoursForYear(d.getFullYear()).toFixed(1)} hrs</span></div>`;
+    const yrPages=pagesForYear(d.getFullYear()); const yrWords=wordsForYear(d.getFullYear());
+    footer.innerHTML=`<div class="month-summary">
+      <span style="color:var(--muted)">Year Total</span>
+      <span>${hoursForYear(d.getFullYear()).toFixed(1)} hrs worked</span>
+      ${yrPages>0?`<span style="color:var(--teal)">${yrPages} pages read</span>`:''}
+      ${yrWords>0?`<span style="color:var(--blue)">${yrWords.toLocaleString()} words written</span>`:''}
+    </div>`;
   }
 }
 
 function renderWeekDay(day) {
   const key=fmtKey(day), isToday=key===todayKey(), isPast=day<TODAY;
   const entry=state.days[key]||{}, goals=entry.goals||[], hrs=entry.hours?`${entry.hours}h`:'';
-  // Gather deadlines on this day
+  // Gather deadlines and meetings on this day
   const dayDls = state.deadlines.filter(dl=>dl.date===key);
   const isFinal = state.finalDeadline===key;
+  const dayMtgs = (state.meetings||[]).filter(m=>m.date===key);
   let content='';
   if (isPast||isToday) {
     content=entry.accomplished
@@ -1262,7 +1733,7 @@ function renderWeekDay(day) {
       :`<div class="day-content" style="opacity:.4">No entry</div>`;
   } else {
     content=goals.length
-      ?goals.map(g=>`<div class="goal-item">${g.slice(0,40)}</div>`).join('')
+      ?goals.map(g=>`<div class="goal-item"${typeof g==='object'&&g.done?' style="text-decoration:line-through;opacity:.5"':''}>${(typeof g==='string'?g:g.text).slice(0,40)}</div>`).join('')
       :`<div class="day-content" style="opacity:.3">No goals</div>`;
   }
   const dlChips = [
@@ -1271,10 +1742,17 @@ function renderWeekDay(day) {
       ${dl.complete?'✓':'!'} ${dl.desc.slice(0,22)}${dl.desc.length>22?'…':''}
     </div>`)
   ].join('');
+  const mtgChips = dayMtgs.map(m=>`<div class="meeting-chip">
+    📋 ${(m.supervisor||'Meeting').slice(0,22)}${(m.supervisor||'').length>22?'…':''}
+  </div>`).join('');
+  const pgs = pagesForDay(key); const wds = wordsForDay(key);
   return `<div class="week-day${isToday?' today':''}${isPast?' past':''}" onclick="openDayModal('${key}')">
     <div class="day-name">${DAYS_SHORT[day.getDay()]}</div>
     <div class="day-num">${day.getDate()}</div>
-    ${hrs?`<div class="day-hours">${hrs}</div>`:''}${content}${dlChips}</div>`;
+    ${hrs?`<div class="day-hours">${hrs} worked</div>`:''}
+    ${pgs>0?`<div class="day-hours" style="color:var(--teal)">${pgs} pg read</div>`:''}
+    ${wds>0?`<div class="day-hours" style="color:var(--blue)">${wds.toLocaleString()} wds</div>`:''}
+    ${content}${dlChips}${mtgChips}</div>`;
 }
 
 function renderMonthView(body, year, month) {
@@ -1286,17 +1764,21 @@ function renderMonthView(body, year, month) {
     const hrs=hoursForDay(k);
     const dayDls=state.deadlines.filter(dl=>dl.date===k);
     const isFinal=state.finalDeadline===k;
+    const dayMtgs=(state.meetings||[]).filter(m=>m.date===k);
     // Build dot row
     const dots=[
       ...(isFinal?[`<div class="dl-dot final" title="Final Deadline"></div>`]:[]),
-      ...dayDls.map(dl=>`<div class="dl-dot ${dl.complete?'complete':'incomplete'}" title="${dl.desc}"></div>`)
+      ...dayDls.map(dl=>`<div class="dl-dot ${dl.complete?'complete':'incomplete'}" title="${dl.desc}"></div>`),
+      ...dayMtgs.map(m=>`<div class="mtg-dot" title="Meeting: ${m.supervisor||'Meeting'}"></div>`)
     ].join('');
-    // First deadline label (truncated)
-    const firstDl = isFinal ? '★ Final' : dayDls.length ? dayDls[0].desc.slice(0,14)+(dayDls[0].desc.length>14?'…':'') : '';
+    // First label (deadline takes priority over meeting)
+    const firstDl = isFinal ? '★ Final' : dayDls.length ? dayDls[0].desc.slice(0,14)+(dayDls[0].desc.length>14?'…':'') : dayMtgs.length ? '📋 '+(dayMtgs[0].supervisor||'Meeting').slice(0,12) : '';
     const labelCls = isFinal ? 'md-label final' : 'md-label';
     cells+=`<div class="month-day${k===todayKey()?' today':''}" onclick="jumpToWeek('${k}')">
       <div class="md-num">${d}</div>
       ${hrs>0?`<div class="md-hours">${hrs}h</div>`:''}
+      ${pagesForDay(k)>0?`<div class="md-hours" style="color:var(--teal)">${pagesForDay(k)}pg</div>`:''}
+      ${wordsForDay(k)>0?`<div class="md-hours" style="color:var(--blue)">${wordsForDay(k)}w</div>`:''}
       ${dots?`<div class="dl-dots">${dots}</div>`:''}
       ${firstDl?`<div class="${labelCls}">${firstDl}</div>`:''}
     </div>`;
@@ -1329,11 +1811,13 @@ function renderYearView(body, year) {
       const isToday = k===todayKey();
       const hasHrs = hoursForDay(k) > 0;
       const isDl = dlDates.has(k) || k===finalDate;
+      const hasMtg = (state.meetings||[]).some(m=>m.date===k);
       let cls = 'ymm-cell';
       if(isToday) cls+=' is-today';
       else if(isDl) cls+=' has-deadline';
+      else if(hasMtg) cls+=' has-meeting';
       else if(hasHrs) cls+=' has-hours';
-      cells+=`<div class="${cls}">${d}</div>`;
+      cells+=`<div class="${cls}" title="${hasMtg?'Meeting':''}">${d}</div>`;
     }
     // trailing filler
     const rem=(7-(firstDay+dim)%7)%7;
@@ -1342,7 +1826,7 @@ function renderYearView(body, year) {
     return `<div class="year-mini-month" onclick="jumpToMonth(${year},${m})" style="cursor:pointer" title="View ${MONTHS[m]} ${year}">
       <div class="ymm-header">
         <span class="ymm-name">${MONTHS[m]}</span>
-        <span class="ymm-hours">${hrs}h</span>
+        <span class="ymm-hours">${hrs}h${pagesForMonth(year,m)>0?' · '+pagesForMonth(year,m)+'pg':''}${wordsForMonth(year,m)>0?' · '+wordsForMonth(year,m).toLocaleString()+'w':''}</span>
       </div>
       <div class="ymm-grid">${cells}</div>
     </div>`;
@@ -1365,16 +1849,21 @@ function openDayModal(key) {
   const title=`${DAYS_SHORT[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
   const mc=document.getElementById('modal-content');
 
-  // Deadlines on this day
+  // Deadlines and meetings on this day
   const dayDls = state.deadlines.filter(dl=>dl.date===key);
   const isFinal = state.finalDeadline===key;
-  const dlSection = (isFinal || dayDls.length) ? `
-    <label>Deadlines</label>
+  const dayMtgs = (state.meetings||[]).filter(m=>m.date===key);
+  const dlSection = (isFinal || dayDls.length || dayMtgs.length) ? `
+    <label>Deadlines &amp; Meetings</label>
     <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:4px">
       ${isFinal ? `<div style="font-size:.82rem;background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid);border-radius:6px;padding:6px 10px;font-weight:600">★ Final Deadline</div>` : ''}
       ${dayDls.map(dl=>`<div style="font-size:.82rem;background:${dl.complete?'#f0fdf4':'#fff5f5'};color:${dl.complete?'var(--green-done)':'var(--red-dead)'};border:1px solid ${dl.complete?'#bbf7d0':'#fca5a5'};border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:6px">
         <span style="font-weight:700">${dl.complete?'✓':'!'}</span> ${dl.desc}
         <span style="margin-left:auto;font-size:.72rem;opacity:.7;font-family:'DM Mono',monospace">${dl.complete?'complete':'due'}</span>
+      </div>`).join('')}
+      ${dayMtgs.map(m=>`<div style="font-size:.82rem;background:#e8f4fd;color:#1a6fa8;border:1px solid #a8d4f0;border-radius:6px;padding:6px 10px;display:flex;align-items:center;gap:6px">
+        <span>📋</span> ${m.supervisor||'Meeting'}
+        ${(m.actions||[]).length?`<span style="margin-left:auto;font-size:.72rem;font-family:'DM Mono',monospace;opacity:.7">${(m.actions||[]).filter(a=>!a.done).length} action${(m.actions||[]).filter(a=>!a.done).length!==1?'s':''} pending</span>`:''}
       </div>`).join('')}
     </div>` : '';
 
@@ -1383,12 +1872,12 @@ function openDayModal(key) {
       ${dlSection}
       <label>Accomplished</label><textarea id="modal-acc" style="min-height:80px">${entry.accomplished||''}</textarea>
       <label>Hours Worked</label><input type="number" id="modal-hrs" min="0" step="0.25" value="${entry.hours||''}">
-      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).join('\n')}</textarea>
+      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).map(g=>typeof g==='string'?g:g.text).join('\n')}</textarea>
       <div class="actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveDayModal('${key}')">Save</button></div>`;
   } else {
     mc.innerHTML=`<h3>${title}</h3>
       ${dlSection}
-      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).join('\n')}</textarea>
+      <label>Goals for this day</label><textarea id="modal-goals">${(entry.goals||[]).map(g=>typeof g==='string'?g:g.text).join('\n')}</textarea>
       <div class="actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn" onclick="saveDayModal('${key}')">Save Goals</button></div>`;
   }
   document.getElementById('modal').style.display='flex';
@@ -1410,31 +1899,117 @@ function closeModal() { document.getElementById('modal').style.display='none'; }
 // ===================== DEADLINES PANE =====================
 function renderDeadlines(mp) {
   const dls=state.deadlines;
+
+  // Gather all goals across all days, sorted by date
+  // Goals can be plain strings (legacy) or {text, done} objects
+  const goalText = g => typeof g === 'string' ? g : (g.text || '');
+  const goalDone = g => typeof g === 'object' && g.done === true;
+  const allGoals = [];
+  const days = state.days || {};
+  Object.keys(days).sort().forEach(dateKey => {
+    const dayGoals = days[dateKey]?.goals || [];
+    dayGoals.forEach((g, gi) => {
+      const d = parseKey(dateKey);
+      const isPast = d < TODAY;
+      const isToday = dateKey === todayKey();
+      allGoals.push({ dateKey, goal: goalText(g), done: goalDone(g), goalIdx: gi, isPast, isToday });
+    });
+  });
+  // Sort all goals: incomplete first (by date), then complete (by date)
+  allGoals.sort((a,b) => {
+    if (a.done !== b.done) return a.done ? 1 : -1;
+    return a.dateKey.localeCompare(b.dateKey);
+  });
+
   mp.innerHTML=`
-    <div class="section-title">Deadlines</div>
+    <div class="section-title">Deadlines &amp; Goals</div>
+
     <div class="card" style="margin-bottom:16px">
       <h3>★ Final Project Deadline</h3>
       <label>Date</label><input type="date" id="final-dl-date" value="${state.finalDeadline||''}">
       <button class="btn" onclick="saveFinalDeadline()">Save</button>
     </div>
+
     <div class="card" style="margin-bottom:16px">
       <h3>Add Deadline</h3>
       <label>Description</label><input type="text" id="new-dl-desc" placeholder="e.g. Chapter 2 draft">
       <label>Date</label><input type="date" id="new-dl-date">
       <button class="btn" onclick="addDeadline()">Add Deadline</button>
     </div>
-    <div class="card">
+
+    <div class="card" style="margin-bottom:16px">
       <h3>All Deadlines</h3>
       ${dls.length===0?'<p style="font-size:.82rem;color:var(--muted)">No deadlines yet.</p>':''}
       ${dls.map((dl,i)=>`<div class="deadline-item">
         <div class="deadline-dot ${dl.complete?'complete':'incomplete'}"></div>
-        <div class="deadline-info"><div class="dl-desc">${dl.desc}</div><div class="dl-date">${dl.date}</div></div>
+        <div class="deadline-info"><div class="dl-desc" style="${dl.complete?'text-decoration:line-through;opacity:.6':''}">${dl.desc}</div><div class="dl-date">${dl.date}</div></div>
         <div class="deadline-actions">
           <button class="btn btn-sm btn-ghost" onclick="toggleDeadline(${i})">${dl.complete?'Mark Incomplete':'Mark Complete'}</button>
           <button class="btn btn-sm" style="background:var(--rust)" onclick="deleteDeadline(${i})">✕</button>
         </div>
       </div>`).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>Add Goal</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:10px;line-height:1.55">Goals are tied to specific days and appear on the calendar.</p>
+      <label>Date</label>
+      <input type="date" id="dl-goal-date" value="${todayKey()}">
+      <label>Goal</label>
+      <input type="text" id="dl-goal-text" placeholder="e.g. Write introduction draft">
+      <button class="btn" onclick="addGoalFromPane()">Add Goal</button>
+    </div>
+
+    <div class="card">
+      <h3>All Goals</h3>
+      ${allGoals.length===0?'<p style="font-size:.82rem;color:var(--muted)">No goals yet.</p>':''}
+      ${allGoals.map(g=>`<div class="deadline-item">
+        <div class="deadline-dot ${g.done?'complete':'incomplete'}"></div>
+        <div class="deadline-info">
+          <div class="dl-desc" style="${g.done?'text-decoration:line-through;opacity:.6':''}"> ${g.goal}</div>
+          <div class="dl-date">${g.dateKey}${g.isToday?' · Today':''}</div>
+        </div>
+        <div class="deadline-actions">
+          <button class="btn btn-sm btn-ghost" onclick="toggleGoal('${g.dateKey}',${g.goalIdx})">${g.done?'Mark Incomplete':'Mark Complete'}</button>
+          <button class="btn btn-sm" style="background:var(--rust);margin-top:0" onclick="deleteGoal('${g.dateKey}',${g.goalIdx})">✕</button>
+        </div>
+      </div>`).join('')}
     </div>`;
+}
+
+function addGoalFromPane() {
+  const date = document.getElementById('dl-goal-date')?.value;
+  const text = document.getElementById('dl-goal-text')?.value.trim();
+  if (!date || !text) { alert('Please enter a date and goal.'); return; }
+  if (!state.days[date]) state.days[date] = { goals: [] };
+  if (!state.days[date].goals) state.days[date].goals = [];
+  state.days[date].goals.push({ text, done: false });
+  saveState();
+  renderMain();
+  renderSide();
+}
+
+function toggleGoal(dateKey, goalIdx) {
+  const goals = state.days[dateKey]?.goals;
+  if (!goals) return;
+  const g = goals[goalIdx];
+  if (typeof g === 'string') {
+    // Migrate string to object
+    goals[goalIdx] = { text: g, done: true };
+  } else {
+    goals[goalIdx] = { ...g, done: !g.done };
+  }
+  saveState();
+  renderMain();
+  renderSide();
+}
+
+function deleteGoal(dateKey, goalIdx) {
+  if (!state.days[dateKey]?.goals) return;
+  state.days[dateKey].goals.splice(goalIdx, 1);
+  saveState();
+  renderMain();
+  renderSide();
 }
 function saveFinalDeadline() { state.finalDeadline=document.getElementById('final-dl-date').value; saveState(); renderMain(); renderSide(); }
 function addDeadline() {
@@ -1449,6 +2024,7 @@ function deleteDeadline(i) { if(!confirm('Delete this deadline?'))return; state.
 function renderWordCount(mp) {
   const pct=state.wcGoal>0?Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1):0;
   const remaining=Math.max(0,state.wcGoal-state.wcCurrent), wpd=wordsPerDay();
+  const wordsToday = wordsForDay(todayKey());
   mp.innerHTML=`
     <div class="section-title">Word Count Tracker</div>
     <div class="card" style="margin-bottom:16px">
@@ -1456,6 +2032,10 @@ function renderWordCount(mp) {
       <label>Total Word Count Goal</label><input type="number" id="wc-goal" placeholder="e.g. 80000" value="${state.wcGoal||''}">
       <label>Current Word Count</label><input type="number" id="wc-current" placeholder="e.g. 12450" value="${state.wcCurrent||''}">
       <button class="btn" onclick="saveWordCount()">Update</button>
+      ${wordsToday>0?`<div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+        <span class="today-pages-badge">+${wordsToday.toLocaleString()} words today</span>
+        <button class="btn btn-ghost btn-sm" onclick="openEditWordsTodayModal()">Edit</button>
+      </div>`:''}
     </div>
     ${state.wcGoal>0?`<div class="card">
       <h3>Progress</h3>
@@ -1469,9 +2049,42 @@ function renderWordCount(mp) {
       </div>
     </div>`:''}`;
 }
+
+function openEditWordsTodayModal() {
+  const snaps = state.wcSnapshots || {};
+  const todaySnap = snaps[todayKey()] ?? state.wcCurrent;
+  const prevKey = fmtKey(addDays(TODAY,-1));
+  const prevSnap = snaps[prevKey] ?? 0;
+  const current = Math.max(0, todaySnap - prevSnap);
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Edit Today's Words Written</h3>
+    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">Adjust how many words you wrote today.</p>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:block;margin-bottom:4px">Words Written Today</label>
+    <input type="number" id="edit-words-today" min="0" value="${current}" style="width:100%">
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveEditWordsToday()">Save</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => { const el=document.getElementById('edit-words-today'); if(el){el.focus();el.select();} }, 50);
+}
+
+function saveEditWordsToday() {
+  const words = parseInt(document.getElementById('edit-words-today')?.value) || 0;
+  if (!state.wcSnapshots) state.wcSnapshots = {};
+  const todaySnap = state.wcSnapshots[todayKey()] ?? state.wcCurrent;
+  const prevKey = fmtKey(addDays(TODAY,-1));
+  state.wcSnapshots[prevKey] = Math.max(0, todaySnap - words);
+  saveState();
+  closeModal();
+  renderMain();
+}
 function saveWordCount() {
   state.wcGoal=parseFloat(document.getElementById('wc-goal').value)||0;
   state.wcCurrent=parseFloat(document.getElementById('wc-current').value)||0;
+  // Snapshot for today
+  if (!state.wcSnapshots) state.wcSnapshots = {};
+  state.wcSnapshots[todayKey()] = state.wcCurrent;
   saveState(); renderMain();
 }
 
@@ -1493,6 +2106,7 @@ function renderAlexa(mp) {
         </span>
         ${connected ? `<button class="btn btn-ghost btn-sm" onclick="disconnectGmail()">Disconnect</button>` : ''}
         ${locked ? `<button class="btn btn-sm btn-sage" onclick="showPasswordModal('enter', async (pw) => { await loadEncryptedCreds(pw); renderMain(); renderSide(); })">Unlock</button>` : ''}
+        ${connected ? `<button class="btn btn-ghost btn-sm" onclick="forgetSavedPassword();alert('Saved password cleared. You will be prompted on next visit.')">Forget Password</button>` : ''}
       </div>
 
       <div class="toggle-row" style="border-top:1px solid var(--border);padding-top:14px">
@@ -1550,7 +2164,10 @@ function renderAlexa(mp) {
       </div>
 
       <label>Recipient Email Address</label>
-      <input type="text" id="alexa-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}">
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <input type="text" id="alexa-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveRecipient()">Save</button>
+      </div>
       <label>Your Gmail Address (sender)</label>
       <input type="text" id="alexa-sender-email" placeholder="you@gmail.com" value="${state.alexaSenderEmail||''}">
       <label>Client ID</label>
@@ -1572,13 +2189,23 @@ function toggleAlexaEnabled(val) {
   renderSide();
 }
 
+function saveRecipient() {
+  const val = document.getElementById('alexa-recipient')?.value.trim() || '';
+  state.alexaRecipient = val;
+  saveState();
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '✓';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
 function saveAlexaCreds() {
   const recipient = document.getElementById('alexa-recipient')?.value.trim() || '';
   const email  = document.getElementById('alexa-sender-email')?.value.trim() || '';
   const id     = document.getElementById('alexa-client-id')?.value.trim()     || '';
   const secret = document.getElementById('alexa-client-secret')?.value.trim() || '';
   if (!email || !id || !secret) { alert('Please fill in all three credential fields.'); return; }
-  if (recipient) state.alexaRecipient = recipient;
+  state.alexaRecipient = recipient;  // always save — even empty clears it intentionally
   state.alexaSenderEmail  = email;
   state.alexaClientId     = id;
   state.alexaClientSecret = secret;
@@ -1594,18 +2221,61 @@ function saveAlexaCreds() {
 function renderSide() {
   const sp=document.getElementById('side-pane');
   const upcoming=state.deadlines.filter(dl=>!dl.complete&&dl.date>=todayKey()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,5);
+  const upcomingMtgs=(state.meetings||[]).filter(m=>m.date>=todayKey()).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,3);
   const pct=state.wcGoal>0?Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1):null;
   const connected=!!state.alexaRefreshToken;
 
   sp.innerHTML=`
+    ${state.lastPlan ? `<div style="background:var(--blue);color:#fff;border-radius:8px;padding:10px 14px">
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:5px">Today's Plan</div>
+      <div style="font-family:'Lato',sans-serif;font-size:.85rem;line-height:1.5">${state.lastPlan}</div>
+    </div>` : `<div style="background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:10px 14px">
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Today's Plan</div>
+      <div style="font-size:.78rem;color:var(--muted);font-style:italic">No plan set — log a session to add one.</div>
+    </div>`}
+    ${(()=>{
+      const goalText = g => typeof g === 'string' ? g : (g.text || '');
+      const goalDone = g => typeof g === 'object' && g.done === true;
+      const sideGoals = [];
+      Object.keys(state.days||{}).sort().forEach(dk => {
+        (state.days[dk]?.goals||[]).forEach((g,gi) => {
+          const d = parseKey(dk);
+          if (!goalDone(g) && (d >= TODAY || dk === todayKey())) {
+            sideGoals.push({ dateKey: dk, goal: goalText(g), goalIdx: gi, isToday: dk===todayKey() });
+          }
+        });
+      });
+      if (!sideGoals.length) return '';
+      return `<div>
+        <div style="font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:10px">Outstanding Goals</div>
+        ${sideGoals.slice(0,5).map(g=>`<div class="deadline-item">
+          <div style="width:9px;height:9px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;cursor:pointer" onclick="toggleGoal('${g.dateKey}',${g.goalIdx});renderSide()" title="Mark complete"></div>
+          <div class="deadline-info">
+            <div class="dl-desc" style="font-size:.78rem">${g.goal}</div>
+            <div class="dl-date">${g.dateKey}${g.isToday?' · Today':''}</div>
+          </div>
+        </div>`).join('')}
+        ${sideGoals.length>5?`<div style="font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:4px">+${sideGoals.length-5} more</div>`:''}
+      </div>`;
+    })()}
     <div>
-      <div style="font-family:'Playfair Display',serif;font-size:.95rem;margin-bottom:10px">Upcoming Deadlines</div>
+      <div style="font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:10px">Upcoming Deadlines</div>
       ${upcoming.length===0?'<p style="font-size:.78rem;color:var(--muted)">None upcoming.</p>':''}
       ${upcoming.map(dl=>`<div class="deadline-item">
         <div class="deadline-dot incomplete"></div>
         <div class="deadline-info"><div class="dl-desc" style="font-size:.78rem">${dl.desc}</div><div class="dl-date">${dl.date}</div></div>
       </div>`).join('')}
     </div>
+    ${upcomingMtgs.length?`<div>
+      <div style="font-family:'Lato',sans-serif;font-size:.95rem;font-weight:700;margin-bottom:10px">Upcoming Meetings</div>
+      ${upcomingMtgs.map(m=>`<div class="deadline-item">
+        <div style="width:9px;height:9px;border-radius:50%;background:#1a6fa8;flex-shrink:0;margin-top:5px"></div>
+        <div class="deadline-info">
+          <div class="dl-desc" style="font-size:.78rem">${m.supervisor||'Meeting'}</div>
+          <div class="dl-date">${m.date}${(m.actions||[]).filter(a=>!a.done).length?' · '+(m.actions||[]).filter(a=>!a.done).length+' pending':''}</div>
+        </div>
+      </div>`).join('')}
+    </div>`:''}
     ${state.finalDeadline?`<div>
       <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Final Deadline</div>
       <div style="font-family:'Playfair Display',serif;font-size:.95rem;color:var(--rust)">${state.finalDeadline}</div>
@@ -1616,12 +2286,6 @@ function renderSide() {
       <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
       <div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:4px;display:flex;justify-content:space-between"><span>${Number(state.wcCurrent).toLocaleString()} words</span><span>${pct}%</span></div>
     </div>`:''}
-    <div>
-      <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Quick Add Goal</div>
-      <input type="date" id="quick-goal-date" style="margin-bottom:6px">
-      <input type="text" id="quick-goal-text" placeholder="Goal description…" style="margin-bottom:6px">
-      <button class="btn" style="width:100%;margin-top:0" onclick="quickAddGoal()">Add Goal</button>
-    </div>
     <div>
       <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Email Connector</div>
       <span class="status-pill ${connected?'connected':'disconnected'}" style="font-size:.6rem">${connected?'● Connected':'● Not Connected'}</span>
@@ -1636,14 +2300,210 @@ function quickAddGoal() {
   if(!date||!text){alert('Please enter a date and goal.');return;}
   if(!state.days[date]) state.days[date]={goals:[]};
   if(!state.days[date].goals) state.days[date].goals=[];
-  state.days[date].goals.push(text);
+  state.days[date].goals.push({ text, done: false });
   saveState(); renderSide();
   if(currentPane==='calendar') renderMain();
 }
 
 // ===================== INIT =====================
+// ===================== RESET =====================
+function resetProject() {
+  const id = state._activeProjectId;
+  const list = getProjectList();
+  const proj = list.find(p => p.id === id);
+  const name = proj ? proj.name : 'this project';
+  if (!confirm('Are you sure you want to reset "' + name + '"? All its data will be permanently deleted.')) return;
+  if (!confirm('Last chance — are you absolutely sure?')) return;
+
+  // Remove all localStorage keys for this project
+  Object.keys(localStorage).filter(k => k.startsWith('diss_proj_' + id + '_')).forEach(k => localStorage.removeItem(k));
+
+  // Reset in-memory per-project state
+  Object.assign(state, {
+    lastAccomplished: '', lastPlan: '', lastHours: '',
+    days: {}, deadlines: [], finalDeadline: '',
+    wcGoal: 0, wcCurrent: 0,
+    alexaEnabled: false, alexaRecipient: '',
+    alexaLastSent: '', alexaLastStatus: '',
+    currentTheme: 'airy', meetings: [],
+    calView: 'week', calDate: new Date(TODAY),
+    _sessionInputClear: false,
+  });
+
+  applyTheme('airy');
+  showPane('session');
+  renderSide();
+}
+
+function resetEverything() {
+  if (!confirm('This will permanently delete ALL projects and ALL data on this device. Are you sure?')) return;
+  if (!confirm('Last chance — this cannot be undone.')) return;
+
+  Object.keys(localStorage).filter(k => k.startsWith('diss_')).forEach(k => localStorage.removeItem(k));
+  forgetSavedPassword();
+
+  Object.assign(state, {
+    lastAccomplished: '', lastPlan: '', lastHours: '',
+    days: {}, deadlines: [], finalDeadline: '',
+    wcGoal: 0, wcCurrent: 0,
+    alexaEnabled: false, alexaRecipient: '',
+    alexaClientId: '', alexaClientSecret: '', alexaRefreshToken: '',
+    alexaSenderEmail: '', alexaLastSent: '', alexaLastStatus: '',
+    currentTheme: 'airy', meetings: [],
+    _hasEncryptedSecret: false, _hasEncryptedToken: false,
+    _sessionInputClear: false,
+  });
+
+  const id = generateProjectId();
+  saveProjectList([{ id, name: 'My Project', created: new Date().toISOString() }]);
+  setActiveProjectId(id);
+  state._activeProjectId = id;
+
+  applyTheme('airy');
+  showPane('session');
+  renderSide();
+}
+
+// ===================== BOOKS =====================
+function renderBooks(mp) {
+  const books = state.books || [];
+  const todayPagesSnap = (state.pagesSnapshots||{})[todayKey()];
+  const yesterdayPagesSnap = (state.pagesSnapshots||{})[fmtKey(addDays(TODAY,-1))];
+  const pagesReadToday = (todayPagesSnap !== undefined && yesterdayPagesSnap !== undefined)
+    ? Math.max(0, todayPagesSnap - yesterdayPagesSnap) : null;
+
+  const bookCards = books.length === 0
+    ? `<div style="text-align:center;padding:30px 0;color:var(--muted);font-size:.85rem">No books added yet. Add one below.</div>`
+    : books.map((b,i) => {
+        const cur  = parseInt(b.currentPage) || 0;
+        const tot  = parseInt(b.totalPages)  || 0;
+        const pct  = tot > 0 ? Math.min(100, Math.round(cur/tot*100)) : 0;
+        const left = tot > cur ? (tot - cur) + ' pages left' : (tot > 0 ? '✓ Finished' : '');
+        return `<div class="book-card">
+          <div class="book-title">${b.title}</div>
+          <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
+          <div class="book-meta">
+            <span>p. ${cur}${tot?' / '+tot:''}</span>
+            ${tot?`<span class="book-pct">${pct}%</span>`:''}
+            ${left?`<span>${left}</span>`:''}
+          </div>
+          <div class="pages-input-row">
+            <span style="font-size:.78rem;color:var(--muted)">Current page:</span>
+            <input type="number" id="book-page-${i}" min="0" max="${tot||99999}" value="${cur}" style="width:80px;text-align:center">
+            <button class="btn btn-sm" style="margin-top:0" onclick="saveBookPage(${i})">Update</button>
+            <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="deleteBook(${i})">Remove</button>
+          </div>
+        </div>`;
+      }).join('');
+
+  mp.innerHTML = `
+    <div class="section-title">Books</div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Today's Reading</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">
+        Update any book's current page to log today's reading. The total across all books is snapshotted when you save a session or update a page.
+      </p>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="today-pages-badge">${pagesReadToday !== null ? pagesReadToday + ' pages read today' : 'No snapshot yet — update a book to start tracking'}</span>
+        ${pagesReadToday !== null ? `<button class="btn btn-ghost btn-sm" onclick="openEditPagesTodayModal()">Edit</button>` : ''}
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Add a Book</h3>
+      <label>Title</label>
+      <input type="text" id="book-title-input" placeholder="e.g. The Pilgrim's Progress">
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <div style="flex:1">
+          <label style="margin-top:0">Current Page</label>
+          <input type="number" id="book-cur-input" min="0" placeholder="0">
+        </div>
+        <div style="flex:1">
+          <label style="margin-top:0">Total Pages</label>
+          <input type="number" id="book-tot-input" min="1" placeholder="e.g. 340">
+        </div>
+      </div>
+      <button class="btn" onclick="addBook()">Add Book</button>
+    </div>
+
+    <div id="book-list">${bookCards}</div>`;
+}
+
+function addBook() {
+  const title = document.getElementById('book-title-input')?.value.trim();
+  const cur   = parseInt(document.getElementById('book-cur-input')?.value) || 0;
+  const tot   = parseInt(document.getElementById('book-tot-input')?.value) || 0;
+  if (!title) { alert('Please enter a title.'); return; }
+  if (!state.books) state.books = [];
+  state.books.push({ id: Date.now().toString(36), title, currentPage: cur, totalPages: tot });
+  snapshotPagesToday();
+  saveState();
+  renderMain();
+}
+
+function saveBookPage(i) {
+  const val = parseInt(document.getElementById('book-page-'+i)?.value) || 0;
+  if (!state.books[i]) return;
+  state.books[i].currentPage = val;
+  snapshotPagesToday();
+  saveState();
+  renderMain();
+  if (currentPane === 'calendar') renderCalendar(document.getElementById('main-pane'));
+}
+
+function deleteBook(i) {
+  if (!confirm('Remove this book?')) return;
+  state.books.splice(i, 1);
+  snapshotPagesToday();
+  saveState();
+  renderMain();
+}
+
+function snapshotPagesToday() {
+  if (!state.pagesSnapshots) state.pagesSnapshots = {};
+  state.pagesSnapshots[todayKey()] = totalPagesNow();
+}
+
+function openEditPagesTodayModal() {
+  const snaps = state.pagesSnapshots || {};
+  const todaySnap = snaps[todayKey()] ?? totalPagesNow();
+  const prevKey = fmtKey(addDays(TODAY,-1));
+  const prevSnap = snaps[prevKey] ?? 0;
+  const current = Math.max(0, todaySnap - prevSnap);
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Edit Today's Pages Read</h3>
+    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">
+      Adjust how many pages you read today. This modifies yesterday's snapshot to make the difference match.
+    </p>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:block;margin-bottom:4px">Pages Read Today</label>
+    <input type="number" id="edit-pages-today" min="0" value="${current}" style="width:100%">
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveEditPagesToday()">Save</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => { const el = document.getElementById('edit-pages-today'); if(el){el.focus();el.select();} }, 50);
+}
+
+function saveEditPagesToday() {
+  const pages = parseInt(document.getElementById('edit-pages-today')?.value) || 0;
+  if (!state.pagesSnapshots) state.pagesSnapshots = {};
+  const todaySnap = state.pagesSnapshots[todayKey()] ?? totalPagesNow();
+  // Adjust yesterday's snapshot so that todaySnap - prevSnap = pages
+  const prevKey = fmtKey(addDays(TODAY,-1));
+  state.pagesSnapshots[prevKey] = Math.max(0, todaySnap - pages);
+  saveState();
+  closeModal();
+  renderMain();
+}
+
 // ===================== MEETINGS =====================
 function renderMeetings(mp) {
+  // Ensure every meeting has a stable id BEFORE sorting
+  (state.meetings||[]).forEach((m,i) => {
+    if (!m.id) m.id = 'm' + i + '_' + Date.now().toString(36);
+  });
   const meetings = [...(state.meetings||[])].sort((a,b) => b.date.localeCompare(a.date));
 
   const cards = meetings.length === 0
@@ -1652,7 +2512,7 @@ function renderMeetings(mp) {
         No meetings logged yet. Add your first one below.
        </div>`
     : meetings.map((m, idx) => {
-        const realIdx = state.meetings.indexOf(m);
+        const realIdx = state.meetings.findIndex(x => x.id === m.id);
         const pending = (m.actions||[]).filter(a=>!a.done).length;
         const total   = (m.actions||[]).length;
         const actionSummary = total ? `${total - pending}/${total} actions done` : 'No actions';
@@ -1663,6 +2523,7 @@ function renderMeetings(mp) {
               ${a.done ? '✓' : ''}
             </div>
             <span class="action-text${a.done?' done':''}">${a.text}</span>
+            <button class="btn btn-ghost btn-sm" style="margin-top:0;padding:3px 8px;font-size:.6rem" title="Add as goal or deadline" onclick="openActionToCalModal('${m.id}',${ai})">＋📅</button>
             <button class="btn btn-ghost btn-sm" style="margin-top:0;padding:3px 8px;font-size:.6rem" onclick="deleteAction(${realIdx},${ai})">✕</button>
           </div>`).join('');
 
@@ -1682,7 +2543,7 @@ function renderMeetings(mp) {
             <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
               <button class="btn btn-sm" style="margin-top:0" onclick="openAddActionModal(${realIdx})">+ Action Item</button>
               <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openEditMeetingModal(${realIdx})">Edit</button>
-              <button class="btn btn-sm" style="margin-top:0;background:var(--red-dead)" onclick="deleteMeeting(${realIdx})">Delete</button>
+              <button class="btn btn-sm" style="margin-top:0;background:var(--red-dead)" onclick="deleteMeetingById('${m.id}')">Delete</button>
             </div>
           </div>
         </div>`;
@@ -1709,7 +2570,7 @@ function addMeeting() {
   const notes = document.getElementById('mtg-notes').value.trim();
   if (!date) { alert('Please enter a date.'); return; }
   state.meetings = state.meetings || [];
-  state.meetings.push({ date, supervisor, notes, actions: [], _open: true });
+  state.meetings.push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2,5), date, supervisor, notes, actions: [], _open: true });
   saveState();
   renderMeetings(document.getElementById('main-pane'));
 }
@@ -1725,6 +2586,64 @@ function deleteMeeting(idx) {
   state.meetings.splice(idx, 1);
   saveState();
   renderMeetings(document.getElementById('main-pane'));
+}
+
+function deleteMeetingById(id) {
+  if (!confirm('Delete this meeting log?')) return;
+  const idx = state.meetings.findIndex(m => m.id === id);
+  if (idx === -1) { alert('Meeting not found.'); return; }
+  state.meetings.splice(idx, 1);
+  saveState();
+  renderMeetings(document.getElementById('main-pane'));
+  renderSide();
+}
+
+function openActionToCalModal(meetingId, actionIdx) {
+  const mtg = state.meetings.find(m => m.id === meetingId);
+  if (!mtg) return;
+  const action = mtg.actions[actionIdx];
+  if (!action) return;
+  const text = typeof action === 'string' ? action : action.text;
+
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Add to Calendar</h3>
+    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
+      Add <strong>"${text}"</strong> to your calendar as a goal or deadline.
+    </p>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:block;margin-bottom:4px">Date</label>
+    <input type="date" id="action-cal-date" value="${todayKey()}" style="width:100%;margin-bottom:14px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <label style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;display:flex;align-items:center;gap:8px;margin:0">
+        <input type="radio" name="action-cal-type" value="goal" checked> Add as a <strong>Goal</strong> (appears on calendar day)
+      </label>
+      <label style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:400;text-transform:none;letter-spacing:0;cursor:pointer;display:flex;align-items:center;gap:8px;margin:0">
+        <input type="radio" name="action-cal-type" value="deadline"> Add as a <strong>Deadline</strong>
+      </label>
+    </div>
+    <div class="actions" style="margin-top:18px">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveActionToCal('${text.replace(/'/g,"\\'")}')">Add</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => document.getElementById('action-cal-date')?.focus(), 50);
+}
+
+function saveActionToCal(text) {
+  const date = document.getElementById('action-cal-date')?.value;
+  const type = document.querySelector('input[name="action-cal-type"]:checked')?.value;
+  if (!date) { alert('Please pick a date.'); return; }
+
+  if (type === 'goal') {
+    if (!state.days[date]) state.days[date] = { goals: [] };
+    if (!state.days[date].goals) state.days[date].goals = [];
+    state.days[date].goals.push({ text, done: false });
+  } else {
+    state.deadlines.push({ desc: text, date, complete: false });
+  }
+  saveState();
+  closeModal();
+  renderSide();
+  if (currentPane === 'calendar' || currentPane === 'deadlines') renderMain();
 }
 
 function toggleAction(meetingIdx, actionIdx) {
@@ -1789,6 +2708,100 @@ function saveEditMeeting(idx) {
   renderMeetings(document.getElementById('main-pane'));
 }
 
+// ===================== PROJECTS =====================
+function renderProjects(mp) {
+  const list = getProjectList();
+  const activeId = state._activeProjectId;
+
+  const projectCards = list.map(p => {
+    const isActive = p.id === activeId;
+    // Load a quick summary from storage without switching
+    const days     = retrieve(projKey(p.id,'days'))     || {};
+    const dls      = retrieve(projKey(p.id,'deadlines'))|| [];
+    const meetings = retrieve(projKey(p.id,'meetings')) || [];
+    const wcGoal   = retrieve(projKey(p.id,'wcGoal'))   || 0;
+    const wcCurrent= retrieve(projKey(p.id,'wcCurrent'))|| 0;
+    const theme    = retrieve(projKey(p.id,'currentTheme')) || 'airy';
+    const created  = new Date(p.created).toLocaleDateString();
+    const totalHrs = Object.values(days).reduce((t,d)=>t+(parseFloat(d.hours||0)||0),0).toFixed(1);
+    const pct      = wcGoal>0 ? Math.min(100,Math.round(wcCurrent/wcGoal*100)) : null;
+    const pendingActions = meetings.reduce((t,m)=>t+((m.actions||[]).filter(a=>!a.done).length),0);
+
+    return `<div class="card" style="margin-bottom:14px;border:${isActive?'2px solid var(--blue)':'1px solid var(--border)'}">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+            ${isActive ? `<span style="font-family:'DM Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:#fff;border-radius:4px;padding:2px 8px">Active</span>` : ''}
+            <div id="proj-name-display-${p.id}" style="font-family:'Lato',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">${p.name}</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:10px">Created ${created} · Theme: ${theme.charAt(0).toUpperCase()+theme.slice(1)}</div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <div style="font-size:.78rem;color:var(--muted)">⏱ <strong>${totalHrs}h</strong> logged</div>
+            <div style="font-size:.78rem;color:var(--muted)">📅 <strong>${Object.keys(days).length}</strong> day entries</div>
+            <div style="font-size:.78rem;color:var(--muted)">🎯 <strong>${dls.length}</strong> deadline${dls.length!==1?'s':''}</div>
+            <div style="font-size:.78rem;color:var(--muted)">📋 <strong>${meetings.length}</strong> meeting${meetings.length!==1?'s':''}</div>
+            ${pendingActions>0?`<div style="font-size:.78rem;color:var(--red-dead)">⚡ <strong>${pendingActions}</strong> action${pendingActions!==1?'s':''} pending</div>`:''}
+            ${pct!==null?`<div style="font-size:.78rem;color:var(--teal)">📝 <strong>${pct}%</strong> of word goal</div>`:''}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+          ${!isActive ? `<button class="btn btn-sm" style="margin-top:0" onclick="switchProject('${p.id}')">Switch To</button>` : ''}
+          <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openRenameModal('${p.id}','${p.name.replace(/'/g,"\\'")}')">Rename</button>
+          ${list.length>1 ? `<button class="btn btn-sm" style="margin-top:0;background:var(--red-dead)" onclick="confirmDeleteProject('${p.id}','${p.name.replace(/'/g,"\\'")}')">Delete</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  mp.innerHTML = `
+    <div class="section-title">Projects</div>
+    <div class="card" style="margin-bottom:18px">
+      <h3>New Project</h3>
+      <label>Project Name</label>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <input type="text" id="new-proj-name" placeholder="e.g. Second Article" style="flex:1">
+        <button class="btn" style="margin-top:0;flex-shrink:0" onclick="createProjectFromInput()">Create</button>
+      </div>
+    </div>
+    <div id="project-list">${projectCards}</div>`;
+}
+
+function createProjectFromInput() {
+  const name = document.getElementById('new-proj-name')?.value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  createProject(name);
+  renderMain();
+  renderSide();
+}
+
+function openRenameModal(id, currentName) {
+  document.getElementById('modal-content').innerHTML = `
+    <h3>Rename Project</h3>
+    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;margin-top:0">Project Name</label>
+    <input type="text" id="rename-proj-input" value="${currentName}" style="width:100%">
+    <div class="actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn" onclick="saveRename('${id}')">Save</button>
+    </div>`;
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => { const i = document.getElementById('rename-proj-input'); if(i){i.focus();i.select();} }, 50);
+}
+
+function saveRename(id) {
+  const name = document.getElementById('rename-proj-input')?.value.trim();
+  if (!name) { alert('Please enter a name.'); return; }
+  renameProject(id, name);
+  closeModal();
+  if (currentPane === 'config') renderMain();
+}
+
+function confirmDeleteProject(id, name) {
+  if (!confirm('Delete project "' + name + '"? All its data will be permanently deleted.')) return;
+  deleteProject(id);
+  if (currentPane === 'config') renderMain();
+  renderSide();
+}
+
 // ===================== BACKUP =====================
 function renderBackup(mp) {
   const hasSomeData = state.lastAccomplished || state.lastPlan ||
@@ -1826,14 +2839,31 @@ function renderBackup(mp) {
         <span id="import-filename" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">No file chosen</span>
       </div>
       <div id="import-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:12px;min-height:18px"></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>Reset</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:12px">
+        Clear data from the current project, or wipe everything entirely.
+      </p>
+      <div style="background:#fff5f5;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--red-dead);line-height:1.55">
+        ⚠ <strong>Both actions are irreversible.</strong> Export a backup first if you want to preserve your data.
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" style="background:var(--red-dead);margin-top:0" onclick="resetProject()">Reset Current Project</button>
+        <button class="btn btn-ghost" style="margin-top:0;color:var(--red-dead);border-color:var(--red-dead)" onclick="resetEverything()">Reset Everything</button>
+      </div>
     </div>`;
 }
 
 function exportBackup() {
+  const id = state._activeProjectId;
+  const list = getProjectList();
+  const proj = list.find(p => p.id === id) || { name: 'project' };
   const backup = {
-    _version: 1,
+    _version: 2,
     _exported: new Date().toISOString(),
-    // Plain state fields
+    _projectName: proj.name,
     lastAccomplished: state.lastAccomplished,
     lastPlan:         state.lastPlan,
     lastHours:        state.lastHours,
@@ -1844,15 +2874,13 @@ function exportBackup() {
     wcCurrent:        state.wcCurrent,
     alexaEnabled:     state.alexaEnabled,
     alexaRecipient:   state.alexaRecipient,
-    alexaClientId:    state.alexaClientId,
-    alexaSenderEmail: state.alexaSenderEmail,
     alexaLastSent:    state.alexaLastSent,
     alexaLastStatus:  state.alexaLastStatus,
     currentTheme:     state.currentTheme,
     meetings:         state.meetings,
-    // Encrypted blobs (stored as-is — still encrypted)
-    enc_clientSecret: localStorage.getItem('diss_enc_clientSecret') || null,
-    enc_refreshToken: localStorage.getItem('diss_enc_refreshToken') || null,
+    // Global encrypted blobs
+    enc_clientSecret: localStorage.getItem(globalKey('enc_clientSecret')) || null,
+    enc_refreshToken: localStorage.getItem(globalKey('enc_refreshToken')) || null,
   };
 
   const json = JSON.stringify(backup, null, 2);
@@ -1860,8 +2888,9 @@ function exportBackup() {
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   const date = new Date().toISOString().slice(0, 10);
+  const safeName = proj.name.replace(/[^a-z0-9]/gi, '-').toLowerCase();
   a.href     = url;
-  a.download = `dissertation-backup-${date}.json`;
+  a.download = `${safeName}-backup-${date}.json`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -1891,37 +2920,41 @@ function importBackup(event) {
       }
 
       // Restore plain fields
-      const fields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
-                      'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaClientId','alexaSenderEmail',
-                      'alexaLastSent','alexaLastStatus','currentTheme','meetings'];
-      for (const k of fields) {
-        if (backup[k] !== undefined) state[k] = backup[k];
+      // Determine project name from backup or filename
+      const importedName = backup._projectName ||
+        file.name.replace(/[-_]backup[-_]\d{4}-\d{2}-\d{2}\.json$/i,'').replace(/[-_]/g,' ').trim() ||
+        file.name.replace(/\.json$/i,'');
+
+      // Create a new project for the imported data
+      const newId = generateProjectId();
+      const projFields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                          'wcGoal','wcCurrent','alexaEnabled','alexaRecipient',
+                          'alexaLastSent','alexaLastStatus','currentTheme','meetings'];
+      for (const k of projFields) {
+        if (backup[k] !== undefined) localStorage.setItem(projKey(newId, k), JSON.stringify(backup[k]));
+      }
+      const list = getProjectList();
+      list.push({ id: newId, name: importedName, created: new Date().toISOString() });
+      saveProjectList(list);
+
+      // Restore encrypted blobs globally if present
+      if (backup.enc_clientSecret) localStorage.setItem(globalKey('enc_clientSecret'), backup.enc_clientSecret);
+      if (backup.enc_refreshToken) localStorage.setItem(globalKey('enc_refreshToken'), backup.enc_refreshToken);
+      if (backup.enc_clientSecret || backup.enc_refreshToken) {
+        state._hasEncryptedSecret = !!backup.enc_clientSecret;
+        state._hasEncryptedToken  = !!backup.enc_refreshToken;
       }
 
-      // Restore encrypted blobs if present
-      if (backup.enc_clientSecret) localStorage.setItem('diss_enc_clientSecret', backup.enc_clientSecret);
-      else localStorage.removeItem('diss_enc_clientSecret');
-      if (backup.enc_refreshToken) localStorage.setItem('diss_enc_refreshToken', backup.enc_refreshToken);
-      else localStorage.removeItem('diss_enc_refreshToken');
-      state._hasEncryptedSecret = !!backup.enc_clientSecret;
-      state._hasEncryptedToken  = !!backup.enc_refreshToken;
-
-      // Persist and refresh
-      saveState();
-      if (state.currentTheme && state.currentTheme !== 'airy') {
-        document.documentElement.setAttribute('data-theme', state.currentTheme);
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
+      // Switch to the newly imported project
+      switchProject(newId);
 
       if (statusEl) {
         statusEl.style.color = 'var(--green-done)';
-        statusEl.textContent = '✓ Backup restored successfully. ' +
-          `Imported ${Object.keys(state.days||{}).length} day entries, ` +
-          `${(state.deadlines||[]).length} deadlines, ` +
-          `${(state.meetings||[]).length} meetings.`;
+        statusEl.textContent = '✓ Imported as new project "' + importedName + '". ' +
+          Object.keys(backup.days||{}).length + ' day entries, ' +
+          (backup.deadlines||[]).length + ' deadlines, ' +
+          (backup.meetings||[]).length + ' meetings.';
       }
-      renderSide();
 
       // If encrypted creds were restored, prompt to unlock
       if (state._hasEncryptedSecret || state._hasEncryptedToken) {
@@ -1931,8 +2964,6 @@ function importBackup(event) {
             renderMain();
           });
         }, 600);
-      } else {
-        renderMain();
       }
 
     } catch(err) {
@@ -1973,17 +3004,21 @@ function renderHelp(mp) {
         </div>
 
         <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Deadlines</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track all your project deadlines in one place. Set your <strong>Final Project Deadline</strong> separately — it's used throughout the app for word-count calculations and is highlighted specially in the calendar. Add other deadlines with a description and date, then mark them complete or incomplete as you go. Incomplete deadlines appear red; completed ones appear green.</p>
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Deadlines &amp; Goals</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track all your project deadlines and calendar goals in one place. Set your <strong>Final Project Deadline</strong> separately — it's used throughout the app for word-count calculations and is highlighted specially in the calendar. Add other deadlines with a description and date, then mark them complete or incomplete as you go. Incomplete deadlines appear red; completed ones appear green.</p>
         </div>
 
         <div style="padding:16px 0;border-bottom:1px solid var(--border)">
           <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Word Count</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Enter your total word count goal and your current word count to track writing progress. Once you've set a Final Project Deadline, the app calculates how many words per day you need to write to finish on time. This daily rate is multiplied across whichever calendar view you're looking at — 7 days for the week view, the full month for month view — so you always know your target for the period in front of you.</p>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Enter your total word count goal and your current word count to track writing progress. The app snapshots your word count each time you save, computing how many words you wrote each day and surfacing that across all calendar views. Once you've set a Final Project Deadline, it also calculates how many words per day you need to write to finish on time.</p>
+        </div>
+        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Books</div>
+          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track books you're reading alongside your project. Add each book with a title, current page, and total page count — a progress bar shows how far through each you are. The app tracks total pages read per day by snapshotting your progress whenever you update a book. Daily, weekly, monthly, and yearly page totals appear throughout the calendar views. You can manually correct today's page count if needed.</p>
         </div>
 
         <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Email Connector</div>
+          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Email &amp; Identity (Configuration)</div>
           <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Sends an automated check-in email to any recipient you choose using your own Gmail account. The email summarizes what you accomplished last session and what you plan to do next. Set a recipient address and your Gmail credentials once — a step-by-step guide is included in the pane. Toggle <strong>Auto-send on close</strong> to have the email fire automatically whenever you close the app, or send manually using the <strong>Send Now</strong> button. Credentials are stored encrypted with a password you set.</p>
         </div>
 
@@ -2020,6 +3055,609 @@ function renderHelp(mp) {
         <div>📌 <strong>Click any day</strong> in the calendar to view or edit its entry, goals, and deadlines in one place.</div>
       </div>
     </div>`;
+}
+
+// ===================== CONFIGURATION PANE =====================
+let configTab = 'gmail'; // gmail | themes | projects | backup
+
+function renderConfig(mp) {
+  // Config renders into a full-width div — no card wrapper from renderMain
+  const tabs = [
+    { id: 'gmail',    label: 'Email & Identity' },
+    { id: 'themes',   label: 'Themes'           },
+    { id: 'projects', label: 'Projects'          },
+    { id: 'backup',   label: 'Import / Export'  },
+  ];
+  const tabBar = `<div class="config-tab-bar-title">Settings</div>` +
+    tabs.map(t =>
+      `<button class="config-tab${configTab===t.id?' active':''}" onclick="switchConfigTab('${t.id}')">${t.label}</button>`
+    ).join('');
+
+  let body = '';
+  if (configTab === 'gmail') body = renderConfigGmail();
+  else if (configTab === 'themes') body = renderConfigThemes();
+  else if (configTab === 'projects') body = renderConfigProjects();
+  else if (configTab === 'backup') body = renderConfigBackup();
+
+  mp.innerHTML = `<div class="config-wrap">
+    <div class="config-tab-bar">${tabBar}</div>
+    <div class="config-section">
+      <div class="section-title">${tabs.find(t=>t.id===configTab)?.label||'Configuration'}</div>
+      ${body}
+    </div>
+  </div>`;
+}
+
+function switchConfigTab(tab) {
+  configTab = tab;
+  renderMain();
+}
+
+// ── Email & Identity tab ─────────────────────────────────────────────────────
+function renderConfigGmail() {
+  const connected = !!state.alexaRefreshToken;
+  const locked    = !connected && (state._hasEncryptedSecret || state._hasEncryptedToken);
+  const previewBody = buildEmailBody();
+
+  return `
+    <div class="card" style="margin-bottom:18px">
+      <h3>Identity</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">
+        Your name is used in progress reports.
+      </p>
+      <label>Your Name</label>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="cfg-user-name" placeholder="e.g. J. Smith" value="${state.userName||''}" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveUserName()">Save</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Email Recipients</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
+        Configure the addresses emails are sent to. These are stored separately.
+      </p>
+      <label>Check-In Email Recipient</label>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Receives the automatic session check-in email when you close the app.</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <input type="text" id="cfg-checkin-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveCheckinRecipient()">Save</button>
+      </div>
+      <label>Progress Report Recipient</label>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Receives progress report emails sent from the Progress Report pane.</p>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="cfg-report-recipient" placeholder="supervisor@university.edu" value="${state.reportRecipient||''}" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveReportRecipient()">Save</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Gmail Connection</h3>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="status-pill ${connected?'connected':locked?'neutral':'disconnected'}">
+          ${connected ? '● Gmail Connected' : locked ? '🔒 Credentials Locked' : '● Gmail Not Connected'}
+        </span>
+        ${connected ? `<button class="btn btn-ghost btn-sm" onclick="disconnectGmail()">Disconnect</button>` : ''}
+        ${locked ? `<button class="btn btn-sm btn-sage" onclick="showPasswordModal('enter', async (pw) => { await loadEncryptedCreds(pw); renderMain(); renderSide(); })">Unlock</button>` : ''}
+        ${connected ? `<button class="btn btn-ghost btn-sm" onclick="forgetSavedPassword();alert('Saved password cleared.')">Forget Password</button>` : ''}
+      </div>
+      <div class="toggle-row" style="border-top:1px solid var(--border);padding-top:14px">
+        <div>
+          <div class="toggle-label">Auto-send check-in on close</div>
+          <div class="toggle-sublabel">Sends the check-in email automatically when you close the app</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${state.alexaEnabled?'checked':''} onchange="toggleAlexaEnabled(this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      ${state.alexaLastSent ? `<div class="send-log">Last sent: ${state.alexaLastSent}<br>Status: ${state.alexaLastStatus==='success'?'✓ Delivered':'✗ '+state.alexaLastStatus}</div>` : ''}
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Compose Check-In Email</h3>
+      <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">TO: ${state.alexaRecipient||'<em>no recipient set</em>'} &nbsp;·&nbsp; SUBJECT: Project Check-In</p>
+      <textarea id="email-body-edit" style="min-height:100px;font-family:'Inter',sans-serif;font-size:.85rem;line-height:1.6">${previewBody}</textarea>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="resetEmailBody()">Reset to Default</button>
+      <button class="btn btn-sage" style="margin-left:8px" onclick="sendAlexaEmail(true)" ${connected?'':'disabled title="Connect Gmail first"'}>Send Now</button>
+      <div id="send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:10px;display:none;line-height:1.5"></div>
+    </div>
+
+    <div class="card">
+      <h3>Gmail Setup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:8px">
+        This app sends email through your own Gmail account via the Gmail API.
+        You'll need a free Google Cloud project. Follow the steps below once — your credentials are saved locally.
+      </p>
+      <div class="step-block"><div class="step-num">Step 1</div>
+        <p>Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>, create a project, then go to <strong>APIs &amp; Services → Enable APIs</strong> and enable the <strong>Gmail API</strong>.</p>
+      </div>
+      <div class="step-block"><div class="step-num">Step 2</div>
+        <p>Go to <strong>APIs &amp; Services → OAuth consent screen</strong>. Choose <em>External</em>, fill in any app name, add your Gmail address as a test user, and save.</p>
+      </div>
+      <div class="step-block"><div class="step-num">Step 3</div>
+        <p>Go to <strong>APIs &amp; Services → Credentials → Create Credentials → OAuth client ID</strong>. Choose <strong>Desktop app</strong>. Copy your <code>Client ID</code> and <code>Client Secret</code>.</p>
+      </div>
+      <div class="step-block"><div class="step-num">Step 4</div>
+        <p>Enter your credentials below and click <strong>Connect Gmail</strong>. A Google sign-in page will open — authorize it, then paste the code back here.</p>
+      </div>
+      <label>Recipient Email Address</label>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <input type="text" id="alexa-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveRecipient()">Save</button>
+      </div>
+      <label>Your Gmail Address (sender)</label>
+      <input type="text" id="alexa-sender-email" placeholder="you@gmail.com" value="${state.alexaSenderEmail||''}">
+      <label>Client ID</label>
+      <input type="text" id="alexa-client-id" placeholder="123456789-abc.apps.googleusercontent.com" value="${state.alexaClientId||''}">
+      <label>Client Secret</label>
+      <input type="password" id="alexa-client-secret" placeholder="${state._hasEncryptedSecret ? '(encrypted — enter to replace)' : 'GOCSPX-…'}" value="">
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:5px;min-height:14px">
+        ${state._hasEncryptedSecret ? '🔒 Client secret is stored encrypted.' : ''}
+        ${state._hasEncryptedToken  ? '&nbsp;🔒 Refresh token is stored encrypted.' : ''}
+      </div>
+      <button class="btn" onclick="saveAlexaCreds()">Save &amp; Encrypt Credentials</button>
+      <button class="btn btn-sage" style="margin-left:8px" onclick="gmailAuthorize()">${connected?'Re-connect Gmail':'Connect Gmail'}</button>
+    </div>`;
+}
+
+function saveUserName() {
+  state.userName = document.getElementById('cfg-user-name')?.value.trim() || '';
+  saveState();
+  const btn = event.target;
+  const orig = btn.textContent; btn.textContent = '✓';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+function saveCheckinRecipient() {
+  state.alexaRecipient = document.getElementById('cfg-checkin-recipient')?.value.trim() || '';
+  saveState();
+  const btn = event.target;
+  const orig = btn.textContent; btn.textContent = '✓';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+function saveReportRecipient() {
+  state.reportRecipient = document.getElementById('cfg-report-recipient')?.value.trim() || '';
+  saveState();
+  const btn = event.target;
+  const orig = btn.textContent; btn.textContent = '✓';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+// ── Themes tab (reuse existing renderThemes logic) ───────────────────────────
+function renderConfigThemes() {
+  const cards = THEMES.map(t => {
+    const p = t.preview;
+    const isActive = state.currentTheme === t.id;
+    return `<div class="theme-card${isActive?' active':''}" onclick="applyTheme('${t.id}');renderMain()">
+      <div class="theme-preview" style="background:${p.bg}">
+        <div class="theme-preview-header" style="background:${p.header}"></div>
+        <div class="theme-preview-nav" style="background:${p.nav};border-bottom:1px solid ${p.border}"></div>
+        <div class="theme-preview-body">
+          <div class="theme-preview-main">
+            <div class="theme-preview-card" style="background:${p.card};border:1px solid ${p.border}"></div>
+            <div class="theme-preview-card" style="background:${p.accent};opacity:.7"></div>
+            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
+            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
+          </div>
+          <div class="theme-preview-side" style="border-color:${p.border};background:${p.nav}"></div>
+        </div>
+      </div>
+      <div class="theme-name">
+        ${t.name} <span class="theme-check">✓</span>
+        <div style="font-size:.65rem;font-weight:400;color:var(--muted);margin-top:2px">${t.desc}</div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.55">Select a theme below. Your choice is saved automatically.</p>
+    <div class="theme-grid">${cards}</div>`;
+}
+
+// ── Projects tab (reuse existing renderProjects logic) ───────────────────────
+function renderConfigProjects() {
+  const list = getProjectList();
+  const activeId = state._activeProjectId;
+  const projectCards = list.map(p => {
+    const isActive = p.id === activeId;
+    const days     = retrieve(projKey(p.id,'days'))     || {};
+    const dls      = retrieve(projKey(p.id,'deadlines'))|| [];
+    const meetings = retrieve(projKey(p.id,'meetings')) || [];
+    const wcGoal   = retrieve(projKey(p.id,'wcGoal'))   || 0;
+    const wcCurrent= retrieve(projKey(p.id,'wcCurrent'))|| 0;
+    const theme    = retrieve(projKey(p.id,'currentTheme')) || 'airy';
+    const created  = new Date(p.created).toLocaleDateString();
+    const totalHrs = Object.values(days).reduce((t,d)=>t+(parseFloat(d.hours||0)||0),0).toFixed(1);
+    const pct      = wcGoal>0 ? Math.min(100,Math.round(wcCurrent/wcGoal*100)) : null;
+    const pendingActions = meetings.reduce((t,m)=>t+((m.actions||[]).filter(a=>!a.done).length),0);
+    return `<div class="card" style="margin-bottom:14px;border:${isActive?'2px solid var(--blue)':'1px solid var(--border)'}">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+            ${isActive ? `<span style="font-family:'DM Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:#fff;border-radius:4px;padding:2px 8px">Active</span>` : ''}
+            <div style="font-family:'Lato',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">${p.name}</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:10px">Created ${created} · Theme: ${theme.charAt(0).toUpperCase()+theme.slice(1)}</div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <div style="font-size:.78rem;color:var(--muted)">⏱ <strong>${totalHrs}h</strong> logged</div>
+            <div style="font-size:.78rem;color:var(--muted)">🎯 <strong>${dls.length}</strong> deadline${dls.length!==1?'s':''}</div>
+            <div style="font-size:.78rem;color:var(--muted)">📋 <strong>${meetings.length}</strong> meeting${meetings.length!==1?'s':''}</div>
+            ${pendingActions>0?`<div style="font-size:.78rem;color:var(--red-dead)">⚡ <strong>${pendingActions}</strong> pending</div>`:''}
+            ${pct!==null?`<div style="font-size:.78rem;color:var(--teal)">📝 <strong>${pct}%</strong> of word goal</div>`:''}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">
+          ${!isActive ? `<button class="btn btn-sm" style="margin-top:0" onclick="switchProject('${p.id}')">Switch To</button>` : ''}
+          <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openRenameModal('${p.id}','${p.name.replace(/'/g,"\\'")}')">Rename</button>
+          ${list.length>1 ? `<button class="btn btn-sm" style="margin-top:0;background:var(--red-dead)" onclick="confirmDeleteProject('${p.id}','${p.name.replace(/'/g,"\\'")}')">Delete</button>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="card" style="margin-bottom:18px">
+      <h3>New Project</h3>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <input type="text" id="new-proj-name" placeholder="e.g. Second Article" style="flex:1">
+        <button class="btn" style="margin-top:0;flex-shrink:0" onclick="createProjectFromInput()">Create</button>
+      </div>
+    </div>
+    <div id="project-list">${projectCards}</div>`;
+}
+
+// ── Backup tab ───────────────────────────────────────────────────────────────
+function renderConfigBackup() {
+  const hasSomeData = state.lastAccomplished || state.lastPlan ||
+    Object.keys(state.days||{}).length > 0 || (state.deadlines||[]).length > 0 ||
+    (state.meetings||[]).length > 0 || state.wcGoal > 0;
+  return `
+    <div class="card" style="margin-bottom:18px">
+      <h3>Export Backup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px">
+        Downloads all your data as a <code style="font-family:'DM Mono',monospace;font-size:.78rem;background:var(--cream);padding:1px 5px;border-radius:4px">.json</code> file.
+        Save it somewhere safe — you can use it to restore your data on any device or browser.
+      </p>
+      <button class="btn" onclick="exportBackup()" ${hasSomeData ? '' : 'disabled'}>Download Backup</button>
+    </div>
+    <div class="card" style="margin-bottom:18px">
+      <h3>Import Backup</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:6px">Restores data from a previously exported backup file.</p>
+      <div style="background:#fff5f5;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--red-dead);line-height:1.55">
+        ⚠ <strong>This will replace all current data.</strong> Export a backup first if you want to keep what you have.
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <label style="font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);margin:0;cursor:pointer;background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:9px 18px;transition:background .15s"
+          onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='var(--cream)'">
+          Choose File
+          <input type="file" accept=".json" onchange="importBackup(event)" style="display:none">
+        </label>
+        <span id="import-filename" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">No file chosen</span>
+      </div>
+      <div id="import-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:12px;min-height:18px"></div>
+    </div>
+    <div class="card">
+      <h3>Reset Project</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:6px">
+        Permanently deletes all data stored by this app on this device.
+      </p>
+      <div style="background:#fff5f5;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:.78rem;color:var(--red-dead);line-height:1.55">
+        ⚠ <strong>This action is irreversible.</strong> Export a backup first.
+      </div>
+      <button class="btn" style="background:var(--red-dead)" onclick="resetProject()">Reset Project</button>
+    </div>`;
+}
+
+// ===================== PROGRESS REPORT PANE =====================
+let reportIncludes = {
+  hours: true, pages: true, books: true, words: true,
+  goals: true, deadlines: true, meetings: true
+};
+
+function renderReport(mp) {
+  const today = todayKey();
+  const defaultStart = fmtKey(addDays(TODAY, -30));
+
+  mp.innerHTML = `
+    <div class="section-title">Progress Report</div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>Date Window</h3>
+      <div class="report-window-row">
+        <div>
+          <label style="margin-top:0">From</label>
+          <input type="date" id="report-from" value="${defaultStart}">
+        </div>
+        <div>
+          <label style="margin-top:0">To</label>
+          <input type="date" id="report-to" value="${today}">
+        </div>
+        <button class="btn" style="margin-top:0" onclick="generateReportPreview()">Generate</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>Include in Report</h3>
+      ${[
+        ['hours',     'Hours worked'],
+        ['pages',     'Pages read'],
+        ['books',     'Books (with pages read per book)'],
+        ['words',     'Words written'],
+        ['goals',     'Goals completed'],
+        ['deadlines', 'Deadlines met'],
+        ['meetings',  'Meetings & action items'],
+      ].map(([key, label]) => `
+        <div class="report-toggle-item">
+          <input type="checkbox" id="ri-${key}" ${reportIncludes[key]?'checked':''} onchange="reportIncludes['${key}']=this.checked">
+          <label for="ri-${key}" style="font-family:'Inter',sans-serif;font-size:.84rem;font-weight:400;text-transform:none;letter-spacing:0;margin:0;cursor:pointer">${label}</label>
+        </div>`).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <h3>Preview</h3>
+      <div id="report-preview" class="report-preview" style="font-size:.82rem;color:var(--muted);font-style:italic">
+        Set a date window and click Generate to preview your report.
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" onclick="downloadReportPdf()">Download PDF</button>
+        <button class="btn btn-sage" onclick="emailReport()" ${state.alexaRefreshToken?'':'disabled title="Connect Gmail in Configuration first"'}>
+          Email Report ${state.reportRecipient?'to '+state.reportRecipient:'(set recipient in Configuration)'}
+        </button>
+        <div id="report-send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;align-self:center;color:var(--muted)"></div>
+      </div>
+    </div>`;
+}
+
+function buildReportText(from, to) {
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const projName = proj ? proj.name : 'Project';
+  const userName = state.userName ? state.userName + '\n' : '';
+
+  // Collect days in window
+  const days = state.days || {};
+  const inWindow = k => k >= from && k <= to;
+
+  // Hours
+  let totalHrs = 0;
+  Object.keys(days).filter(inWindow).forEach(k => {
+    totalHrs += parseFloat(days[k]?.hours || 0) || 0;
+  });
+
+  // Words
+  const snaps = state.wcSnapshots || {};
+  const snapKeys = Object.keys(snaps).sort();
+  const firstSnapBefore = snapKeys.filter(k => k <= from).pop();
+  const lastSnapIn = snapKeys.filter(k => k <= to).pop();
+  const wordsStart = firstSnapBefore ? (snaps[firstSnapBefore]||0) : 0;
+  const wordsEnd   = lastSnapIn      ? (snaps[lastSnapIn]||0)      : state.wcCurrent||0;
+  const wordsWritten = Math.max(0, wordsEnd - wordsStart);
+
+  // Pages per book
+  const pSnaps = state.pagesSnapshots || {};
+  const pSnapKeys = Object.keys(pSnaps).sort();
+  const firstPBefore = pSnapKeys.filter(k => k <= from).pop();
+  const lastPIn      = pSnapKeys.filter(k => k <= to).pop();
+  const pagesStart = firstPBefore ? (pSnaps[firstPBefore]||0) : 0;
+  const pagesEnd   = lastPIn      ? (pSnaps[lastPIn]||0)      : 0;
+  const totalPagesRead = Math.max(0, pagesEnd - pagesStart);
+
+  // Goals completed in window
+  const completedGoals = [];
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.goals||[]).forEach(g => {
+      const done = typeof g === 'object' && g.done;
+      const text = typeof g === 'string' ? g : g.text;
+      if (done) completedGoals.push({ date: k, text });
+    });
+  });
+
+  // Deadlines met in window
+  const metDeadlines = (state.deadlines||[]).filter(dl => dl.complete && dl.date >= from && dl.date <= to);
+
+  // Meetings in window
+  const windowMeetings = (state.meetings||[]).filter(m => m.date >= from && m.date <= to);
+
+  // Build report text
+  let lines = [];
+  lines.push(`PROGRESS REPORT`);
+  lines.push(`${projName}`);
+  if (state.userName) lines.push(state.userName);
+  lines.push(`Period: ${from} to ${to}`);
+  lines.push(`Generated: ${new Date().toLocaleDateString()}`);
+  lines.push('');
+  lines.push('─'.repeat(50));
+  lines.push('');
+
+  if (reportIncludes.hours) {
+    lines.push(`HOURS WORKED`);
+    lines.push(`Total: ${totalHrs.toFixed(1)} hours`);
+    lines.push('');
+  }
+  if (reportIncludes.words) {
+    lines.push(`WORDS WRITTEN`);
+    lines.push(`Total: ${wordsWritten.toLocaleString()} words`);
+    lines.push('');
+  }
+  if (reportIncludes.pages) {
+    lines.push(`PAGES READ`);
+    lines.push(`Total: ${totalPagesRead} pages`);
+    lines.push('');
+  }
+  if (reportIncludes.books && (state.books||[]).length > 0) {
+    lines.push(`BOOKS IN PROGRESS`);
+    (state.books||[]).forEach(b => {
+      const cur = parseInt(b.currentPage)||0;
+      const tot = parseInt(b.totalPages)||0;
+      const pct = tot > 0 ? Math.round(cur/tot*100) : null;
+      lines.push(`  • ${b.title}: p.${cur}${tot?' / '+tot:''}${pct!==null?' ('+pct+'%)':''}`);
+    });
+    lines.push('');
+  }
+  if (reportIncludes.goals && completedGoals.length > 0) {
+    lines.push(`GOALS COMPLETED`);
+    completedGoals.forEach(g => lines.push(`  • [${g.date}] ${g.text}`));
+    lines.push('');
+  }
+  if (reportIncludes.deadlines && metDeadlines.length > 0) {
+    lines.push(`DEADLINES MET`);
+    metDeadlines.forEach(dl => lines.push(`  • [${dl.date}] ${dl.desc}`));
+    lines.push('');
+  }
+  if (reportIncludes.meetings && windowMeetings.length > 0) {
+    lines.push(`MEETINGS`);
+    windowMeetings.forEach(m => {
+      lines.push(`  ${m.date} — ${m.supervisor||'Meeting'}`);
+      if (m.notes) lines.push(`    Notes: ${m.notes.split('\n')[0].slice(0,80)}`);
+      const done = (m.actions||[]).filter(a=>a.done);
+      const pending = (m.actions||[]).filter(a=>!a.done);
+      if (done.length) lines.push(`    Completed actions: ${done.map(a=>a.text||a).join('; ')}`);
+      if (pending.length) lines.push(`    Pending actions: ${pending.map(a=>a.text||a).join('; ')}`);
+    });
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
+function generateReportPreview() {
+  const from = document.getElementById('report-from')?.value;
+  const to   = document.getElementById('report-to')?.value;
+  if (!from || !to) { alert('Please set both dates.'); return; }
+  if (from > to) { alert('Start date must be before end date.'); return; }
+  const text = buildReportText(from, to);
+  const el = document.getElementById('report-preview');
+  if (el) { el.textContent = text; el.style.fontStyle = 'normal'; el.style.color = 'var(--ink)'; }
+}
+
+function downloadReportPdf() {
+  const from = document.getElementById('report-from')?.value;
+  const to   = document.getElementById('report-to')?.value;
+  if (!from || !to) { alert('Please generate the report first.'); return; }
+  const text = buildReportText(from, to);
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const projSlug = (proj?.name||'report').replace(/[^a-z0-9]/gi,'-').toLowerCase();
+
+  // Build a clean print-friendly HTML page
+  const html = `<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Progress Report</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 12pt; line-height: 1.7; color: #1a1a1a; max-width: 680px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 18pt; font-weight: bold; margin-bottom: 2px; }
+  .meta { font-size: 10pt; color: #555; margin-bottom: 24px; }
+  .section { margin-top: 22px; }
+  .section-title { font-size: 10pt; font-weight: bold; letter-spacing: .1em; text-transform: uppercase; color: #555; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 10px; }
+  .stat { font-size: 13pt; font-weight: bold; }
+  ul { margin: 6px 0 0 20px; padding: 0; }
+  li { margin-bottom: 4px; font-size: 11pt; }
+  .meeting { margin-bottom: 14px; }
+  .meeting-title { font-weight: bold; }
+  .meeting-sub { font-size: 10pt; color: #555; margin-left: 14px; }
+  hr { border: none; border-top: 1px solid #ccc; margin: 28px 0; }
+  @media print { body { margin: 20mm; } }
+</style>
+</head><body>
+  <h1>${proj?.name||'Project'}</h1>
+  <div class="meta">
+    ${state.userName ? state.userName + '<br>' : ''}
+    Progress Report &nbsp;·&nbsp; ${from} to ${to}<br>
+    Generated ${new Date().toLocaleDateString()}
+  </div>
+  <hr>
+  ${buildReportHtml(from, to)}
+</body></html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url  = URL.createObjectURL(blob);
+  const win  = window.open(url, '_blank');
+  if (win) win.onload = () => { win.print(); };
+}
+
+function buildReportHtml(from, to) {
+  const days = state.days || {};
+  const inWindow = k => k >= from && k <= to;
+  let totalHrs = 0;
+  Object.keys(days).filter(inWindow).forEach(k => { totalHrs += parseFloat(days[k]?.hours||0)||0; });
+  const snaps = state.wcSnapshots||{};
+  const snapKeys = Object.keys(snaps).sort();
+  const wordsStart = (snaps[snapKeys.filter(k=>k<=from).pop()]||0);
+  const wordsEnd   = (snaps[snapKeys.filter(k=>k<=to).pop()]||state.wcCurrent||0);
+  const wordsWritten = Math.max(0, wordsEnd - wordsStart);
+  const pSnaps = state.pagesSnapshots||{};
+  const pKeys = Object.keys(pSnaps).sort();
+  const pagesStart = pSnaps[pKeys.filter(k=>k<=from).pop()]||0;
+  const pagesEnd   = pSnaps[pKeys.filter(k=>k<=to).pop()]||0;
+  const totalPages = Math.max(0, pagesEnd - pagesStart);
+  const completedGoals = [];
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.goals||[]).forEach(g => {
+      if (typeof g==='object' && g.done) completedGoals.push({date:k, text:g.text});
+    });
+  });
+  const metDeadlines = (state.deadlines||[]).filter(dl=>dl.complete&&dl.date>=from&&dl.date<=to);
+  const windowMeetings = (state.meetings||[]).filter(m=>m.date>=from&&m.date<=to);
+
+  let html = '';
+  if (reportIncludes.hours) html += `<div class="section"><div class="section-title">Hours Worked</div><div class="stat">${totalHrs.toFixed(1)} hours</div></div>`;
+  if (reportIncludes.words) html += `<div class="section"><div class="section-title">Words Written</div><div class="stat">${wordsWritten.toLocaleString()} words</div></div>`;
+  if (reportIncludes.pages) html += `<div class="section"><div class="section-title">Pages Read</div><div class="stat">${totalPages} pages</div></div>`;
+  if (reportIncludes.books && (state.books||[]).length > 0) {
+    html += `<div class="section"><div class="section-title">Books in Progress</div><ul>`;
+    (state.books||[]).forEach(b => {
+      const cur=parseInt(b.currentPage)||0, tot=parseInt(b.totalPages)||0;
+      const pct=tot>0?Math.round(cur/tot*100):null;
+      html += `<li>${b.title}: p.${cur}${tot?' / '+tot:''}${pct!==null?' ('+pct+'%)':''}</li>`;
+    });
+    html += `</ul></div>`;
+  }
+  if (reportIncludes.goals && completedGoals.length > 0) {
+    html += `<div class="section"><div class="section-title">Goals Completed</div><ul>`;
+    completedGoals.forEach(g => html += `<li>${g.date} — ${g.text}</li>`);
+    html += `</ul></div>`;
+  }
+  if (reportIncludes.deadlines && metDeadlines.length > 0) {
+    html += `<div class="section"><div class="section-title">Deadlines Met</div><ul>`;
+    metDeadlines.forEach(dl => html += `<li>${dl.date} — ${dl.desc}</li>`);
+    html += `</ul></div>`;
+  }
+  if (reportIncludes.meetings && windowMeetings.length > 0) {
+    html += `<div class="section"><div class="section-title">Meetings</div>`;
+    windowMeetings.forEach(m => {
+      html += `<div class="meeting"><div class="meeting-title">${m.date} — ${m.supervisor||'Meeting'}</div>`;
+      if (m.notes) html += `<div class="meeting-sub">Notes: ${m.notes.split('\n')[0].slice(0,120)}</div>`;
+      const done=(m.actions||[]).filter(a=>a.done);
+      const pend=(m.actions||[]).filter(a=>!a.done);
+      if (done.length) html += `<div class="meeting-sub">Completed: ${done.map(a=>a.text||a).join(', ')}</div>`;
+      if (pend.length) html += `<div class="meeting-sub">Pending: ${pend.map(a=>a.text||a).join(', ')}</div>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+  }
+  return html || '<p style="color:#555">No data in this window.</p>';
+}
+
+async function emailReport() {
+  const from = document.getElementById('report-from')?.value;
+  const to   = document.getElementById('report-to')?.value;
+  if (!from || !to) { alert('Please generate the report first.'); return; }
+  if (!state.reportRecipient) { alert('Please set a report recipient in Configuration → Email & Identity.'); return; }
+  if (!state.alexaClientId || !state.alexaClientSecret || !state.alexaRefreshToken) {
+    alert('Gmail is not connected. Please connect Gmail in Configuration.'); return;
+  }
+  const statusEl = document.getElementById('report-send-status');
+  if (statusEl) statusEl.textContent = 'Sending…';
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const subject = `Progress Report: ${proj?.name||'Project'} (${from} to ${to})`;
+  const body = buildReportText(from, to);
+  try {
+    const accessToken = await gmailGetAccessToken();
+    const raw = makeRawEmail(state.reportRecipient, subject, body);
+    const resp = await fetch('https://www.googleapis.com/gmail/v1/users/me/messages/send', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ raw })
+    });
+    if (!resp.ok) { const e = await resp.json(); throw new Error(e.error?.message || resp.status); }
+    if (statusEl) { statusEl.style.color = 'var(--green-done)'; statusEl.textContent = '✓ Report sent to ' + state.reportRecipient; }
+  } catch(e) {
+    if (statusEl) { statusEl.style.color = 'var(--red-dead)'; statusEl.textContent = '✗ Failed: ' + e.message; }
+  }
 }
 
 // ===================== THEMES =====================
@@ -2195,22 +3833,159 @@ function renderThemes(mp) {
     </div>`;
 }
 
-loadState();
-// Apply saved theme on startup
-if (state.currentTheme && state.currentTheme !== 'airy') {
-  document.documentElement.setAttribute('data-theme', state.currentTheme);
+// ── Migration: convert old flat diss_* keys to first project ────────────────
+function migrateIfNeeded() {
+  // Check if old-style flat keys exist and no projects exist yet
+  const hasOldData = localStorage.getItem('diss_days') !== null ||
+                     localStorage.getItem('diss_lastAccomplished') !== null ||
+                     localStorage.getItem('diss_deadlines') !== null;
+  const existingProjects = getProjectList();
+  if (!hasOldData || existingProjects.length > 0) return false;
+
+  // Create "Ball Dissertation" project from old data
+  const id = generateProjectId();
+  const oldFields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaLastSent',
+                     'alexaLastStatus','currentTheme','meetings'];
+  for (const k of oldFields) {
+    const v = localStorage.getItem('diss_'+k);
+    if (v !== null) localStorage.setItem(projKey(id, k), v);
+  }
+  // Migrate global fields
+  const globalMigrate = ['alexaClientId','alexaSenderEmail'];
+  for (const k of globalMigrate) {
+    const v = localStorage.getItem('diss_'+k);
+    if (v !== null) localStorage.setItem(globalKey(k), v);
+  }
+  // Migrate encrypted blobs to global keys
+  const sec = localStorage.getItem('diss_enc_clientSecret');
+  const tok = localStorage.getItem('diss_enc_refreshToken');
+  if (sec) localStorage.setItem(globalKey('enc_clientSecret'), sec);
+  if (tok) localStorage.setItem(globalKey('enc_refreshToken'), tok);
+
+  // Save project list
+  saveProjectList([{ id, name: 'Ball Dissertation', created: new Date().toISOString() }]);
+  setActiveProjectId(id);
+
+  // Remove old flat keys
+  Object.keys(localStorage).filter(k => k.startsWith('diss_') && !k.startsWith('diss_proj_') && !k.startsWith('diss_global_')).forEach(k => localStorage.removeItem(k));
+  return true;
 }
-const el=document.getElementById('today-display');
-if(el) el.textContent=`${DAYS_SHORT[TODAY.getDay()]} ${MONTHS[TODAY.getMonth()]} ${TODAY.getDate()}, ${TODAY.getFullYear()}`;
-showPane('session');
-// If encrypted creds exist, prompt for password to unlock them on startup
+
+// ── Switch to a project by ID ────────────────────────────────────────────────
+function switchProject(id) {
+  setActiveProjectId(id);
+  state._activeProjectId = id;
+  // Reset per-project state to defaults before loading
+  Object.assign(state, {
+    lastAccomplished:'', lastPlan:'', lastHours:'',
+    currentTheme:'airy', meetings:[], days:{}, deadlines:[],
+    finalDeadline:'', wcGoal:0, wcCurrent:0,
+    alexaEnabled:false, alexaRecipient:'', alexaLastSent:'', alexaLastStatus:'',
+    calView:'week', calDate:new Date(TODAY),
+  });
+  loadState();
+  applyTheme(state.currentTheme || 'airy');
+  updateHeaderProject();
+  showPane('overview');
+  renderSide();
+}
+
+// ── Create a new blank project ───────────────────────────────────────────────
+function createProject(name) {
+  const id = generateProjectId();
+  const list = getProjectList();
+  list.push({ id, name, created: new Date().toISOString() });
+  saveProjectList(list);
+  switchProject(id);
+  return id;
+}
+
+// ── Delete a project ─────────────────────────────────────────────────────────
+function deleteProject(id) {
+  const list = getProjectList().filter(p => p.id !== id);
+  saveProjectList(list);
+  // Remove all project keys
+  Object.keys(localStorage).filter(k => k.startsWith(`diss_proj_${id}_`)).forEach(k => localStorage.removeItem(k));
+  // If we deleted the active project, switch to first remaining or create new
+  if (state._activeProjectId === id) {
+    if (list.length > 0) {
+      switchProject(list[0].id);
+    } else {
+      const newId = createProject('My Project');
+      switchProject(newId);
+    }
+  }
+}
+
+// ── Rename a project ─────────────────────────────────────────────────────────
+function renameProject(id, newName) {
+  const list = getProjectList().map(p => p.id === id ? { ...p, name: newName } : p);
+  saveProjectList(list);
+  if (id === state._activeProjectId) updateHeaderProject();
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+migrateIfNeeded();
+
+let projects = getProjectList();
+if (projects.length === 0) {
+  // Brand new install — create default project
+  const id = generateProjectId();
+  projects = [{ id, name: 'My Project', created: new Date().toISOString() }];
+  saveProjectList(projects);
+  setActiveProjectId(id);
+}
+
+state._activeProjectId = getActiveProjectId() || projects[0].id;
+setActiveProjectId(state._activeProjectId);
+loadState();
+
+// Load global fields
+for (const k of GLOBAL_FIELDS) {
+  const v = retrieve(globalKey(k));
+  if (v !== null) state[k] = v;
+}
+state._hasEncryptedSecret = !!localStorage.getItem(globalKey('enc_clientSecret'));
+state._hasEncryptedToken  = !!localStorage.getItem(globalKey('enc_refreshToken'));
+
+applyTheme(state.currentTheme || 'airy');
+
+// Set today display
+const _todayEl = document.getElementById('today-display');
+if (_todayEl) _todayEl.textContent = `${DAYS_SHORT[TODAY.getDay()]} ${MONTHS[TODAY.getMonth()]} ${TODAY.getDate()}, ${TODAY.getFullYear()}`;
+
+// Update header subtitle with active project name
+function updateHeaderProject() {
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const sub = document.querySelector('.subtitle');
+  if (sub && proj) sub.textContent = proj.name;
+}
+updateHeaderProject();
+
+showPane('overview');
+renderSide();
+
+// Unlock encrypted credentials — try saved password first
 if (state._hasEncryptedSecret || state._hasEncryptedToken) {
-  setTimeout(() => {
-    showPasswordModal('enter', async (pw) => {
+  const savedPw = getSavedPassword();
+  if (savedPw) {
+    loadEncryptedCreds(savedPw).then(ok => {
+      if (ok) { renderMain(); renderSide(); }
+      else {
+        forgetSavedPassword();
+        setTimeout(() => showPasswordModal('enter', async (pw) => {
+          const ok2 = await loadEncryptedCreds(pw);
+          if (ok2) { renderMain(); renderSide(); }
+        }), 300);
+      }
+    });
+  } else {
+    setTimeout(() => showPasswordModal('enter', async (pw) => {
       const ok = await loadEncryptedCreds(pw);
       if (ok) { renderMain(); renderSide(); }
-    });
-  }, 300);
+    }), 300);
+  }
 }
 
 window.addEventListener('beforeunload', () => {
