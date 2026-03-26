@@ -659,6 +659,44 @@
   .overview-week .week-grid { gap: 6px; }
 
 
+  /* Cato's Review annotation in Overview */
+  .cato-annotation { border-left: 3px solid var(--blue); background: rgba(74,108,247,.07); border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 10px; }
+  .cato-annotation-label { font-family: 'Consolas','DM Mono',monospace; font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }
+  .cato-annotation-text { font-size: .88rem; line-height: 1.65; color: var(--ink); }
+  html[data-theme="dark"] .cato-annotation { border-left-color: #c8a84a; background: rgba(200,168,74,.07); }
+  html[data-theme="dark"] .cato-annotation-label { color: #c8a84a; }
+  html[data-theme="parchment"] .cato-annotation { border-left-color: #8b5e3c; background: rgba(139,94,60,.07); }
+  html[data-theme="parchment"] .cato-annotation-label { color: #8b5e3c; }
+  html[data-theme="forest"] .cato-annotation { border-left-color: #2d6a4f; background: rgba(45,106,79,.08); }
+  html[data-theme="forest"] .cato-annotation-label { color: #2d6a4f; }
+  html[data-theme="slate"] .cato-annotation { border-left-color: #7c9ef5; background: rgba(124,158,245,.08); }
+  html[data-theme="slate"] .cato-annotation-label { color: #7c9ef5; }
+  html[data-theme="solarized"] .cato-annotation { border-left-color: #268bd2; background: rgba(38,139,210,.08); }
+  html[data-theme="solarized"] .cato-annotation-label { color: #268bd2; }
+  html[data-theme="lavender"] .cato-annotation { border-left-color: #7c5cbf; background: rgba(124,92,191,.08); }
+  html[data-theme="lavender"] .cato-annotation-label { color: #7c5cbf; }
+  html[data-theme="terminal"] .cato-annotation { border-left-color: #00ff41; background: rgba(0,255,65,.05); }
+  html[data-theme="terminal"] .cato-annotation-label { color: #00cc33; font-family: 'Consolas',monospace; }
+  html[data-theme="terminal"] .cato-annotation-text { color: #00ff41; font-family: 'Consolas',monospace; }
+  html[data-theme="neonnoir"] .cato-annotation { border-left-color: #ff2d78; background: rgba(255,45,120,.06); }
+  html[data-theme="neonnoir"] .cato-annotation-label { color: #ff2d78; }
+  html[data-theme="vaporwave"] .cato-annotation { border-left-color: #ff71ce; background: rgba(255,113,206,.06); }
+  html[data-theme="vaporwave"] .cato-annotation-label { color: #ff71ce; }
+  html[data-theme="crayola"] .cato-annotation { border-left-color: #0066cc; background: rgba(0,102,204,.07); }
+  html[data-theme="crayola"] .cato-annotation-label { color: #0066cc; font-family: 'Impact',sans-serif; }
+  html[data-theme="chalkboard"] .cato-annotation { border-left-color: #f5e642; background: rgba(245,230,66,.05); }
+  html[data-theme="chalkboard"] .cato-annotation-label { color: #f5e642; font-family: 'Comic Sans MS',cursive; }
+  html[data-theme="chalkboard"] .cato-annotation-text { color: #f0ece0; font-family: 'Comic Sans MS',cursive; }
+  html[data-theme="geneva"] .cato-annotation { border-left-color: #8b1a1a; background: rgba(139,26,26,.06); }
+  html[data-theme="geneva"] .cato-annotation-label { color: #8b1a1a; font-family: Georgia,serif; font-style: italic; text-transform: none; letter-spacing: .02em; }
+  html[data-theme="westminster"] .cato-annotation { border-left-color: #c8a84a; background: rgba(200,168,74,.06); }
+  html[data-theme="westminster"] .cato-annotation-label { color: #c8a84a; font-family: Georgia,serif; }
+
+  /* Session log entry rows */
+  .session-entry-row { margin-bottom: 8px; }
+  .session-entry-row select { font-family: 'Segoe UI', 'Inter', sans-serif; font-size: .84rem; padding: 8px 10px; border: 1px solid var(--border); border-radius: 7px; background: var(--card); color: var(--ink); }
+  .session-entry-row input[type=number] { width: 110px; }
+
   /* Configuration pane tabs */
   .config-wrap { display: flex; min-height: calc(100vh - 120px); width: 100%; box-sizing: border-box; }
   .config-tab-bar { display: flex; flex-direction: column; gap: 2px; width: 180px; flex-shrink: 0; padding: 28px 0 28px 28px; border-right: 1px solid var(--border); }
@@ -675,6 +713,36 @@
   .report-toggle-item:last-child { border-bottom: none; }
   .report-toggle-item input[type=checkbox] { width: auto; cursor: pointer; }
   .report-preview { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; font-family: 'Segoe UI', 'Inter', sans-serif; font-size: .84rem; line-height: 1.7; color: var(--ink); white-space: pre-wrap; margin-bottom: 18px; max-height: 400px; overflow-y: auto; }
+
+
+  /* AI Dashboard */
+  .ai-wrap { padding: 28px 32px; width: 100%; box-sizing: border-box; max-width: 860px; margin: 0 auto; }
+  /* Cato review reuses .overview-hero for full theme support */
+  .cato-label { font-family:'Consolas','DM Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:8px; }
+  .cato-review-text { font-family:'Segoe UI','Inter',sans-serif; font-size:1.05rem; line-height:1.7; color:rgba(255,255,255,.92); min-height:60px; }
+  .cato-review-meta { font-family:'Consolas','DM Mono',monospace; font-size:.62rem; color:rgba(255,255,255,.3); margin-top:14px; }
+  .cato-refresh-btn { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; font-family:'Segoe UI','Inter',sans-serif; font-size:.75rem; padding:6px 14px; border-radius:7px; cursor:pointer; transition:background .15s; margin-top:14px; }
+  .cato-refresh-btn:hover { background:rgba(255,255,255,.18); }
+  .cato-refresh-btn:disabled { opacity:.4; cursor:default; }
+  .agenda-item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px solid var(--border); }
+  .agenda-item:last-child { border-bottom:none; }
+  .agenda-item input[type=checkbox] { width:auto; margin-top:3px; flex-shrink:0; cursor:pointer; }
+  .agenda-item-body { flex:1; }
+  .agenda-item-type { font-family:'Consolas','DM Mono',monospace; font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px; }
+  .agenda-item-title { font-size:.88rem; color:var(--ink); font-weight:500; }
+  .agenda-item-date { font-family:'Consolas','DM Mono',monospace; font-size:.68rem; color:var(--muted); margin-top:2px; }
+  .usage-log-row { font-family:'Consolas','DM Mono',monospace; font-size:.65rem; color:var(--muted); padding:3px 0; border-bottom:1px solid var(--border); display:flex; gap:14px; }
+  .usage-log-row:last-child { border-bottom:none; }
+  .cato-spinning { display:inline-block; animation:cato-spin .8s linear infinite; }
+  @keyframes cato-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .ai-monitor { display:flex; align-items:center; justify-content:space-between; gap:14px; background:var(--cream); border:1px solid var(--border); border-radius:8px; padding:9px 16px; margin-bottom:18px; flex-wrap:wrap; }
+  .ai-monitor-status { font-family:'Consolas','DM Mono',monospace; font-size:.68rem; color:var(--muted); }
+  .ai-monitor-status.active { color:var(--blue); }
+  .ai-monitor-status.error  { color:var(--red-dead); }
+  .ai-kill-switch { display:flex; align-items:center; gap:8px; font-family:'Consolas','DM Mono',monospace; font-size:.68rem; font-weight:600; }
+  .ai-kill-switch.enabled  { color:var(--green-done); }
+  .ai-kill-switch.disabled { color:var(--red-dead); }
+  .ai-disabled-banner { background:#fff5f5; border:1px solid #fca5a5; border-radius:8px; padding:10px 16px; margin-bottom:16px; font-size:.82rem; color:var(--red-dead); }
 
 
   /* ══════════════════════════════════════════
@@ -881,16 +949,17 @@
 
 <nav>
   <button onclick="showPane('overview')">Overview</button>
-  <button class="active" onclick="showPane('session')">Session Log</button>
+  <button class="active" onclick="showPane('session')">Logbook</button>
   <button onclick="showPane('calendar')">Calendar</button>
-  <button onclick="showPane('deadlines')">Deadlines &amp; Goals</button>
-  <button onclick="showPane('wordcount')">Word Count</button>
+  <button onclick="showPane('deadlines')">Planning</button>
+  <button onclick="showPane('wordcount')">Writing</button>
   <button onclick="showPane('books')">Books</button>
   <button onclick="showPane('meetings')">Meetings</button>
   <button onclick="showPane('report')">Progress Report</button>
   <button onclick="showPane('config')">Configuration</button>
   <button onclick="showPane('help')">Help</button>
 </nav>
+
 
 <div class="app" id="app-layout">
   <div class="main-pane" id="main-pane"></div>
@@ -972,11 +1041,14 @@ function generateProjectId() {
 const PROJECT_FIELDS = ['lastAccomplished','lastPlan','lastHours','days','deadlines',
                         'finalDeadline','wcGoal','wcCurrent','alexaEnabled','alexaRecipient',
                         'alexaLastSent','alexaLastStatus','currentTheme','meetings',
-                        'books','wcSnapshots','pagesSnapshots','userName','reportRecipient',
-                        'docxPath','gcalSyncGoals','gcalSyncDeadlines','gcalSyncMeetings'];
+                        'books','writingProjects','userName','reportRecipient',
+                        'docxPath','gcalSyncGoals','gcalSyncDeadlines','gcalSyncMeetings',
+                        'notionSyncOnClose','notionLastSync',
+                        'catoEnabled','catoReview','catoReviewDate','catoUsageLog','catoAgendaItems',
+                        'catoHistory'];
 
 // ── Global (cross-project) state fields ──────────────────────
-const GLOBAL_FIELDS  = ['alexaClientId','alexaSenderEmail'];
+const GLOBAL_FIELDS  = ['alexaClientId','alexaSenderEmail','notionDbId','catoSystemPrompt','anthropicAdminKey','gistId','gistAutoSync','gistLastSync'];
 
 // ===================== STATE =====================
 let state = {
@@ -986,10 +1058,9 @@ let state = {
   meetings: [],
   days: {}, deadlines: [], finalDeadline: '',
   wcGoal: 0, wcCurrent: 0,
-  docxPath: '',        // path to the watched .docx file (Electron only)
-  books: [],           // [{id, title, currentPage, totalPages}]
-  wcSnapshots: {},     // { 'YYYY-MM-DD': wordCount } — snapshot of wcCurrent per day
-  pagesSnapshots: {},  // { 'YYYY-MM-DD': totalPagesRead } — snapshot of total pages across books
+  docxPath: '',           // path to the watched .docx file for main writing project
+  books: [],              // [{id, title, currentPage, totalPages}]
+  writingProjects: [],    // [{id, title, wcGoal, wcCurrent, docxPath}] — additional writing projects
   alexaEnabled: false,
   alexaRecipient: '',
   reportRecipient: '',
@@ -1004,10 +1075,32 @@ let state = {
   alexaClientSecret: '',   // in-memory only; persisted encrypted globally
   alexaRefreshToken: '',   // in-memory only; persisted encrypted globally
   alexaSenderEmail: '',
+  notionApiKey: '',        // Notion integration token — encrypted
+  notionDbId: '',          // Notion database ID
+  notionSyncOnClose: false,// auto-sync to Notion on app close
+  notionLastSync: '',      // ISO timestamp of last successful sync
+  anthropicKey: '',        // Anthropic API key — encrypted
+  anthropicAdminKey: '',   // Anthropic Admin API key — encrypted (for usage/cost reports)
+  catoSystemPrompt: '',    // Cato's editable system prompt (stored globally)
+  gistId: '',              // GitHub Gist ID for mobile sync
+  gistAutoSync: false,     // Auto-push to Gist on close
+  gistLastSync: '',        // ISO timestamp of last Gist push
+  _hasEncryptedGistToken: false, // whether a Gist token is stored encrypted
+  catoEnabled: true,       // kill switch — when false, no API calls allowed
+  catoLastCallStatus: '',  // 'idle'|'calling'|'ok'|'error'
+  catoLastCallTime: '',    // ISO timestamp of last API call
+  catoLastCallFeature: '', // feature name of last call
+  catoReview: '',          // Last persisted review text
+  catoReviewDate: '',      // ISO date of last review
+  catoUsageLog: [],        // [{ts, feature, inputTokens, outputTokens}]
+  catoHistory: [],         // last 3 Review outputs: [{ts, response}]
   // Session-only
   calView: 'week', calDate: new Date(TODAY),
   _hasEncryptedSecret: false,
   _hasEncryptedToken: false,
+  _hasEncryptedNotionKey: false,
+  _hasEncryptedAnthropicKey: false,
+  _hasEncryptedAdminKey: false,
   // Project meta (in-memory)
   _activeProjectId: null,
 };
@@ -1056,8 +1149,12 @@ function loadState() {
     const v = retrieve(globalKey(k));
     if (v !== null) state[k] = v;
   }
-  state._hasEncryptedSecret = !!(isElectron ? _storeCache[globalKey('enc_clientSecret')] : localStorage.getItem(globalKey('enc_clientSecret')));
-  state._hasEncryptedToken  = !!(isElectron ? _storeCache[globalKey('enc_refreshToken')] : localStorage.getItem(globalKey('enc_refreshToken')));
+  state._hasEncryptedSecret       = !!(isElectron ? _storeCache[globalKey('enc_clientSecret')]      : localStorage.getItem(globalKey('enc_clientSecret')));
+  state._hasEncryptedToken        = !!(isElectron ? _storeCache[globalKey('enc_refreshToken')]       : localStorage.getItem(globalKey('enc_refreshToken')));
+  state._hasEncryptedNotionKey    = !!(isElectron ? _storeCache[globalKey('enc_notionApiKey')]       : localStorage.getItem(globalKey('enc_notionApiKey')));
+  state._hasEncryptedAnthropicKey = !!(isElectron ? _storeCache[globalKey('enc_anthropicKey')]       : localStorage.getItem(globalKey('enc_anthropicKey')));
+  state._hasEncryptedAdminKey     = !!(isElectron ? _storeCache[globalKey('enc_anthropicAdminKey')] : localStorage.getItem(globalKey('enc_anthropicAdminKey')));
+  state._hasEncryptedGistToken    = !!(isElectron ? _storeCache[globalKey('enc_gistToken')]          : localStorage.getItem(globalKey('enc_gistToken')));
 }
 function saveState() {
   const id = state._activeProjectId;
@@ -1072,29 +1169,69 @@ async function saveEncryptedCreds(password) {
   if (state.alexaRefreshToken) {
     { const v = JSON.stringify(await encryptSecret(state.alexaRefreshToken, password)); _storeCache[globalKey('enc_refreshToken')] = v; if(isElectron) await window.electronStorage.setItem(globalKey('enc_refreshToken'), v); else localStorage.setItem(globalKey('enc_refreshToken'), v); }
   }
-  state._hasEncryptedSecret = !!state.alexaClientSecret;
-  state._hasEncryptedToken  = !!state.alexaRefreshToken;
+  if (state.notionApiKey) {
+    { const v = JSON.stringify(await encryptSecret(state.notionApiKey, password)); _storeCache[globalKey('enc_notionApiKey')] = v; if(isElectron) await window.electronStorage.setItem(globalKey('enc_notionApiKey'), v); else localStorage.setItem(globalKey('enc_notionApiKey'), v); }
+  }
+  if (state.anthropicKey) {
+    { const v = JSON.stringify(await encryptSecret(state.anthropicKey, password)); _storeCache[globalKey('enc_anthropicKey')] = v; if(isElectron) await window.electronStorage.setItem(globalKey('enc_anthropicKey'), v); else localStorage.setItem(globalKey('enc_anthropicKey'), v); }
+  }
+  if (state.anthropicAdminKey) {
+    { const v = JSON.stringify(await encryptSecret(state.anthropicAdminKey, password)); _storeCache[globalKey('enc_anthropicAdminKey')] = v; if(isElectron) await window.electronStorage.setItem(globalKey('enc_anthropicAdminKey'), v); else localStorage.setItem(globalKey('enc_anthropicAdminKey'), v); }
+  }
+  if (state.gistToken) {
+    { const v = JSON.stringify(await encryptSecret(state.gistToken, password)); _storeCache[globalKey('enc_gistToken')] = v; if(isElectron) await window.electronStorage.setItem(globalKey('enc_gistToken'), v); else localStorage.setItem(globalKey('enc_gistToken'), v); }
+  }
+  state._hasEncryptedSecret       = !!state.alexaClientSecret;
+  state._hasEncryptedToken        = !!state.alexaRefreshToken;
+  state._hasEncryptedNotionKey    = !!state.notionApiKey;
+  state._hasEncryptedAnthropicKey = !!state.anthropicKey;
+  state._hasEncryptedAdminKey     = !!state.anthropicAdminKey;
+  state._hasEncryptedGistToken    = !!state.gistToken;
 }
 async function loadEncryptedCreds(password) {
-  const rawSecret = isElectron ? _storeCache[globalKey('enc_clientSecret')] : localStorage.getItem(globalKey('enc_clientSecret'));
-  const rawToken  = isElectron ? _storeCache[globalKey('enc_refreshToken')] : localStorage.getItem(globalKey('enc_refreshToken'));
+  const rawSecret   = isElectron ? _storeCache[globalKey('enc_clientSecret')] : localStorage.getItem(globalKey('enc_clientSecret'));
+  const rawToken    = isElectron ? _storeCache[globalKey('enc_refreshToken')]  : localStorage.getItem(globalKey('enc_refreshToken'));
+  const rawNotion    = isElectron ? _storeCache[globalKey('enc_notionApiKey')]   : localStorage.getItem(globalKey('enc_notionApiKey'));
+  const rawAnthropic  = isElectron ? _storeCache[globalKey('enc_anthropicKey')]      : localStorage.getItem(globalKey('enc_anthropicKey'));
+  const rawAdminKey   = isElectron ? _storeCache[globalKey('enc_anthropicAdminKey')] : localStorage.getItem(globalKey('enc_anthropicAdminKey'));
   try {
-    if (rawSecret) state.alexaClientSecret = await decryptSecret(JSON.parse(rawSecret), password);
-    if (rawToken)  state.alexaRefreshToken  = await decryptSecret(JSON.parse(rawToken),  password);
+    const rawGist     = isElectron ? _storeCache[globalKey('enc_gistToken')]       : localStorage.getItem(globalKey('enc_gistToken'));
+    if (rawSecret)    state.alexaClientSecret  = await decryptSecret(JSON.parse(rawSecret),    password);
+    if (rawToken)     state.alexaRefreshToken   = await decryptSecret(JSON.parse(rawToken),     password);
+    if (rawNotion)    state.notionApiKey        = await decryptSecret(JSON.parse(rawNotion),    password);
+    if (rawAnthropic) state.anthropicKey        = await decryptSecret(JSON.parse(rawAnthropic), password);
+    if (rawAdminKey)  state.anthropicAdminKey   = await decryptSecret(JSON.parse(rawAdminKey),  password);
+    if (rawGist)      state.gistToken           = await decryptSecret(JSON.parse(rawGist),      password);
     return true;
   } catch(e) {
-    state.alexaClientSecret = '';
-    state.alexaRefreshToken  = '';
+    state.alexaClientSecret  = '';
+    state.alexaRefreshToken   = '';
+    state.notionApiKey        = '';
+    state.anthropicKey        = '';
+    state.anthropicAdminKey   = '';
+    state.gistToken           = '';
     return false;
   }
 }
 function clearEncryptedCreds() {
   delete _storeCache[globalKey('enc_clientSecret')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_clientSecret')); else localStorage.removeItem(globalKey('enc_clientSecret'));
   delete _storeCache[globalKey('enc_refreshToken')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_refreshToken')); else localStorage.removeItem(globalKey('enc_refreshToken'));
-  state.alexaClientSecret = '';
-  state.alexaRefreshToken  = '';
-  state._hasEncryptedSecret = false;
-  state._hasEncryptedToken  = false;
+  delete _storeCache[globalKey('enc_notionApiKey')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_notionApiKey')); else localStorage.removeItem(globalKey('enc_notionApiKey'));
+  state.alexaClientSecret      = '';
+  state.alexaRefreshToken       = '';
+  delete _storeCache[globalKey('enc_anthropicKey')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_anthropicKey')); else localStorage.removeItem(globalKey('enc_anthropicKey'));
+  state.notionApiKey             = '';
+  delete _storeCache[globalKey('enc_anthropicAdminKey')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_anthropicAdminKey')); else localStorage.removeItem(globalKey('enc_anthropicAdminKey'));
+  delete _storeCache[globalKey('enc_gistToken')]; if(isElectron) window.electronStorage.removeItem(globalKey('enc_gistToken')); else localStorage.removeItem(globalKey('enc_gistToken'));
+  state.anthropicKey              = '';
+  state.anthropicAdminKey         = '';
+  state.gistToken                 = '';
+  state._hasEncryptedSecret       = false;
+  state._hasEncryptedToken        = false;
+  state._hasEncryptedNotionKey    = false;
+  state._hasEncryptedAnthropicKey = false;
+  state._hasEncryptedAdminKey     = false;
+  state._hasEncryptedGistToken    = false;
 }
 
 // ===================== COMPUTED =====================
@@ -1106,15 +1243,8 @@ const getWeekStart = d => { const r=new Date(d); r.setDate(r.getDate()-r.getDay(
 // ── Pages read helpers ───────────────────────────────────────────────────────
 const totalPagesNow = () => (state.books||[]).reduce((t,b)=>t+(parseInt(b.currentPage)||0),0);
 const pagesForDay = k => {
-  const snaps = state.pagesSnapshots || {};
-  const d = parseKey(k);
-  // Find the most recent snapshot before this day
-  const prevKey = fmtKey(addDays(d, -1));
-  const todaySnap = snaps[k];
-  const prevSnap  = snaps[prevKey];
-  if (todaySnap === undefined) return 0;
-  if (prevSnap  === undefined) return 0;
-  return Math.max(0, todaySnap - prevSnap);
+  const reading = state.days[k]?.reading || [];
+  return reading.reduce((t, e) => t + (parseInt(e.pagesRead) || 0), 0);
 };
 const pagesForWeek  = ws  => Array.from({length:7},(_,i)=>pagesForDay(fmtKey(addDays(ws,i)))).reduce((a,b)=>a+b,0);
 const pagesForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=pagesForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
@@ -1122,14 +1252,8 @@ const pagesForYear  = y   => Array.from({length:12},(_,m)=>pagesForMonth(y,m)).r
 
 // ── Words written helpers ─────────────────────────────────────────────────────
 const wordsForDay = k => {
-  const snaps = state.wcSnapshots || {};
-  const d = parseKey(k);
-  const prevKey = fmtKey(addDays(d, -1));
-  const todaySnap = snaps[k];
-  const prevSnap  = snaps[prevKey];
-  if (todaySnap === undefined) return 0;
-  if (prevSnap  === undefined) return 0;
-  return Math.max(0, todaySnap - prevSnap);
+  const writing = state.days[k]?.writing || [];
+  return writing.reduce((t, e) => t + (parseInt(e.wordsWritten) || 0), 0);
 };
 const wordsForWeek  = ws  => Array.from({length:7},(_,i)=>wordsForDay(fmtKey(addDays(ws,i)))).reduce((a,b)=>a+b,0);
 const wordsForMonth = (y,m) => { let t=0,d=new Date(y,m+1,0).getDate(); for(let i=1;i<=d;i++) t+=wordsForDay(`${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`); return t; };
@@ -1537,20 +1661,57 @@ function renderOverview() {
   tlEvents.sort((a,b) => a.daysAway - b.daysAway);
 
   // ── Hero section ───────────────────────────────────────────────
-  const hasSession = state.lastAccomplished || state.lastPlan;
-  const heroHtml = `<div class="overview-hero">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-      <div>
-        <div class="overview-hero-label">Last Session</div>
-        <div class="overview-hero-text">${state.lastAccomplished || '<em style="opacity:.5">Nothing recorded yet.</em>'}</div>
-        ${state.lastHours ? `<div style="font-family:'DM Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.45);margin-top:6px">${state.lastHours}h worked</div>` : ''}
-      </div>
-      <div class="overview-hero-plan">
-        <div class="overview-hero-label">Today's Plan</div>
-        <div class="overview-hero-text">${state.lastPlan || '<em style="opacity:.5">No plan set.</em>'}</div>
-      </div>
-    </div>
-  </div>`;
+  const catoEnabled = state.catoEnabled !== false;
+
+  // Find the most recent logged session for structured data
+  const lastSessionKey = Object.keys(state.days||{}).sort().reverse()
+    .find(k => state.days[k]?.hours || state.days[k]?.accomplished ||
+               (state.days[k]?.reading||[]).length || (state.days[k]?.writing||[]).length);
+  const lastDay = lastSessionKey ? state.days[lastSessionKey] : null;
+
+  // Build structured summary chips
+  const chips = [];
+  if (lastDay?.hours) chips.push({ val: lastDay.hours + 'h', label: 'worked', color: 'rgba(255,255,255,.55)' });
+  (lastDay?.reading||[]).forEach(r => {
+    if (r.pagesRead) chips.push({ val: r.pagesRead + ' pp', label: r.bookTitle || 'reading', color: 'rgba(100,210,180,.8)' });
+  });
+  (lastDay?.writing||[]).forEach(w => {
+    if (w.wordsWritten) chips.push({ val: w.wordsWritten.toLocaleString() + ' w', label: w.projectTitle || 'writing', color: 'rgba(120,160,250,.8)' });
+  });
+
+  const chipsHtml = chips.length ? chips.map(c =>
+    '<span style="display:inline-flex;align-items:baseline;gap:4px;margin-right:10px;margin-top:4px">' +
+    '<span style="font-size:.92rem;font-weight:700;color:' + c.color + '">' + c.val + '</span>' +
+    '<span style="font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.04em">' + c.label + '</span>' +
+    '</span>'
+  ).join('') : '';
+
+  const catoHtml = '<div class="cato-annotation">' +
+    '<div class="cato-annotation-label">' +
+      '<span>Cato&#39;s Review</span>' +
+      '<button onclick="catoRefreshReview()" style="background:none;border:none;cursor:pointer;font-size:.72rem;color:inherit;opacity:.7;padding:0;font-family:inherit"' + (catoEnabled && state.anthropicKey ? '' : ' disabled') + '>&#x21BB; Refresh</button>' +
+    '</div>' +
+    '<div class="cato-annotation-text" id="cato-review-text">' +
+      (state.catoReview || '<em style="opacity:.5">' + (catoEnabled && state.anthropicKey ? 'No review yet. Click Refresh.' : 'Add an Anthropic API key in Configuration &rarr; Cato to enable.') + '</em>') +
+    '</div>' +
+    (state.catoReviewDate ? '<div style="font-size:.68rem;opacity:.5;margin-top:6px;font-family:\'DM Mono\',monospace">' + new Date(state.catoReviewDate).toLocaleString() + '</div>' : '') +
+    '<div id="cato-review-status" style="font-size:.68rem;opacity:.6;margin-top:4px;min-height:12px;font-family:\'DM Mono\',monospace"></div>' +
+  '</div>';
+
+  const heroHtml = '<div class="overview-hero">' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">' +
+      '<div>' +
+        '<div class="overview-hero-label">Last Session' + (lastSessionKey ? ' &nbsp;<span style="opacity:.4;font-weight:400;text-transform:none;letter-spacing:0">' + lastSessionKey + '</span>' : '') + '</div>' +
+        (chipsHtml ? '<div style="margin-bottom:8px">' + chipsHtml + '</div>' : '') +
+        (lastDay?.accomplished ? '<div class="overview-hero-text" style="font-size:.88rem;opacity:.85">' + lastDay.accomplished + '</div>' : (!lastDay ? '<div class="overview-hero-text"><em style="opacity:.5">No sessions logged yet.</em></div>' : '')) +
+      '</div>' +
+      '<div class="overview-hero-plan">' +
+        '<div class="overview-hero-label">Today&#39;s Plan</div>' +
+        '<div class="overview-hero-text">' + (state.lastPlan || '<em style="opacity:.5">No plan set.</em>') + '</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>' +
+  catoHtml;
 
   // ── Stats section ──────────────────────────────────────────────
   const twHrs   = hoursForWeek(thisWeekStart);
@@ -1649,15 +1810,54 @@ function renderOverview() {
 }
 
 // ===================== SESSION PANE =====================
+function buildBookOptions(selectedId) {
+  const books = state.books || [];
+  let opts = '<option value="">Select a book...</option>';
+  books.forEach(b => {
+    opts += '<option value="' + b.id + '"' + (b.id === selectedId ? ' selected' : '') + '>' + b.title + '</option>';
+  });
+  opts += '<option value="__new__">+ Add new book...</option>';
+  return opts;
+}
+
+function buildWritingProjectOptions(selectedId) {
+  const projects = state.writingProjects || [];
+  const mainTitle = (function(){ const p = getProjectList().find(p=>p.id===state._activeProjectId); return p ? p.name : 'Main Project'; })();
+  let opts = '<option value="main"' + (selectedId === 'main' || !selectedId ? ' selected' : '') + '>' + mainTitle + '</option>';
+  projects.forEach(p => {
+    opts += '<option value="' + p.id + '"' + (p.id === selectedId ? ' selected' : '') + '>' + p.title + '</option>';
+  });
+  opts += '<option value="__new__">+ Add new project...</option>';
+  return opts;
+}
+
 function renderSession(mp) {
   const has = state.lastAccomplished || state.lastPlan;
+  const clear = state._sessionInputClear;
+
+  // Build reading rows from previous session if not clearing
+  const prevReading = clear ? [] : (state.days[todayKey()]?.reading || []);
+  const prevWriting = clear ? [] : (state.days[todayKey()]?.writing || []);
+
+  const readingRows = (prevReading.length > 0 ? prevReading : [{}]).map((r, i) => buildReadingRowHtml(i, r)).join('');
+  const writingRows = (prevWriting.length > 0 ? prevWriting : [{}]).map((r, i) => buildWritingRowHtml(i, r)).join('');
+
   mp.innerHTML = `
-    <div class="section-title">Session Log</div>
+    <div class="section-title">Logbook</div>
     ${has ? `<div class="session-readout">
       <div class="hr-badge">${state.lastHours ? state.lastHours+'h' : '—'}</div>
-      <div class="tag">Last Session — Accomplished</div>
-      <p>${state.lastAccomplished || '<em style="opacity:.6">Nothing recorded.</em>'}</p>
-      <div class="tag" style="margin-top:14px">Today's Plan</div>
+      <div class="tag">Last Session</div>
+      ${(() => {
+        const chips = [];
+        const lastKey = Object.keys(state.days||{}).sort().reverse().find(k => state.days[k]?.hours || (state.days[k]?.reading||[]).length || (state.days[k]?.writing||[]).length);
+        const ld = lastKey ? state.days[lastKey] : null;
+        if (ld?.hours) chips.push(ld.hours + 'h worked');
+        (ld?.reading||[]).forEach(r => { if(r.pagesRead) chips.push(r.pagesRead + ' pp — ' + (r.bookTitle||'reading')); });
+        (ld?.writing||[]).forEach(w => { if(w.wordsWritten) chips.push(Number(w.wordsWritten).toLocaleString() + ' words — ' + (w.projectTitle||'writing')); });
+        return chips.length ? '<p style="font-size:.82rem;opacity:.8">' + chips.join(' &nbsp;·&nbsp; ') + '</p>' : '';
+      })()}
+      ${state.lastAccomplished ? '<p style="margin-top:4px"><em style="opacity:.7">Reflection:</em> ' + state.lastAccomplished + '</p>' : ''}
+      <div class="tag" style="margin-top:14px">Today&#39;s Plan</div>
       <p>${state.lastPlan || '<em style="opacity:.6">Nothing recorded.</em>'}</p>
     </div>` : `<div class="session-readout" style="opacity:.7">
       <div class="tag">No Previous Session Found</div>
@@ -1665,32 +1865,189 @@ function renderSession(mp) {
     </div>`}
     <div class="card">
       <h3>Log This Session</h3>
-      <label>What did you accomplish today?</label>
-      <textarea id="inp-accomplished" placeholder="Describe what you worked on…">${state._sessionInputClear ? '' : (state.lastAccomplished||'')}</textarea>
-      <label>Hours worked this session</label>
-      <input type="number" id="inp-hours" min="0" max="24" step="0.25" placeholder="e.g. 2.5" value="${state._sessionInputClear ? '' : (state.lastHours||'')}">
-      <label>What do you plan to do next time?</label>
-      <textarea id="inp-plan" placeholder="Your goals for next session…">${state._sessionInputClear ? '' : (state.lastPlan||'')}</textarea>
-      <button class="btn" onclick="saveSession()">Save Session</button>
+
+      <label>Hours worked</label>
+      <input type="number" id="inp-hours" min="0" max="24" step="0.25" placeholder="e.g. 2.5" value="${clear ? '' : (state.lastHours||'')}">
+
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Reading</div>
+        <div id="reading-rows">${readingRows}</div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addSessionReadingRow()">+ Add book</button>
+      </div>
+
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
+        <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Writing</div>
+        <div id="writing-rows">${writingRows}</div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="addSessionWritingRow()">+ Add project</button>
+      </div>
+
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border)">
+        <label style="margin-top:0">Reflections</label>
+        <textarea id="inp-accomplished" placeholder="Notes, insights, or observations about this session…">${clear ? '' : (state.lastAccomplished||'')}</textarea>
+        <label>What do you plan to do next time?</label>
+        <textarea id="inp-plan" placeholder="Your goals for next session…">${clear ? '' : (state.lastPlan||'')}</textarea>
+      </div>
+
+      <button class="btn" style="margin-top:16px" onclick="saveSession()">Save Session</button>
     </div>`;
 }
 
+function buildReadingRowHtml(i, data) {
+  data = data || {};
+  const bookSel = buildBookOptions(data.bookId);
+  const isNew = data.bookId === '__new__';
+  return '<div class="session-entry-row" id="reading-row-' + i + '">' +
+    '<div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px">' +
+      '<select id="reading-book-' + i + '" onchange="onReadingBookChange(' + i + ')" style="flex:2;min-width:160px">' + bookSel + '</select>' +
+      '<div style="display:flex;align-items:center;gap:6px;flex-shrink:0">' +
+        '<input type="number" id="reading-pages-' + i + '" min="0" placeholder="pages read" value="' + (data.pagesRead||'') + '" style="width:100px">' +
+        '<button class="btn btn-ghost btn-sm" style="margin-top:0;padding:4px 8px" onclick="removeSessionRow(\'reading-row-' + i + '\')">×</button>' +
+      '</div>' +
+    '</div>' +
+    '<div id="reading-new-' + i + '" style="display:' + (isNew?'flex':'none') + ';gap:8px;margin-bottom:6px;flex-wrap:wrap">' +
+      '<input type="text" id="reading-new-title-' + i + '" placeholder="Book title" style="flex:2;min-width:140px">' +
+      '<input type="number" id="reading-new-totalpages-' + i + '" placeholder="Total pages" style="width:110px">' +
+    '</div>' +
+  '</div>';
+}
+
+function buildWritingRowHtml(i, data) {
+  data = data || {};
+  const projSel = buildWritingProjectOptions(data.projectId);
+  const isNew = data.projectId === '__new__';
+  return '<div class="session-entry-row" id="writing-row-' + i + '">' +
+    '<div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;margin-bottom:6px">' +
+      '<select id="writing-project-' + i + '" onchange="onWritingProjectChange(' + i + ')" style="flex:2;min-width:160px">' + projSel + '</select>' +
+      '<div style="display:flex;align-items:center;gap:6px;flex-shrink:0">' +
+        '<input type="number" id="writing-words-' + i + '" min="0" placeholder="words written" value="' + (data.wordsWritten||'') + '" style="width:120px">' +
+        '<button class="btn btn-ghost btn-sm" style="margin-top:0;padding:4px 8px" onclick="removeSessionRow(\'writing-row-' + i + '\')">×</button>' +
+      '</div>' +
+    '</div>' +
+    '<div id="writing-new-' + i + '" style="display:' + (isNew?'flex':'none') + ';gap:8px;margin-bottom:6px;flex-wrap:wrap">' +
+      '<input type="text" id="writing-new-title-' + i + '" placeholder="Project title" style="flex:2;min-width:140px">' +
+      '<input type="number" id="writing-new-goal-' + i + '" placeholder="Word count goal" style="width:140px">' +
+    '</div>' +
+  '</div>';
+}
+
+function addSessionReadingRow() {
+  const container = document.getElementById('reading-rows');
+  if (!container) return;
+  const idx = container.querySelectorAll('.session-entry-row').length;
+  const div = document.createElement('div');
+  div.innerHTML = buildReadingRowHtml(idx, {});
+  container.appendChild(div.firstElementChild);
+}
+
+function addSessionWritingRow() {
+  const container = document.getElementById('writing-rows');
+  if (!container) return;
+  const idx = container.querySelectorAll('.session-entry-row').length;
+  const div = document.createElement('div');
+  div.innerHTML = buildWritingRowHtml(idx, {});
+  container.appendChild(div.firstElementChild);
+}
+
+function removeSessionRow(rowId) {
+  const el = document.getElementById(rowId);
+  if (el) el.remove();
+}
+
+function onReadingBookChange(i) {
+  const sel = document.getElementById('reading-book-' + i);
+  const newDiv = document.getElementById('reading-new-' + i);
+  if (newDiv) newDiv.style.display = sel?.value === '__new__' ? 'flex' : 'none';
+}
+
+function onWritingProjectChange(i) {
+  const sel = document.getElementById('writing-project-' + i);
+  const newDiv = document.getElementById('writing-new-' + i);
+  if (newDiv) newDiv.style.display = sel?.value === '__new__' ? 'flex' : 'none';
+}
+
 function saveSession() {
-  const acc  = document.getElementById('inp-accomplished').value.trim();
-  const hrs  = document.getElementById('inp-hours').value.trim();
-  const plan = document.getElementById('inp-plan').value.trim();
-  if (!acc && !plan) { alert('Please enter at least something for this session.'); return; }
-  state.lastAccomplished = acc; state.lastHours = hrs; state.lastPlan = plan;
+  const acc  = (document.getElementById('inp-accomplished')?.value || '').trim();
+  const hrs  = (document.getElementById('inp-hours')?.value || '').trim();
+  const plan = (document.getElementById('inp-plan')?.value || '').trim();
+
+  // Collect reading entries
+  const reading = [];
+  const readingRows = document.querySelectorAll('#reading-rows .session-entry-row');
+  readingRows.forEach((row, i) => {
+    const bookSel   = document.getElementById('reading-book-' + i);
+    const pagesEl   = document.getElementById('reading-pages-' + i);
+    const pages = parseInt(pagesEl?.value) || 0;
+    if (!bookSel || (!bookSel.value && !pages)) return;
+    if (bookSel.value === '__new__') {
+      // Create a new book
+      const titleEl = document.getElementById('reading-new-title-' + i);
+      const totEl   = document.getElementById('reading-new-totalpages-' + i);
+      const title = titleEl?.value.trim();
+      if (!title) return;
+      if (!state.books) state.books = [];
+      const newBook = { id: Date.now().toString(36) + i, title, currentPage: pages, totalPages: parseInt(totEl?.value)||0 };
+      state.books.push(newBook);
+      if (pages > 0) reading.push({ bookId: newBook.id, bookTitle: title, pagesRead: pages });
+    } else if (bookSel.value && pages > 0) {
+      const book = state.books?.find(b => b.id === bookSel.value);
+      reading.push({ bookId: bookSel.value, bookTitle: book?.title || bookSel.value, pagesRead: pages });
+    }
+  });
+
+  // Collect writing entries
+  const writing = [];
+  const writingRows = document.querySelectorAll('#writing-rows .session-entry-row');
+  writingRows.forEach((row, i) => {
+    const projSel  = document.getElementById('writing-project-' + i);
+    const wordsEl  = document.getElementById('writing-words-' + i);
+    const words = parseInt(wordsEl?.value) || 0;
+    if (!projSel || (!projSel.value && !words)) return;
+    if (projSel.value === '__new__') {
+      const titleEl = document.getElementById('writing-new-title-' + i);
+      const goalEl  = document.getElementById('writing-new-goal-' + i);
+      const title = titleEl?.value.trim();
+      if (!title) return;
+      if (!state.writingProjects) state.writingProjects = [];
+      const newProj = { id: Date.now().toString(36) + 'w' + i, title, wcGoal: parseInt(goalEl?.value)||0, wcCurrent: words, docxPath: '' };
+      state.writingProjects.push(newProj);
+      if (words > 0) writing.push({ projectId: newProj.id, projectTitle: title, wordsWritten: words });
+    } else {
+      const pid = projSel.value || 'main';
+      let title = pid === 'main'
+        ? (getProjectList().find(p=>p.id===state._activeProjectId)?.name || 'Main Project')
+        : (state.writingProjects?.find(p=>p.id===pid)?.title || pid);
+      if (words > 0) writing.push({ projectId: pid, projectTitle: title, wordsWritten: words });
+    }
+  });
+
+  // Require at least something
+  if (!acc && !plan && !hrs && reading.length === 0 && writing.length === 0) {
+    alert('Please enter at least something for this session.');
+    return;
+  }
+
+  state.lastAccomplished = acc;
+  state.lastHours = hrs;
+  state.lastPlan  = plan;
+
   const key = todayKey();
   if (!state.days[key]) state.days[key] = { goals: [] };
-  state.days[key].accomplished = acc; state.days[key].hours = hrs;
-  // Snapshot word count and pages for today
-  if (!state.wcSnapshots) state.wcSnapshots = {};
-  if (!state.pagesSnapshots) state.pagesSnapshots = {};
-  state.wcSnapshots[key] = state.wcCurrent || 0;
-  state.pagesSnapshots[key] = totalPagesNow();
+  state.days[key].accomplished = acc;
+  state.days[key].hours        = hrs;
+  state.days[key].reading      = reading;
+  state.days[key].writing      = writing;
+
+  // Update main project word count from writing entries
+  const mainWords = writing.filter(e => e.projectId === 'main').reduce((t,e) => t+(e.wordsWritten||0), 0);
+  if (mainWords > 0) state.wcCurrent = (state.wcCurrent || 0) + mainWords;
+
+  // Update additional writing project totals
+  (state.writingProjects || []).forEach(proj => {
+    const projWords = writing.filter(e => e.projectId === proj.id).reduce((t,e) => t+(e.wordsWritten||0), 0);
+    if (projWords > 0) proj.wcCurrent = (proj.wcCurrent || 0) + projWords;
+  });
+
   saveState();
-  // Clear the input fields after saving by temporarily nulling the fill values
   state._sessionInputClear = true;
   renderMain(); renderSide();
   state._sessionInputClear = false;
@@ -1990,7 +2347,7 @@ function renderDeadlines(mp) {
   });
 
   mp.innerHTML=`
-    <div class="section-title">Deadlines &amp; Goals</div>
+    <div class="section-title">Planning</div>
 
     <div class="card" style="margin-bottom:16px">
       <h3>★ Final Project Deadline</h3>
@@ -2042,6 +2399,37 @@ function renderDeadlines(mp) {
           <button class="btn btn-sm" style="background:var(--rust);margin-top:0" onclick="deleteGoal('${g.dateKey}',${g.goalIdx})">✕</button>
         </div>
       </div>`).join('')}
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+        <h3 style="margin:0">Cato's Agenda</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          ${(state.catoAgendaItems||[]).length > 0 ? `
+            <button class="btn btn-sm" style="margin-top:0" onclick="catoApproveAll()">Approve All</button>
+            <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="catoClearAgenda()">Clear All</button>
+            <button class="btn btn-sage btn-sm" style="margin-top:0" onclick="catoAddApproved()">Add Approved</button>
+          ` : ''}
+          <button class="btn btn-sm" style="margin-top:0" onclick="catoGenerateAgenda()" ${state.anthropicKey && state.catoEnabled !== false ? '' : 'disabled'}>
+            Generate Agenda
+          </button>
+        </div>
+      </div>
+      <div id="cato-agenda-list">
+        ${(state.catoAgendaItems||[]).length === 0
+          ? '<p style="font-size:.82rem;color:var(--muted);font-style:italic">No agenda items yet. Click Generate Agenda to get Cato\'s recommendations.</p>'
+          : (state.catoAgendaItems||[]).map((item, i) =>
+              '<div class="agenda-item">' +
+              '<input type="checkbox" ' + (item.approved?'checked':'') + ' onchange="toggleAgendaItem(' + i + ',this.checked)">' +
+              '<div class="agenda-item-body">' +
+              '<div class="agenda-item-type">' + item.type + '</div>' +
+              '<div class="agenda-item-title">' + item.title + '</div>' +
+              '<div class="agenda-item-date">' + (item.date||'') + '</div>' +
+              '</div></div>'
+            ).join('')
+        }
+      </div>
+      <div id="cato-agenda-status" style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:10px;min-height:14px"></div>
     </div>`;
 }
 
@@ -2115,84 +2503,195 @@ function deleteDeadline(i) {
 
 // ===================== WORD COUNT PANE =====================
 function renderWordCount(mp) {
-  const pct=state.wcGoal>0?Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1):0;
-  const remaining=Math.max(0,state.wcGoal-state.wcCurrent), wpd=wordsPerDay();
-  const wordsToday = wordsForDay(todayKey());
   const isEl = typeof window.electronDocx !== 'undefined';
-  const watchStatus = isEl && state.docxPath ? `<span style="font-family:'Consolas','DM Mono',monospace;font-size:.7rem;color:var(--green-done)">● Watching: ${state.docxPath.split(/[\/]/).pop()}</span>` : '';
-  mp.innerHTML=`
-    <div class="section-title">Word Count Tracker</div>
-    ${isEl ? `<div class="card" style="margin-bottom:16px">
-      <h3>Word Document Sync</h3>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">
-        Connect your .docx file. The word count updates automatically every time you save in Word.
-      </p>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
-        <button class="btn" onclick="pickDocxFile()">Choose .docx File</button>
-        ${state.docxPath ? `<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="clearDocxFile()">Disconnect</button>` : ''}
-      </div>
-      ${watchStatus}
-      ${state.docxPath ? `<div style="font-family:'Consolas','DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:6px;word-break:break-all">${state.docxPath}</div>` : ''}
-    </div>` : ''}
+
+  // ── Main project card ──────────────────────────────────────────────────────
+  const pct = state.wcGoal>0 ? Math.min(100,(state.wcCurrent/state.wcGoal*100)).toFixed(1) : 0;
+  const remaining = Math.max(0, state.wcGoal-state.wcCurrent);
+  const wpd = wordsPerDay();
+  const wordsToday = wordsForDay(todayKey());
+  const _docxFilename = state.docxPath ? state.docxPath.replace(/\\/g,'/').split('/').pop() : '';
+  const watchStatus = isEl && state.docxPath
+    ? "<span style=\"font-size:.7rem;color:var(--green-done)\">&#9679; Watching: " + _docxFilename + "</span>" : "";
+
+  const mainCard = `
     <div class="card" style="margin-bottom:16px">
-      <h3>Project Word Count</h3>
-      <label>Total Word Count Goal</label><input type="number" id="wc-goal" placeholder="e.g. 80000" value="${state.wcGoal||''}">
-      <label>Current Word Count</label><input type="number" id="wc-current" placeholder="e.g. 12450" value="${state.wcCurrent||''}">
-      <button class="btn" onclick="saveWordCount()">Update</button>
-      ${wordsToday>0?`<div style="margin-top:10px;display:flex;align-items:center;gap:8px">
-        <span class="today-pages-badge">+${wordsToday.toLocaleString()} words today</span>
-        <button class="btn btn-ghost btn-sm" onclick="openEditWordsTodayModal()">Edit</button>
-      </div>`:''}
-    </div>
-    ${state.wcGoal>0?`<div class="card">
-      <h3>Progress</h3>
-      <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
-      <div class="wc-stats"><span>${Number(state.wcCurrent).toLocaleString()} / ${Number(state.wcGoal).toLocaleString()} words</span><span>${pct}%</span></div>
-      <div style="margin-top:14px;font-size:.82rem;color:var(--muted);line-height:1.7">
-        <div>Words remaining: <strong>${Number(remaining).toLocaleString()}</strong></div>
-        ${state.finalDeadline
-          ?`<div>Days until deadline: <strong>${Math.max(0,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000))}</strong></div><div>Words/day needed: <strong>${wpd.toFixed(0)}</strong></div>`
-          :'<div style="opacity:.6">Set a final deadline to see daily targets.</div>'}
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        <h3 style="margin:0">Main Project</h3>
+        ${wordsToday>0 ? `<span class="today-pages-badge">+${wordsToday.toLocaleString()} words today</span>` : ''}
       </div>
-    </div>`:''}`;
-}
-
-function openEditWordsTodayModal() {
-  const snaps = state.wcSnapshots || {};
-  const todaySnap = snaps[todayKey()] ?? state.wcCurrent;
-  const prevKey = fmtKey(addDays(TODAY,-1));
-  const prevSnap = snaps[prevKey] ?? 0;
-  const current = Math.max(0, todaySnap - prevSnap);
-  document.getElementById('modal-content').innerHTML = `
-    <h3>Edit Today's Words Written</h3>
-    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">Adjust how many words you wrote today.</p>
-    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:block;margin-bottom:4px">Words Written Today</label>
-    <input type="number" id="edit-words-today" min="0" value="${current}" style="width:100%">
-    <div class="actions">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn" onclick="saveEditWordsToday()">Save</button>
+      ${isEl ? `<div style="margin-bottom:12px">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+          <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="pickDocxFile()">
+            ${state.docxPath ? 'Change .docx File' : 'Link .docx File'}
+          </button>
+          ${state.docxPath ? `<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="clearDocxFile()">Unlink</button>` : ''}
+        </div>
+        ${watchStatus}
+        ${state.docxPath ? `<div style="font-family:'Consolas','DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:4px;word-break:break-all">${state.docxPath}</div>` : ''}
+      </div>` : ''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="flex:1;min-width:120px">
+          <label style="margin-top:0">Word Count Goal</label>
+          <input type="number" id="wc-goal" placeholder="e.g. 80000" value="${state.wcGoal||''}">
+        </div>
+        <div style="flex:1;min-width:120px">
+          <label style="margin-top:0">Current Word Count</label>
+          <input type="number" id="wc-current" placeholder="e.g. 12450" value="${state.wcCurrent||''}">
+        </div>
+      </div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="saveWordCount()">Update</button>
+      ${state.wcGoal>0 ? `<div style="margin-top:14px">
+        <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${pct}%"></div></div>
+        <div class="wc-stats"><span>${Number(state.wcCurrent).toLocaleString()} / ${Number(state.wcGoal).toLocaleString()} words</span><span>${pct}%</span></div>
+        <div style="margin-top:10px;font-size:.82rem;color:var(--muted);line-height:1.7">
+          <div>Remaining: <strong>${Number(remaining).toLocaleString()}</strong></div>
+          ${state.finalDeadline
+            ? `<div>Days left: <strong>${Math.max(0,Math.ceil((new Date(state.finalDeadline)-TODAY)/86400000))}</strong></div><div>Words/day: <strong>${wpd.toFixed(0)}</strong></div>`
+            : '<div style="opacity:.6">Set a final deadline to see daily targets.</div>'}
+        </div>
+      </div>` : ''}
     </div>`;
-  document.getElementById('modal').style.display = 'flex';
-  setTimeout(() => { const el=document.getElementById('edit-words-today'); if(el){el.focus();el.select();} }, 50);
+
+  // ── Additional writing projects ────────────────────────────────────────────
+  const projects = state.writingProjects || [];
+  const projectCards = projects.map((p, i) => {
+    const ppct = p.wcGoal>0 ? Math.min(100,(p.wcCurrent/p.wcGoal*100)).toFixed(1) : 0;
+    const pWordsToday = (state.days[todayKey()]?.writing||[])
+      .filter(e=>e.projectId===p.id).reduce((t,e)=>t+(e.wordsWritten||0),0);
+    const pFilename = p.docxPath ? p.docxPath.replace(/\\/g,'/').split('/').pop() : '';
+    const pWatchStatus = isEl && p.docxPath
+      ? '<span style="font-size:.7rem;color:var(--green-done)">&#9679; Watching: ' + pFilename + '</span>' : '';
+    return `<div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        <h3 style="margin:0">${p.title}</h3>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          ${pWordsToday>0 ? `<span class="today-pages-badge">+${pWordsToday.toLocaleString()} today</span>` : ''}
+          <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="deleteWritingProject(${i})">Remove</button>
+        </div>
+      </div>
+      ${isEl ? `<div style="margin-bottom:12px">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
+          <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="pickDocxFileForProject(${i})">
+            ${p.docxPath ? 'Change .docx File' : 'Link .docx File'}
+          </button>
+          ${p.docxPath ? `<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="clearDocxFileForProject(${i})">Unlink</button>` : ''}
+        </div>
+        ${pWatchStatus}
+        ${p.docxPath ? `<div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:4px;word-break:break-all">${p.docxPath}</div>` : ''}
+      </div>` : ''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <div style="flex:1;min-width:120px">
+          <label style="margin-top:0">Word Count Goal</label>
+          <input type="number" id="wp-goal-${i}" placeholder="e.g. 20000" value="${p.wcGoal||''}">
+        </div>
+        <div style="flex:1;min-width:120px">
+          <label style="margin-top:0">Current Word Count</label>
+          <input type="number" id="wp-current-${i}" placeholder="e.g. 5000" value="${p.wcCurrent||''}">
+        </div>
+      </div>
+      <button class="btn btn-sm" style="margin-top:8px" onclick="saveWritingProject(${i})">Update</button>
+      ${p.wcGoal>0 ? `<div style="margin-top:12px">
+        <div class="wc-bar-bg"><div class="wc-bar-fill" style="width:${ppct}%"></div></div>
+        <div class="wc-stats"><span>${Number(p.wcCurrent||0).toLocaleString()} / ${Number(p.wcGoal).toLocaleString()}</span><span>${ppct}%</span></div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+
+  // ── Add new writing project ────────────────────────────────────────────────
+  const addCard = `
+    <div class="card" style="margin-bottom:16px">
+      <h3>Add Writing Project</h3>
+      <label>Title</label>
+      <input type="text" id="wp-new-title" placeholder="e.g. Journal Article">
+      <label>Word Count Goal (optional)</label>
+      <input type="number" id="wp-new-goal" placeholder="e.g. 8000">
+      <button class="btn" onclick="addWritingProject()">Add Project</button>
+    </div>`;
+
+  mp.innerHTML = `<div class="section-title">Writing</div>
+    ${mainCard}${projectCards}${addCard}`;
 }
 
-function saveEditWordsToday() {
-  const words = parseInt(document.getElementById('edit-words-today')?.value) || 0;
-  if (!state.wcSnapshots) state.wcSnapshots = {};
-  const todaySnap = state.wcSnapshots[todayKey()] ?? state.wcCurrent;
-  const prevKey = fmtKey(addDays(TODAY,-1));
-  state.wcSnapshots[prevKey] = Math.max(0, todaySnap - words);
-  saveState();
-  closeModal();
-  renderMain();
-}
 function saveWordCount() {
-  state.wcGoal=parseFloat(document.getElementById('wc-goal').value)||0;
-  state.wcCurrent=parseFloat(document.getElementById('wc-current').value)||0;
-  if (!state.wcSnapshots) state.wcSnapshots = {};
-  state.wcSnapshots[todayKey()] = state.wcCurrent;
+  state.wcGoal    = parseFloat(document.getElementById('wc-goal')?.value) || 0;
+  state.wcCurrent = parseFloat(document.getElementById('wc-current')?.value) || 0;
   saveState(); renderMain();
 }
+
+function saveWritingProject(i) {
+  if (!state.writingProjects?.[i]) return;
+  state.writingProjects[i].wcGoal    = parseFloat(document.getElementById('wp-goal-'+i)?.value) || 0;
+  state.writingProjects[i].wcCurrent = parseFloat(document.getElementById('wp-current-'+i)?.value) || 0;
+  saveState(); renderMain();
+}
+
+function addWritingProject() {
+  const title = document.getElementById('wp-new-title')?.value.trim();
+  if (!title) { alert('Please enter a title.'); return; }
+  if (!state.writingProjects) state.writingProjects = [];
+  state.writingProjects.push({
+    id: Date.now().toString(36),
+    title,
+    wcGoal:    parseFloat(document.getElementById('wp-new-goal')?.value) || 0,
+    wcCurrent: 0,
+    docxPath:  '',
+  });
+  saveState(); renderMain();
+}
+
+async function pickDocxFileForProject(i) {
+  if (typeof window.electronDialog === 'undefined') return;
+  const filePath = await window.electronDialog.pickFile({
+    title:      'Select Word document for ' + (state.writingProjects[i]?.title||'project'),
+    filters:    [{ name: 'Word Documents', extensions: ['docx'] }],
+    properties: ['openFile'],
+  });
+  if (!filePath || !state.writingProjects[i]) return;
+  state.writingProjects[i].docxPath = filePath;
+  saveState();
+  // Get initial word count
+  const result = await window.electronDocx.watchStart(filePath);
+  if (result.ok && result.count > 0) {
+    state.writingProjects[i].wcCurrent = result.count;
+    saveState();
+  }
+  // Start watching for changes
+  window.electronDocx.offWordCount();
+  window.electronDocx.onWordCount((count) => {
+    // Update the right project based on current docxPath match
+    const proj = state.writingProjects.find(p => p.docxPath === filePath);
+    if (proj) {
+      proj.wcCurrent = count;
+      saveState();
+      if (currentPane === 'wordcount') renderMain();
+      renderSide();
+      const el = document.getElementById('today-display');
+      if (el) { const orig = el.textContent; el.textContent = '📄 Word count updated'; setTimeout(()=>el.textContent=orig,2500); }
+    }
+  });
+  renderMain(); renderSide();
+}
+
+function clearDocxFileForProject(i) {
+  if (!state.writingProjects[i]) return;
+  // Stop watcher if this was the active one
+  if (state.writingProjects[i].docxPath === state.docxPath) {
+    if (typeof window.electronDocx !== 'undefined') window.electronDocx.watchStop();
+  }
+  state.writingProjects[i].docxPath = '';
+  saveState();
+  renderMain();
+}
+
+function deleteWritingProject(i) {
+  if (!confirm('Remove this writing project?')) return;
+  state.writingProjects.splice(i, 1);
+  saveState(); renderMain();
+}
+
+
+
 
 async function pickDocxFile() {
   if (typeof window.electronDialog === 'undefined') return;
@@ -2208,8 +2707,6 @@ async function pickDocxFile() {
   const result = await window.electronDocx.watchStart(filePath);
   if (result.ok) {
     state.wcCurrent = result.count;
-    if (!state.wcSnapshots) state.wcSnapshots = {};
-    state.wcSnapshots[todayKey()] = result.count;
     saveState();
   }
   renderMain();
@@ -2231,8 +2728,6 @@ async function initDocxWatcher() {
   window.electronDocx.offWordCount();
   window.electronDocx.onWordCount((count) => {
     state.wcCurrent = count;
-    if (!state.wcSnapshots) state.wcSnapshots = {};
-    state.wcSnapshots[todayKey()] = count;
     saveState();
     // Refresh word count pane and sidebar if visible
     if (currentPane === 'wordcount') renderMain();
@@ -2343,12 +2838,19 @@ function renderAlexa(mp) {
       <button class="btn btn-sage" style="margin-left:8px" onclick="gmailAuthorize()">${connected?'Re-connect Gmail':'Connect Gmail'}</button>
     </div>
 
-    <div class="card">
+`;
+}
+
+// ── Integrations tab ────────────────────────────────────────────────────────
+function renderConfigIntegrations() {
+  const connected = !!state.alexaRefreshToken;
+  return `
+    <div class="card" style="margin-bottom:18px">
       <h3>Google Calendar Sync</h3>
       <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
-        When enabled, new items are automatically added to your primary Google Calendar. Updates and deletions in the planner are reflected in Google Calendar. Gmail must be connected to use this feature.
+        When enabled, new items are automatically added to your primary Google Calendar. Updates and deletions in the planner are reflected in Google Calendar. Requires Gmail to be connected in Identity &amp; Email.
       </p>
-      ${!connected ? `<div style="font-size:.82rem;color:var(--muted);font-style:italic">Connect Gmail above to enable calendar sync.</div>` : `
+      ${!connected ? `<div style="font-size:.82rem;color:var(--muted);font-style:italic">Connect Gmail in Identity &amp; Email to enable calendar sync.</div>` : `
       <div class="toggle-row">
         <div>
           <div class="toggle-label">Sync Goals</div>
@@ -2379,6 +2881,40 @@ function renderAlexa(mp) {
           <span class="toggle-slider"></span>
         </label>
       </div>`}
+    </div>
+
+    <div class="card">
+      <h3>Notion Sync</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:10px">
+        One-way sync to Notion. Your planner is the source of truth. Requires a Notion integration token and database ID.
+      </p>
+      <label>Notion Integration Token</label>
+      <div style="display:flex;gap:8px">
+        <input type="password" id="notion-api-key" placeholder="${state._hasEncryptedNotionKey ? '(encrypted — enter to replace)' : 'secret_…'}" value="" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveNotionCreds()">Save &amp; Encrypt</button>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:4px;min-height:14px">
+        ${state._hasEncryptedNotionKey ? '🔒 Notion API key stored encrypted.' : ''}
+      </div>
+      <label>Database ID</label>
+      <input type="text" id="notion-db-id" placeholder="32-character database ID" value="${state.notionDbId||''}">
+      <div class="toggle-row" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div>
+          <div class="toggle-label">Auto-sync on close</div>
+          <div class="toggle-sublabel">Syncs to Notion automatically when you close the app</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${state.notionSyncOnClose?'checked':''} onchange="state.notionSyncOnClose=this.checked;saveState()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      ${state.notionLastSync ? `<div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:8px">Last synced: ${new Date(state.notionLastSync).toLocaleString()}</div>` : ''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn btn-sage" onclick="handleNotionSync()">Sync Now</button>
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="handleNotionDownload()">Download Export JSON</button>
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="handleNotionCopy()">Copy to Clipboard</button>
+      </div>
+      <div id="notion-sync-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:10px;min-height:18px"></div>
     </div>`;
 }
 
@@ -2465,10 +3001,10 @@ function renderSide() {
 
   sp.innerHTML=`
     ${state.lastPlan ? `<div style="background:var(--blue);color:#fff;border-radius:8px;padding:10px 14px">
-      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:5px">Today's Plan</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:5px">Today&#39;s Plan</div>
       <div style="font-family:'Lato',sans-serif;font-size:.85rem;line-height:1.5">${state.lastPlan}</div>
     </div>` : `<div style="background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:10px 14px">
-      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Today's Plan</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Today&#39;s Plan</div>
       <div style="font-size:.78rem;color:var(--muted);font-style:italic">No plan set — log a session to add one.</div>
     </div>`}
     ${(()=>{
@@ -2609,10 +3145,7 @@ function resetEverything() {
 // ===================== BOOKS =====================
 function renderBooks(mp) {
   const books = state.books || [];
-  const todayPagesSnap = (state.pagesSnapshots||{})[todayKey()];
-  const yesterdayPagesSnap = (state.pagesSnapshots||{})[fmtKey(addDays(TODAY,-1))];
-  const pagesReadToday = (todayPagesSnap !== undefined && yesterdayPagesSnap !== undefined)
-    ? Math.max(0, todayPagesSnap - yesterdayPagesSnap) : null;
+  const pagesReadToday = pagesForDay(todayKey());
 
   const bookCards = books.length === 0
     ? `<div style="text-align:center;padding:30px 0;color:var(--muted);font-size:.85rem">No books added yet. Add one below.</div>`
@@ -2641,16 +3174,11 @@ function renderBooks(mp) {
   mp.innerHTML = `
     <div class="section-title">Books</div>
 
-    <div class="card" style="margin-bottom:18px">
+    ${pagesReadToday > 0 ? `<div class="card" style="margin-bottom:18px">
       <h3>Today's Reading</h3>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">
-        Update any book's current page to log today's reading. The total across all books is snapshotted when you save a session or update a page.
-      </p>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <span class="today-pages-badge">${pagesReadToday !== null ? pagesReadToday + ' pages read today' : 'No snapshot yet — update a book to start tracking'}</span>
-        ${pagesReadToday !== null ? `<button class="btn btn-ghost btn-sm" onclick="openEditPagesTodayModal()">Edit</button>` : ''}
-      </div>
-    </div>
+      <span class="today-pages-badge">${pagesReadToday} pages read today</span>
+      <p style="font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.5">Logged in your session. To update, edit today's session log.</p>
+    </div>` : ''}
 
     <div class="card" style="margin-bottom:18px">
       <h3>Add a Book</h3>
@@ -2679,7 +3207,6 @@ function addBook() {
   if (!title) { alert('Please enter a title.'); return; }
   if (!state.books) state.books = [];
   state.books.push({ id: Date.now().toString(36), title, currentPage: cur, totalPages: tot });
-  snapshotPagesToday();
   saveState();
   renderMain();
 }
@@ -2688,7 +3215,6 @@ function saveBookPage(i) {
   const val = parseInt(document.getElementById('book-page-'+i)?.value) || 0;
   if (!state.books[i]) return;
   state.books[i].currentPage = val;
-  snapshotPagesToday();
   saveState();
   renderMain();
   if (currentPane === 'calendar') renderCalendar(document.getElementById('main-pane'));
@@ -2697,47 +3223,34 @@ function saveBookPage(i) {
 function deleteBook(i) {
   if (!confirm('Remove this book?')) return;
   state.books.splice(i, 1);
-  snapshotPagesToday();
   saveState();
   renderMain();
 }
 
-function snapshotPagesToday() {
-  if (!state.pagesSnapshots) state.pagesSnapshots = {};
-  state.pagesSnapshots[todayKey()] = totalPagesNow();
-}
 
-function openEditPagesTodayModal() {
-  const snaps = state.pagesSnapshots || {};
-  const todaySnap = snaps[todayKey()] ?? totalPagesNow();
-  const prevKey = fmtKey(addDays(TODAY,-1));
-  const prevSnap = snaps[prevKey] ?? 0;
-  const current = Math.max(0, todaySnap - prevSnap);
-  document.getElementById('modal-content').innerHTML = `
-    <h3>Edit Today's Pages Read</h3>
-    <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">
-      Adjust how many pages you read today. This modifies yesterday's snapshot to make the difference match.
-    </p>
-    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);display:block;margin-bottom:4px">Pages Read Today</label>
-    <input type="number" id="edit-pages-today" min="0" value="${current}" style="width:100%">
-    <div class="actions">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn" onclick="saveEditPagesToday()">Save</button>
-    </div>`;
-  document.getElementById('modal').style.display = 'flex';
-  setTimeout(() => { const el = document.getElementById('edit-pages-today'); if(el){el.focus();el.select();} }, 50);
-}
 
-function saveEditPagesToday() {
-  const pages = parseInt(document.getElementById('edit-pages-today')?.value) || 0;
-  if (!state.pagesSnapshots) state.pagesSnapshots = {};
-  const todaySnap = state.pagesSnapshots[todayKey()] ?? totalPagesNow();
-  // Adjust yesterday's snapshot so that todaySnap - prevSnap = pages
-  const prevKey = fmtKey(addDays(TODAY,-1));
-  state.pagesSnapshots[prevKey] = Math.max(0, todaySnap - pages);
-  saveState();
-  closeModal();
-  renderMain();
+// ===================== THEMES =====================
+const THEMES = [
+  { id:'airy',        name:'Airy',             desc:'Clean and minimal',             preview:{ bg:'#f7f8fc', header:'#1e2028', nav:'#ffffff', card:'#ffffff', border:'#e5e8f0', accent:'#4a6cf7' } },
+  { id:'dark',        name:'Dark Academic',    desc:'Deep and scholarly',            preview:{ bg:'#1a1610', header:'#0e0c08', nav:'#1a1610', card:'#232018', border:'#332e24', accent:'#c8a84a' } },
+  { id:'parchment',   name:'Parchment',        desc:'Warm and archival',             preview:{ bg:'#fdf8f0', header:'#2c1e0f', nav:'#fdf8f0', card:'#fff8e8', border:'#d4b896', accent:'#8b5e3c' } },
+  { id:'forest',      name:'Forest',           desc:'Natural and calm',              preview:{ bg:'#f0f7f2', header:'#1a2e1e', nav:'#ffffff', card:'#ffffff', border:'#c8dece', accent:'#2d6a4f' } },
+  { id:'slate',       name:'Slate',            desc:'Cool and focused',              preview:{ bg:'#0f1420', header:'#090b10', nav:'#0f1420', card:'#151b2a', border:'#232b3e', accent:'#7c9ef5' } },
+  { id:'solarized',   name:'Solarized',        desc:'Easy on the eyes',             preview:{ bg:'#fdf6e3', header:'#073642', nav:'#eee8d5', card:'#fff8e8', border:'#93a1a1', accent:'#268bd2' } },
+  { id:'lavender',    name:'Lavender Fields',  desc:'Soft and dreamy',              preview:{ bg:'#f5f0ff', header:'#2d2540', nav:'#ffffff', card:'#ffffff', border:'#ddd0f5', accent:'#7c5cbf' } },
+  { id:'terminal',    name:'Terminal',         desc:'Pure hacker energy',            preview:{ bg:'#000000', header:'#000000', nav:'#000000', card:'#0a0a0a', border:'#004400', accent:'#00ff41' } },
+  { id:'neonnoir',    name:'Neon Noir',        desc:'Dark city nights',              preview:{ bg:'#0d0d1a', header:'#0d0d1a', nav:'#0d0d1a', card:'#12122a', border:'#2a1040', accent:'#ff2d78' } },
+  { id:'vaporwave',   name:'Vaporwave',        desc:'Retro future vibes',            preview:{ bg:'#0d001a', header:'#0d001a', nav:'#160030', card:'#1a0035', border:'#3a1050', accent:'#ff71ce' } },
+  { id:'crayola',     name:'Crayola',          desc:'Bold and cheerful',             preview:{ bg:'#fffde7', header:'#cc0000', nav:'#ffffff', card:'#ffffff', border:'#ddccbb', accent:'#0066cc' } },
+  { id:'chalkboard',  name:'Chalkboard',       desc:'Classroom nostalgia',           preview:{ bg:'#1e2a1e', header:'#1a2a1a', nav:'#2e4030', card:'#2e4030', border:'#3a5a3a', accent:'#f5e642' } },
+  { id:'geneva',      name:'Geneva',           desc:'Reformed scholastic warmth',    preview:{ bg:'#fdf8f0', header:'#1a0e05', nav:'#fdf8f0', card:'#fff8e8', border:'#c8aa88', accent:'#8b1a1a' } },
+  { id:'westminster', name:'Westminster Abbey',desc:'Solemn and majestic',           preview:{ bg:'#0e0c08', header:'#0a0806', nav:'#0e0c08', card:'#141208', border:'#2a2418', accent:'#c8a84a' } },
+];
+
+function applyTheme(id) {
+  const t = THEMES.find(x=>x.id===id) || THEMES[0];
+  state.currentTheme = t.id;
+  document.documentElement.setAttribute('data-theme', t.id);
 }
 
 // ===================== GOOGLE CALENDAR SYNC =====================
@@ -2872,7 +3385,7 @@ function renderMeetings(mp) {
       }).join('');
 
   mp.innerHTML = `
-    <div class="section-title">Supervisor Meeting Log</div>
+    <div class="section-title">Meetings</div>
     <div class="card" style="margin-bottom:18px">
       <h3>Log a Meeting</h3>
       <label>Date</label>
@@ -3041,6 +3554,131 @@ function saveEditMeeting(idx) {
   }
 }
 
+// ── Update header subtitle with active project name ─────────────────────────
+function updateHeaderProject() {
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const sub = document.querySelector('.subtitle');
+  if (sub && proj) sub.textContent = proj.name;
+}
+
+// ── Switch to a project by ID ─────────────────────────────────────────────────
+function switchProject(id) {
+  setActiveProjectId(id);
+  state._activeProjectId = id;
+  Object.assign(state, {
+    lastAccomplished:'', lastPlan:'', lastHours:'',
+    currentTheme:'airy', meetings:[], days:{}, deadlines:[],
+    finalDeadline:'', wcGoal:0, wcCurrent:0,
+    alexaEnabled:false, alexaRecipient:'', alexaLastSent:'', alexaLastStatus:'',
+    calView:'week', calDate:new Date(TODAY),
+  });
+  loadState();
+  applyTheme(state.currentTheme || 'airy');
+  updateHeaderProject();
+  showPane('overview');
+  renderSide();
+  initDocxWatcher();
+}
+
+// ── Create a new blank project ────────────────────────────────────────────────
+function createProject(name) {
+  const id = generateProjectId();
+  const list = getProjectList();
+  list.push({ id, name, created: new Date().toISOString() });
+  saveProjectList(list);
+  switchProject(id);
+  return id;
+}
+
+// ── Delete a project ──────────────────────────────────────────────────────────
+function deleteProject(id) {
+  const list = getProjectList().filter(p => p.id !== id);
+  saveProjectList(list);
+  Object.keys(_storeCache).filter(k => k.startsWith('diss_proj_' + id + '_')).forEach(k => {
+    delete _storeCache[k];
+    if (isElectron) window.electronStorage.removeItem(k);
+    else localStorage.removeItem(k);
+  });
+  if (state._activeProjectId === id) {
+    if (list.length > 0) { switchProject(list[0].id); }
+    else { const newId = createProject('My Project'); switchProject(newId); }
+  }
+}
+
+// ── Rename a project ──────────────────────────────────────────────────────────
+function renameProject(id, newName) {
+  const list = getProjectList().map(p => p.id === id ? { ...p, name: newName } : p);
+  saveProjectList(list);
+  if (id === state._activeProjectId) updateHeaderProject();
+}
+
+function confirmDeleteProject(id, name) {
+  if (!confirm('Delete project "' + name + '"? All its data will be permanently deleted.')) return;
+  deleteProject(id);
+  if (currentPane === 'config') renderMain();
+  renderSide();
+}
+
+function openRenameModal(id, name) {
+  const safeName = name.replace(/"/g, '&quot;');
+  document.getElementById('modal-content').innerHTML =
+    '<h3>Rename Project</h3>' +
+    '<input type="text" id="rename-proj-input" value="' + safeName + '" style="width:100%">' +
+    '<div class="actions">' +
+    '<button class="btn btn-ghost" onclick="closeModal()">Cancel</button>' +
+    '<button class="btn" onclick="saveRename(\'' + id + '\')">Rename</button>' +
+    '</div>';
+  document.getElementById('modal').style.display = 'flex';
+  setTimeout(() => { const el = document.getElementById('rename-proj-input'); if(el){el.focus();el.select();} }, 50);
+}
+
+function saveRename(id) {
+  const name = document.getElementById('rename-proj-input')?.value.trim();
+  if (!name) { alert('Please enter a name.'); return; }
+  renameProject(id, name);
+  closeModal();
+  if (currentPane === 'config') renderMain();
+}
+
+function createProjectFromInput() {
+  const name = document.getElementById('new-proj-name')?.value.trim();
+  if (!name) { alert('Please enter a project name.'); return; }
+  createProject(name);
+  if (currentPane === 'config') renderMain();
+  renderSide();
+}
+
+// ── Migration from old flat keys ──────────────────────────────────────────────
+function migrateIfNeeded() {
+  const hasOldData = (isElectron ? _storeCache['diss_days'] : localStorage.getItem('diss_days')) !== null &&
+                     (isElectron ? _storeCache['diss_days'] : localStorage.getItem('diss_days')) !== undefined ||
+                     (isElectron ? _storeCache['diss_lastAccomplished'] : localStorage.getItem('diss_lastAccomplished')) !== null &&
+                     (isElectron ? _storeCache['diss_lastAccomplished'] : localStorage.getItem('diss_lastAccomplished')) !== undefined;
+  const existingProjects = getProjectList();
+  if (!hasOldData || existingProjects.length > 0) return false;
+  const id = generateProjectId();
+  const oldFields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
+                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaLastSent',
+                     'alexaLastStatus','currentTheme','meetings'];
+  for (const k of oldFields) {
+    const v = isElectron ? _storeCache['diss_'+k] : localStorage.getItem('diss_'+k);
+    if (v !== null && v !== undefined) store(projKey(id, k), JSON.parse(v));
+  }
+  const globalMigrate = ['alexaClientId','alexaSenderEmail'];
+  for (const k of globalMigrate) {
+    const v = isElectron ? _storeCache['diss_'+k] : localStorage.getItem('diss_'+k);
+    if (v !== null && v !== undefined) store(globalKey(k), JSON.parse(v));
+  }
+  saveProjectList([{ id, name: 'Ball Dissertation', created: new Date().toISOString() }]);
+  setActiveProjectId(id);
+  Object.keys(_storeCache).filter(k => k.startsWith('diss_') && !k.startsWith('diss_proj_') && !k.startsWith('diss_global_')).forEach(k => {
+    delete _storeCache[k];
+    if (isElectron) window.electronStorage.removeItem(k);
+    else localStorage.removeItem(k);
+  });
+  return true;
+}
+
 // ===================== PROJECTS =====================
 function renderProjects(mp) {
   const list = getProjectList();
@@ -3099,41 +3737,13 @@ function renderProjects(mp) {
     <div id="project-list">${projectCards}</div>`;
 }
 
-function createProjectFromInput() {
-  const name = document.getElementById('new-proj-name')?.value.trim();
-  if (!name) { alert('Please enter a project name.'); return; }
-  createProject(name);
-  renderMain();
-  renderSide();
-}
 
-function openRenameModal(id, currentName) {
-  document.getElementById('modal-content').innerHTML = `
-    <h3>Rename Project</h3>
-    <label style="font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;margin-top:0">Project Name</label>
-    <input type="text" id="rename-proj-input" value="${currentName}" style="width:100%">
-    <div class="actions">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn" onclick="saveRename('${id}')">Save</button>
-    </div>`;
-  document.getElementById('modal').style.display = 'flex';
-  setTimeout(() => { const i = document.getElementById('rename-proj-input'); if(i){i.focus();i.select();} }, 50);
-}
 
-function saveRename(id) {
-  const name = document.getElementById('rename-proj-input')?.value.trim();
-  if (!name) { alert('Please enter a name.'); return; }
-  renameProject(id, name);
-  closeModal();
-  if (currentPane === 'config') renderMain();
-}
 
-function confirmDeleteProject(id, name) {
-  if (!confirm('Delete project "' + name + '"? All its data will be permanently deleted.')) return;
-  deleteProject(id);
-  if (currentPane === 'config') renderMain();
-  renderSide();
-}
+
+
+
+
 
 // ===================== BACKUP =====================
 function renderBackup(mp) {
@@ -3149,6 +3759,42 @@ function renderBackup(mp) {
       <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">Your data is stored at:</p>
       <div id="data-path-display" style="font-family:'DM Mono',monospace;font-size:.72rem;background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--ink);word-break:break-all">Loading...</div>
     </div>` : ''}
+    <div class="card" style="margin-bottom:18px">
+      <h3>Notion Sync</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:10px">
+        One-way sync to Notion. Your planner is the source of truth. Requires a Notion integration token and database ID.
+      </p>
+      <label>Notion Integration Token</label>
+      <div style="display:flex;gap:8px">
+        <input type="password" id="notion-api-key" placeholder="${state._hasEncryptedNotionKey ? '(encrypted — enter to replace)' : 'secret_…'}" value="" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveNotionCreds()">Save &amp; Encrypt</button>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:4px;min-height:14px">
+        ${state._hasEncryptedNotionKey ? '🔒 Notion API key is stored encrypted.' : ''}
+      </div>
+      <label>Database ID</label>
+      <div style="display:flex;gap:8px">
+        <input type="text" id="notion-db-id" placeholder="32-character database ID" value="${state.notionDbId||''}" style="flex:1">
+      </div>
+      <div class="toggle-row" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div>
+          <div class="toggle-label">Auto-sync on close</div>
+          <div class="toggle-sublabel">Syncs to Notion automatically when you close the app</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${state.notionSyncOnClose?'checked':''} onchange="state.notionSyncOnClose=this.checked;saveState()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      ${state.notionLastSync ? `<div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:8px">Last synced: ${new Date(state.notionLastSync).toLocaleString()}</div>` : ''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn btn-sage" onclick="handleNotionSync()">Sync Now</button>
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="handleNotionDownload()">Download Export JSON</button>
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="handleNotionCopy()">Copy to Clipboard</button>
+      </div>
+      <div id="notion-sync-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:10px;min-height:18px"></div>
+    </div>
+
     <div class="card" style="margin-bottom:18px">
       <h3>Export Backup</h3>
       <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px">
@@ -3316,95 +3962,87 @@ function importBackup(event) {
 
 // ===================== HELP =====================
 function renderHelp(mp) {
+  function paneEntry(name, text, last) {
+    return '<div style="padding:16px 0;' + (last?'':'border-bottom:1px solid var(--border)') + '">' +
+      '<div style="font-family:\'DM Mono\',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">' + name + '</div>' +
+      '<p style="font-size:.83rem;line-height:1.65;color:var(--ink)">' + text + '</p>' +
+      '</div>';
+  }
+
   mp.innerHTML = `
-    <div class="section-title">Help & Overview</div>
+    <div class="section-title">Help</div>
 
     <div class="card" style="margin-bottom:18px">
-      <h3>About This App</h3>
+      <h3>About</h3>
       <p style="font-size:.85rem;line-height:1.7;color:var(--ink)">
-        <strong>JJ's Project Planner</strong> is a personal research and writing management tool built to help you stay organized across all the moving parts of a long-form project. Everything is saved locally in your browser — nothing is sent to any server except the optional Email Connector check-in. Use the <strong>Import / Export</strong> pane to back up your data regularly.
+        <strong>JJ&#39;s Project Planner</strong> is a personal research and writing management tool built for long-form academic work. All data is saved locally on your device — nothing is sent to any server except the optional Gmail check-in email. Back up your data regularly using <strong>Configuration → Data</strong>.
       </p>
     </div>
 
     <div class="card" style="margin-bottom:18px">
-      <h3>Pane Guide</h3>
-
+      <h3>Panes</h3>
       <div style="display:flex;flex-direction:column;gap:0">
+        ${paneEntry('Overview', 'Your dashboard. Shows a summary of your last session — hours worked, pages read per book, words written per project, and any reflections — alongside Cato&#39;s latest review as an annotation. Below that: upcoming deadlines and meetings on a timeline, this week&#39;s and last week&#39;s stats, and mini calendars for this week and next.')}
+        ${paneEntry('Logbook', 'Your primary session log. Each time you sit down to work, record your hours, reading (select a book and enter pages read that session), writing (select a project and enter words written), any reflections, and your plan for next time. This is the source of all tracking data — calendar views, progress reports, Cato&#39;s context, and word count totals all come from here.')}
+        ${paneEntry('Calendar', 'View your work history across three scales. <strong>Week view</strong> shows each day&#39;s hours, pages, words, goals, and deadlines — click any day to edit it. <strong>Month view</strong> gives a colour-coded overview with deadline indicators. <strong>Year view</strong> shows mini monthly calendars; click any month to navigate to it. Daily word-count targets appear at the bottom when a final deadline and word count goal are set.')}
+        ${paneEntry('Planning', 'Manage deadlines and goals. Set your <strong>Final Project Deadline</strong> at the top — it drives daily word-count targets across the whole app. Add other deadlines with a date and description; mark them complete as you go. Goals are calendar-attached tasks you can tick off from the sidebar or the day modal. <strong>Cato&#39;s Agenda</strong> at the bottom lets you generate AI-suggested priorities and add approved items directly to your planner.')}
+        ${paneEntry('Writing', 'Track word counts across all your writing projects. The <strong>Main Project</strong> card is always first and can be linked to a .docx file in Electron for live word count sync — the total updates automatically every time you save in Word. Add additional writing projects below, each with their own goal, running total, and optional .docx link. Words logged in the Logbook are automatically added to each project&#39;s running total.')}
+        ${paneEntry('Books', 'Track books in your reading list. Add each book with a title, current page, and total pages — a progress bar shows your position. Update the current page here to keep progress current. Pages read per session are tracked in the Logbook; this pane tracks where you currently are in each book.')}
+        ${paneEntry('Meetings', 'A log of supervisor or advisor meetings. Record the date, attendee, and notes. Add action items to each meeting and check them off as you complete them — the card header shows a count of pending actions at a glance. Meetings are sorted newest-first.')}
+        ${paneEntry('Progress Report', 'Generate a formatted report for any date range. Choose what to include — hours, pages read (with per-book breakdown), words written (with per-project breakdown), goals completed, deadlines met, and meetings. Preview the report in-pane, download as a PDF, or email directly to your supervisor.')}
+        ${paneEntry('Sidebar', 'Always visible on the right side of every pane except Overview and Configuration. Shows today&#39;s plan, outstanding goals, upcoming deadlines, upcoming meetings, final deadline countdown, main project word count progress, and Gmail connection status. Use the quick goal tool at the bottom to add a goal to any future date without leaving your current pane.', true)}
+      </div>
+    </div>
 
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Session Log</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Your primary daily log. Each time you sit down to work, record what you accomplished, how many hours you spent, and what you plan to tackle next session. The previous session's entries are displayed at the top as a reminder when you return. This data flows into the calendar and the Email Connector.</p>
-        </div>
+    <div class="card" style="margin-bottom:18px">
+      <h3>Cato</h3>
+      <p style="font-size:.83rem;line-height:1.65;color:var(--ink);margin-bottom:12px">
+        Cato is your AI research supervisor, powered by Claude (Anthropic). It has full access to your project history — all sessions, goals, deadlines, reading, writing, books, and meetings.
+      </p>
+      <div style="font-size:.83rem;line-height:1.65;color:var(--ink)">
+        <div style="margin-bottom:8px"><strong>Cato&#39;s Review</strong> — a short assessment of your progress, shown as an annotation on the Overview beneath your last session. Click Refresh any time. Cato remembers its last three reviews and uses them for continuity across calls.</div>
+        <div style="margin-bottom:8px"><strong>Cato&#39;s Agenda</strong> — AI-suggested priorities in the Planning pane. Generate a list, approve what you want, and add items directly to your planner.</div>
+        <div><strong>Setup</strong> — add your Anthropic API key in <strong>Configuration → Cato</strong>. You can edit the system prompt, view token usage, and disable Cato entirely with the kill switch.</div>
+      </div>
+    </div>
 
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Calendar</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">View your work history and planning across three scales. The <strong>Week view</strong> shows accomplishments, hours worked, goals, and deadlines day by day — click any day to edit it. The <strong>Month view</strong> shows hours worked per day with deadline indicators; click any day to jump to its week. The <strong>Year view</strong> shows mini monthly calendars with work and deadline highlights; click any month to jump to it. Word-count targets for the visible period are shown at the bottom when a final deadline and word count goal are set.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Deadlines &amp; Goals</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track all your project deadlines and calendar goals in one place. Set your <strong>Final Project Deadline</strong> separately — it's used throughout the app for word-count calculations and is highlighted specially in the calendar. Add other deadlines with a description and date, then mark them complete or incomplete as you go. Incomplete deadlines appear red; completed ones appear green.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Word Count</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Enter your total word count goal and your current word count to track writing progress. The app snapshots your word count each time you save, computing how many words you wrote each day and surfacing that across all calendar views. Once you've set a Final Project Deadline, it also calculates how many words per day you need to write to finish on time.</p>
-        </div>
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Books</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Track books you're reading alongside your project. Add each book with a title, current page, and total page count — a progress bar shows how far through each you are. The app tracks total pages read per day by snapshotting your progress whenever you update a book. Daily, weekly, monthly, and yearly page totals appear throughout the calendar views. You can manually correct today's page count if needed.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Email &amp; Identity (Configuration)</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Sends an automated check-in email to any recipient you choose using your own Gmail account. The email summarizes what you accomplished last session and what you plan to do next. Set a recipient address and your Gmail credentials once — a step-by-step guide is included in the pane. Toggle <strong>Auto-send on close</strong> to have the email fire automatically whenever you close the app, or send manually using the <strong>Send Now</strong> button. Credentials are stored encrypted with a password you set.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Meetings</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">A log of supervisor or advisor meetings. Record the date, who attended, and discussion notes. Add individual action items to each meeting and check them off as you complete them — the collapsed card header shows a running count of completed vs. total actions so you can see at a glance what still needs doing. Meetings are sorted newest-first.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Themes</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Choose from fourteen visual themes ranging from clean and minimal to historically inspired. Your selection is saved automatically and restored each time you open the app. Themes change colors, fonts, and the overall mood of the interface.</p>
-        </div>
-
-        <div style="padding:16px 0;border-bottom:1px solid var(--border)">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Import / Export</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Back up and restore all your data. <strong>Export</strong> downloads a timestamped JSON file containing everything — sessions, calendar entries, deadlines, meetings, word count, and settings. <strong>Import</strong> restores from one of these files, replacing all current data. Export regularly, especially before switching browsers or devices.</p>
-        </div>
-
-        <div style="padding:16px 0">
-          <div style="font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px">Sidebar</div>
-          <p style="font-size:.83rem;line-height:1.65;color:var(--ink)">Always visible on the right. Shows your next five upcoming deadlines, the final deadline countdown, word count progress, a quick goal-adding tool for any future calendar date, and the Email Connector status.</p>
-        </div>
-
+    <div class="card" style="margin-bottom:18px">
+      <h3>Configuration</h3>
+      <div style="font-size:.83rem;line-height:1.65;color:var(--ink)">
+        <div style="margin-bottom:8px"><strong>Identity &amp; Email</strong> — your name (used in progress reports), check-in email setup: recipient address, Gmail OAuth credentials (one-time setup), the compose window, and auto-send on close toggle.</div>
+        <div style="margin-bottom:8px"><strong>Integrations</strong> — Google Calendar sync for goals, deadlines, and meetings; Notion sync with auto-sync on close. Both require Gmail to be connected.</div>
+        <div style="margin-bottom:8px"><strong>Cato</strong> — Anthropic API key (encrypted), kill switch, system prompt editor, token usage log.</div>
+        <div style="margin-bottom:8px"><strong>Themes</strong> — 14 visual themes from clean and minimal to historically inspired. Saved per-project.</div>
+        <div style="margin-bottom:8px"><strong>Projects</strong> — create, switch, rename, or delete projects. Each project has completely independent data, theme, and settings.</div>
+        <div><strong>Data</strong> — export a full JSON backup, import from backup, import project items from an AI-generated file, and reset the current project.</div>
       </div>
     </div>
 
     <div class="card">
       <h3>Tips</h3>
       <div style="font-size:.83rem;line-height:1.8;color:var(--ink)">
-        <div style="margin-bottom:6px">📌 <strong>Always click Save Session</strong> before closing — this logs your hours to the calendar and prepares the next session readout.</div>
-        <div style="margin-bottom:6px">📌 <strong>Set your Final Deadline first</strong> — it unlocks word-per-day calculations across the whole app.</div>
-        <div style="margin-bottom:6px">📌 <strong>Use the Quick Add Goal</strong> in the sidebar to plan future days without navigating the calendar.</div>
-        <div style="margin-bottom:6px">📌 <strong>Export a backup</strong> after each significant session. localStorage can be cleared by browser settings.</div>
-        <div>📌 <strong>Click any day</strong> in the calendar to view or edit its entry, goals, and deadlines in one place.</div>
+        <div style="margin-bottom:6px">📌 <strong>Log every session in the Logbook</strong> — this is the source of all tracking. Hours, pages, and words only exist in the app if they&#39;re logged here.</div>
+        <div style="margin-bottom:6px">📌 <strong>Set your Final Deadline first</strong> — it unlocks daily word-count targets across the calendar, sidebar, and Writing pane.</div>
+        <div style="margin-bottom:6px">📌 <strong>Click any day in the Calendar</strong> to view or edit its goals and see your session data in context.</div>
+        <div style="margin-bottom:6px">📌 <strong>Use the sidebar&#39;s quick goal tool</strong> to add a goal to any future date without leaving your current pane.</div>
+        <div style="margin-bottom:6px">📌 <strong>Link your .docx file</strong> in the Writing pane (Electron only) for automatic live word count sync — no manual updates needed.</div>
+        <div style="margin-bottom:6px">📌 <strong>Export a backup regularly</strong> from Configuration → Data, especially before updating or switching devices.</div>
+        <div>📌 <strong>Refresh Cato&#39;s Review</strong> after a few sessions — it reads your full history and gives more useful feedback the more data it has.</div>
       </div>
     </div>`;
 }
-
 // ===================== CONFIGURATION PANE =====================
-let configTab = 'gmail'; // gmail | themes | projects | backup
+let configTab = 'gmail'; // gmail | integrations | cato | themes | projects | data
 
 function renderConfig(mp) {
   // Config renders into a full-width div — no card wrapper from renderMain
   const tabs = [
-    { id: 'gmail',    label: 'Email & Identity' },
-    { id: 'themes',   label: 'Themes'           },
-    { id: 'projects', label: 'Projects'          },
-    { id: 'backup',   label: 'Import / Export'  },
+    { id: 'gmail',        label: 'Identity & Email' },
+    { id: 'integrations', label: 'Integrations'     },
+    { id: 'cato',         label: 'Cato'             },
+    { id: 'themes',       label: 'Themes'           },
+    { id: 'projects',     label: 'Projects'         },
+    { id: 'data',         label: 'Data'             },
   ];
   const tabBar = `<div class="config-tab-bar-title">Settings</div>` +
     tabs.map(t =>
@@ -3412,10 +4050,12 @@ function renderConfig(mp) {
     ).join('');
 
   let body = '';
-  if (configTab === 'gmail') body = renderConfigGmail();
-  else if (configTab === 'themes') body = renderConfigThemes();
+  if (configTab === 'gmail')        body = renderConfigGmail();
+  else if (configTab === 'integrations') body = renderConfigIntegrations();
+  else if (configTab === 'cato')    body = renderConfigCato();
+  else if (configTab === 'themes')  body = renderConfigThemes();
   else if (configTab === 'projects') body = renderConfigProjects();
-  else if (configTab === 'backup') body = renderConfigBackup();
+  else if (configTab === 'data')    body = renderConfigData();
 
   mp.innerHTML = `<div class="config-wrap">
     <div class="config-tab-bar">${tabBar}</div>
@@ -3425,7 +4065,7 @@ function renderConfig(mp) {
     </div>
   </div>`;
   // Show data file path if in Electron and on backup tab
-  if (configTab === 'backup' && typeof window.electronStorage !== 'undefined') {
+  if (configTab === 'data' && typeof window.electronStorage !== 'undefined') {
     window.electronStorage.getDataPath().then(p => {
       const el = document.getElementById('data-path-display');
       if (el) el.textContent = p;
@@ -3447,9 +4087,7 @@ function renderConfigGmail() {
   return `
     <div class="card" style="margin-bottom:18px">
       <h3>Identity</h3>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">
-        Your name is used in progress reports.
-      </p>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">Your name is used in progress reports.</p>
       <label>Your Name</label>
       <div style="display:flex;gap:8px">
         <input type="text" id="cfg-user-name" placeholder="e.g. J. Smith" value="${state.userName||''}" style="flex:1">
@@ -3458,27 +4096,36 @@ function renderConfigGmail() {
     </div>
 
     <div class="card" style="margin-bottom:18px">
-      <h3>Email Recipients</h3>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
-        Configure the addresses emails are sent to. These are stored separately.
-      </p>
-      <label>Check-In Email Recipient</label>
-      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Receives the automatic session check-in email when you close the app.</p>
-      <div style="display:flex;gap:8px;margin-bottom:14px">
-        <input type="text" id="cfg-checkin-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
-        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveCheckinRecipient()">Save</button>
+      <h3>Check-in Email</h3>
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <label style="margin-top:0">Recipient</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="cfg-checkin-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
+            <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveCheckinRecipient()">Save</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0">
+          <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Auto-send on close</div>
+          <label class="toggle" style="margin:0">
+            <input type="checkbox" ${state.alexaEnabled?'checked':''} onchange="toggleAlexaEnabled(this.checked)">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
       </div>
-      <label>Progress Report Recipient</label>
-      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Receives progress report emails sent from the Progress Report pane.</p>
-      <div style="display:flex;gap:8px">
-        <input type="text" id="cfg-report-recipient" placeholder="supervisor@university.edu" value="${state.reportRecipient||''}" style="flex:1">
-        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveReportRecipient()">Save</button>
+      <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">SUBJECT: Project Check-In</p>
+      <textarea id="email-body-edit" style="min-height:100px;font-family:'Inter',sans-serif;font-size:.85rem;line-height:1.6">${previewBody}</textarea>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="resetEmailBody()">Reset to Default</button>
+        <button class="btn btn-sage btn-sm" style="margin-top:0" onclick="sendAlexaEmail(true)" ${connected?'':'disabled title="Connect Gmail first"'}>Send Now</button>
+        ${state.alexaLastSent ? `<span class="send-log" style="font-size:.68rem">Last sent: ${state.alexaLastSent} · ${state.alexaLastStatus==='success'?'✓ Delivered':'✗ '+state.alexaLastStatus}</span>` : ''}
       </div>
+      <div id="send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:8px;display:none;line-height:1.5"></div>
     </div>
 
     <div class="card" style="margin-bottom:18px">
       <h3>Gmail Connection</h3>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
         <span class="status-pill ${connected?'connected':locked?'neutral':'disconnected'}">
           ${connected ? '● Gmail Connected' : locked ? '🔒 Credentials Locked' : '● Gmail Not Connected'}
         </span>
@@ -3486,33 +4133,9 @@ function renderConfigGmail() {
         ${locked ? `<button class="btn btn-sm btn-sage" onclick="showPasswordModal('enter', async (pw) => { await loadEncryptedCreds(pw); renderMain(); renderSide(); })">Unlock</button>` : ''}
         ${connected ? `<button class="btn btn-ghost btn-sm" onclick="forgetSavedPassword();alert('Saved password cleared.')">Forget Password</button>` : ''}
       </div>
-      <div class="toggle-row" style="border-top:1px solid var(--border);padding-top:14px">
-        <div>
-          <div class="toggle-label">Auto-send check-in on close</div>
-          <div class="toggle-sublabel">Sends the check-in email automatically when you close the app</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" ${state.alexaEnabled?'checked':''} onchange="toggleAlexaEnabled(this.checked)">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      ${state.alexaLastSent ? `<div class="send-log">Last sent: ${state.alexaLastSent}<br>Status: ${state.alexaLastStatus==='success'?'✓ Delivered':'✗ '+state.alexaLastStatus}</div>` : ''}
-    </div>
-
-    <div class="card" style="margin-bottom:18px">
-      <h3>Compose Check-In Email</h3>
-      <p style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">TO: ${state.alexaRecipient||'<em>no recipient set</em>'} &nbsp;·&nbsp; SUBJECT: Project Check-In</p>
-      <textarea id="email-body-edit" style="min-height:100px;font-family:'Inter',sans-serif;font-size:.85rem;line-height:1.6">${previewBody}</textarea>
-      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="resetEmailBody()">Reset to Default</button>
-      <button class="btn btn-sage" style="margin-left:8px" onclick="sendAlexaEmail(true)" ${connected?'':'disabled title="Connect Gmail first"'}>Send Now</button>
-      <div id="send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;margin-top:10px;display:none;line-height:1.5"></div>
-    </div>
-
-    <div class="card">
-      <h3>Gmail Setup</h3>
       <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:8px">
-        This app sends email through your own Gmail account via the Gmail API.
-        You'll need a free Google Cloud project. Follow the steps below once — your credentials are saved locally.
+        Send email through your own Gmail account via the Gmail API.
+        You'll need a free Google Cloud project — follow the steps below once.
       </p>
       <div class="step-block"><div class="step-num">Step 1</div>
         <p>Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>, create a project, then go to <strong>APIs &amp; Services → Enable APIs</strong> and enable the <strong>Gmail API</strong>.</p>
@@ -3526,11 +4149,6 @@ function renderConfigGmail() {
       <div class="step-block"><div class="step-num">Step 4</div>
         <p>Enter your credentials below and click <strong>Connect Gmail</strong>. A Google sign-in page will open — authorize it, then paste the code back here.</p>
       </div>
-      <label>Recipient Email Address</label>
-      <div style="display:flex;gap:8px;align-items:flex-start">
-        <input type="text" id="alexa-recipient" placeholder="recipient@example.com" value="${state.alexaRecipient||''}" style="flex:1">
-        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveRecipient()">Save</button>
-      </div>
       <label>Your Gmail Address (sender)</label>
       <input type="text" id="alexa-sender-email" placeholder="you@gmail.com" value="${state.alexaSenderEmail||''}">
       <label>Client ID</label>
@@ -3538,90 +4156,20 @@ function renderConfigGmail() {
       <label>Client Secret</label>
       <input type="password" id="alexa-client-secret" placeholder="${state._hasEncryptedSecret ? '(encrypted — enter to replace)' : 'GOCSPX-…'}" value="">
       <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:5px;min-height:14px">
-        ${state._hasEncryptedSecret ? '🔒 Client secret is stored encrypted.' : ''}
-        ${state._hasEncryptedToken  ? '&nbsp;🔒 Refresh token is stored encrypted.' : ''}
+        ${state._hasEncryptedSecret ? '🔒 Client secret stored encrypted.' : ''}
+        ${state._hasEncryptedToken  ? '&nbsp;🔒 Refresh token stored encrypted.' : ''}
       </div>
-      <button class="btn" onclick="saveAlexaCreds()">Save &amp; Encrypt Credentials</button>
-      <button class="btn btn-sage" style="margin-left:8px" onclick="gmailAuthorize()">${connected?'Re-connect Gmail':'Connect Gmail'}</button>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button class="btn" onclick="saveAlexaCreds()">Save &amp; Encrypt Credentials</button>
+        <button class="btn btn-sage" onclick="gmailAuthorize()">${connected?'Re-connect Gmail':'Connect Gmail'}</button>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Google Calendar Sync</h3>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
-        When enabled, new items are automatically added to your primary Google Calendar. Updates and deletions in the planner are reflected in Google Calendar. Gmail must be connected to use this feature.
-      </p>
-      ${!connected ? `<div style="font-size:.82rem;color:var(--muted);font-style:italic">Connect Gmail above to enable calendar sync.</div>` : `
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Sync Goals</div>
-          <div class="toggle-sublabel">Goals added to the planner appear in Google Calendar</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" ${state.gcalSyncGoals?'checked':''} onchange="toggleGcalSync('gcalSyncGoals',this.checked)">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Sync Deadlines</div>
-          <div class="toggle-sublabel">Deadlines appear in Google Calendar; completing or deleting them is reflected</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" ${state.gcalSyncDeadlines?'checked':''} onchange="toggleGcalSync('gcalSyncDeadlines',this.checked)">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Sync Meetings</div>
-          <div class="toggle-sublabel">Meetings appear in Google Calendar; edits and deletions are reflected</div>
-        </div>
-        <label class="toggle">
-          <input type="checkbox" ${state.gcalSyncMeetings?'checked':''} onchange="toggleGcalSync('gcalSyncMeetings',this.checked)">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>`}
-    </div>`;
+`;
 }
 
-async function toggleGcalSync(field, val) {
-  state[field] = val;
-  saveState();
+// ── Integrations tab ────────────────────────────────────────────────────────
 
-  // If turning ON, backfill existing future items that have no gcalEventId yet
-  if (!val) return;
-  const today = todayKey();
-
-  if (field === 'gcalSyncDeadlines') {
-    for (const dl of (state.deadlines||[])) {
-      if (dl.gcalEventId || dl.complete || dl.date < today) continue;
-      const id = await gcalCreateEvent(dl.desc, dl.date, 'Deadline');
-      if (id) { dl.gcalEventId = id; }
-    }
-    saveState();
-  }
-
-  if (field === 'gcalSyncGoals') {
-    for (const [dateKey, dayEntry] of Object.entries(state.days||{})) {
-      if (dateKey < today) continue;
-      for (const g of (dayEntry.goals||[])) {
-        if (typeof g !== 'object' || g.gcalEventId || g.done) continue;
-        const id = await gcalCreateEvent(g.text, dateKey, 'Goal');
-        if (id) { g.gcalEventId = id; }
-      }
-    }
-    saveState();
-  }
-
-  if (field === 'gcalSyncMeetings') {
-    for (const m of (state.meetings||[])) {
-      if (m.gcalEventId || m.date < today) continue;
-      const id = await gcalCreateEvent(m.supervisor || 'Meeting', m.date, m.notes || '');
-      if (id) { m.gcalEventId = id; }
-    }
-    saveState();
-  }
-}
 
 function saveUserName() {
   state.userName = document.getElementById('cfg-user-name')?.value.trim() || '';
@@ -3637,15 +4185,90 @@ function saveCheckinRecipient() {
   const orig = btn.textContent; btn.textContent = '✓';
   setTimeout(() => btn.textContent = orig, 1500);
 }
-function saveReportRecipient() {
-  state.reportRecipient = document.getElementById('cfg-report-recipient')?.value.trim() || '';
-  saveState();
-  const btn = event.target;
-  const orig = btn.textContent; btn.textContent = '✓';
-  setTimeout(() => btn.textContent = orig, 1500);
+
+
+// ── Cato tab ────────────────────────────────────────────────────────────────
+function renderConfigCato() {
+  const enabled   = state.catoEnabled !== false;
+  const usageLog  = state.catoUsageLog || [];
+  const totalIn   = usageLog.reduce((t,e)=>t+(e.inputTokens||0),0);
+  const totalOut  = usageLog.reduce((t,e)=>t+(e.outputTokens||0),0);
+  const totalCost = ((totalIn*3/1e6)+(totalOut*15/1e6)).toFixed(4);
+  const monitorText = state.catoLastCallStatus === 'calling'
+    ? 'Calling API...'
+    : state.catoLastCallTime
+      ? (state.catoLastCallStatus === 'error' ? 'Error: ' : 'Last call: ')
+        + (state.catoLastCallFeature||'') + '  ' + new Date(state.catoLastCallTime).toLocaleTimeString()
+      : 'No API calls this session';
+
+  const usageHtml = usageLog.length === 0
+    ? '<div style="font-size:.78rem;color:var(--muted)">No API calls recorded yet.</div>'
+    : usageLog.slice(0,20).map(e =>
+        '<div class="usage-log-row">' +
+        '<span>' + new Date(e.ts).toLocaleString() + '</span>' +
+        '<span>' + e.feature + '</span>' +
+        '<span>in:' + (e.inputTokens||0) + ' out:' + (e.outputTokens||0) + ' = ' + ((e.inputTokens||0)+(e.outputTokens||0)) + '</span>' +
+        '</div>'
+      ).join('');
+
+  return `
+    <div class="card" style="margin-bottom:14px">
+      <h3>AI Monitor</h3>
+      <div class="ai-monitor" style="margin-bottom:0">
+        <div class="ai-monitor-status ${state.catoLastCallStatus==='calling'?'active':state.catoLastCallStatus==='error'?'error':''}">${monitorText}</div>
+        <span style="font-family:'Consolas','DM Mono',monospace;font-size:.65rem;color:var(--muted)">${enabled?'AI Active':'<span style="color:var(--red-dead)">AI Disabled</span>'}</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>Kill Switch</h3>
+      <div class="toggle-row">
+        <div>
+          <div class="toggle-label">${enabled?'Cato is Active':'Cato is Disabled'}</div>
+          <div class="toggle-sublabel">When disabled, no API calls will be made under any circumstances</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${enabled?'checked':''} onchange="toggleCatoKillSwitch(this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>Anthropic API Key</h3>
+      <p style="font-size:.78rem;color:var(--muted);margin-bottom:8px;line-height:1.5">Used for Cato's Review and Agenda. Get yours at console.anthropic.com.</p>
+      <div style="display:flex;gap:8px">
+        <input type="password" id="cato-api-key" placeholder="${state._hasEncryptedAnthropicKey?'(encrypted — enter to replace)':'sk-ant-...'}" value="" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveCatoApiKey()">Save &amp; Encrypt</button>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:4px;min-height:14px">
+        ${state._hasEncryptedAnthropicKey?'🔒 Encrypted.':''}
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>System Prompt</h3>
+      <textarea id="cato-system-prompt" style="min-height:180px;font-family:'Consolas','DM Mono',monospace;font-size:.75rem;line-height:1.6">${getCatoPrompt()}</textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn btn-sm" style="margin-top:0" onclick="saveCatoPrompt()">Save Prompt</button>
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="resetCatoPrompt()">Reset to Default</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <h3>Usage &amp; Cost</h3>
+      <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:10px">
+        Total tokens: <strong>${(totalIn+totalOut).toLocaleString()}</strong>
+        &nbsp;·&nbsp; Est. cost: <strong>$${totalCost}</strong>
+      </div>
+      <div>${usageHtml}</div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openAnthropicConsole()">Open Anthropic Console</button>
+      </div>
+    </div>`;
 }
 
-// ── Themes tab (reuse existing renderThemes logic) ───────────────────────────
+// ── Themes tab (reuse existing renderThemes logic) ───────────────────────────────
 function renderConfigThemes() {
   const cards = THEMES.map(t => {
     const p = t.preview;
@@ -3724,8 +4347,8 @@ function renderConfigProjects() {
     <div id="project-list">${projectCards}</div>`;
 }
 
-// ── Backup tab ───────────────────────────────────────────────────────────────
-function renderConfigBackup() {
+// ── Data tab ─────────────────────────────────────────────────────────────────
+function renderConfigData() {
   const hasSomeData = state.lastAccomplished || state.lastPlan ||
     Object.keys(state.days||{}).length > 0 || (state.deadlines||[]).length > 0 ||
     (state.meetings||[]).length > 0 || state.wcGoal > 0;
@@ -3735,6 +4358,43 @@ function renderConfigBackup() {
       <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:10px">Your data is stored at:</p>
       <div id="data-path-display" style="font-family:'DM Mono',monospace;font-size:.72rem;background:var(--cream);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--ink);word-break:break-all">Loading...</div>
     </div>` : ''}
+
+    <div class="card" style="margin-bottom:18px">
+      <h3>Mobile Sync</h3>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:14px">
+        Push your project data to a private GitHub Gist so you can read it on any device.
+        The iPhone PWA fetches the latest snapshot when it opens. Data flows one way — desktop to mobile.
+        Encrypted credentials (API keys, tokens) are never included in the sync payload.
+      </p>
+      <label>GitHub Gist ID</label>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Create a secret Gist at gist.github.com, then paste the ID from its URL here.</p>
+      <input type="text" id="gist-id-input" placeholder="e.g. a1b2c3d4e5f6..." value="${state.gistId||''}">
+      <label>GitHub Personal Access Token</label>
+      <p style="font-size:.75rem;color:var(--muted);margin-bottom:6px;line-height:1.4">Generate at github.com/settings/tokens with the <code style="font-family:'DM Mono',monospace">gist</code> scope. Stored encrypted.</p>
+      <div style="display:flex;gap:8px">
+        <input type="password" id="gist-token-input" placeholder="${state._hasEncryptedGistToken ? '(encrypted — enter to replace)' : 'ghp_...'}" value="" style="flex:1">
+        <button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveGistToken()">Save &amp; Encrypt</button>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:.63rem;color:var(--sage);margin-top:4px;min-height:14px">
+        ${state._hasEncryptedGistToken ? '🔒 Token stored encrypted.' : ''}
+      </div>
+      <div class="toggle-row" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">
+        <div>
+          <div class="toggle-label">Auto-push on close</div>
+          <div class="toggle-sublabel">Pushes to Gist automatically when you close the app (Electron only)</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" ${state.gistAutoSync?'checked':''} onchange="state.gistAutoSync=this.checked;store(globalKey('gistAutoSync'),this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      ${state.gistLastSync ? `<div style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);margin-top:8px">Last pushed: ${new Date(state.gistLastSync).toLocaleString()}</div>` : ''}
+      <div style="display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap">
+        <button class="btn btn-sage" onclick="syncGistNow()" ${state.gistToken && state.gistId ? '' : 'disabled'}>Push Now</button>
+        <div id="gist-sync-status" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);min-height:16px"></div>
+      </div>
+    </div>
+
     <div class="card" style="margin-bottom:18px">
       <h3>Export Backup</h3>
       <p style="font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px">
@@ -4046,12 +4706,17 @@ function renderReport(mp) {
       <div id="report-preview" class="report-preview" style="font-size:.82rem;color:var(--muted);font-style:italic">
         Set a date window and click Generate to preview your report.
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
         <button class="btn" onclick="downloadReportPdf()">Download PDF</button>
-        <button class="btn btn-sage" onclick="emailReport()" ${state.alexaRefreshToken?'':'disabled title="Connect Gmail in Configuration first"'}>
-          Email Report ${state.reportRecipient?'to '+state.reportRecipient:'(set recipient in Configuration)'}
-        </button>
-        <div id="report-send-status" style="font-family:'DM Mono',monospace;font-size:.72rem;align-self:center;color:var(--muted)"></div>
+        <div style="display:flex;gap:6px;align-items:center;flex:1;min-width:200px">
+          <input type="text" id="report-recipient-input" placeholder="supervisor@university.edu"
+            value="${state.reportRecipient||''}"
+            onchange="state.reportRecipient=this.value.trim();saveState()"
+            style="flex:1;margin:0">
+          <button class="btn btn-sage" style="margin:0;flex-shrink:0" onclick="saveReportRecipientAndSend()"
+            ${state.alexaRefreshToken?'':'disabled title="Connect Gmail in Configuration first"'}>Send</button>
+        </div>
+        <div id="report-send-status" style="width:100%;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);min-height:16px"></div>
       </div>
     </div>`;
 }
@@ -4071,23 +4736,17 @@ function buildReportText(from, to) {
     totalHrs += parseFloat(days[k]?.hours || 0) || 0;
   });
 
-  // Words
-  const snaps = state.wcSnapshots || {};
-  const snapKeys = Object.keys(snaps).sort();
-  const firstSnapBefore = snapKeys.filter(k => k <= from).pop();
-  const lastSnapIn = snapKeys.filter(k => k <= to).pop();
-  const wordsStart = firstSnapBefore ? (snaps[firstSnapBefore]||0) : 0;
-  const wordsEnd   = lastSnapIn      ? (snaps[lastSnapIn]||0)      : state.wcCurrent||0;
-  const wordsWritten = Math.max(0, wordsEnd - wordsStart);
+  // Words — sum from session writing entries in window
+  let wordsWritten = 0;
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.writing||[]).forEach(e => { wordsWritten += parseInt(e.wordsWritten)||0; });
+  });
 
-  // Pages per book
-  const pSnaps = state.pagesSnapshots || {};
-  const pSnapKeys = Object.keys(pSnaps).sort();
-  const firstPBefore = pSnapKeys.filter(k => k <= from).pop();
-  const lastPIn      = pSnapKeys.filter(k => k <= to).pop();
-  const pagesStart = firstPBefore ? (pSnaps[firstPBefore]||0) : 0;
-  const pagesEnd   = lastPIn      ? (pSnaps[lastPIn]||0)      : 0;
-  const totalPagesRead = Math.max(0, pagesEnd - pagesStart);
+  // Pages — sum from session reading entries in window
+  let totalPagesRead = 0;
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.reading||[]).forEach(e => { totalPagesRead += parseInt(e.pagesRead)||0; });
+  });
 
   // Goals completed in window
   const completedGoals = [];
@@ -4122,17 +4781,43 @@ function buildReportText(from, to) {
     lines.push('');
   }
   if (reportIncludes.words) {
+    // Per-project breakdown
+    const writingByProject = {};
+    Object.keys(days).filter(inWindow).forEach(k => {
+      (days[k]?.writing||[]).forEach(e => {
+        const key = e.projectTitle || e.projectId || 'Unknown';
+        writingByProject[key] = (writingByProject[key]||0) + (parseInt(e.wordsWritten)||0);
+      });
+    });
     lines.push(`WORDS WRITTEN`);
     lines.push(`Total: ${wordsWritten.toLocaleString()} words`);
+    if (Object.keys(writingByProject).length > 1) {
+      Object.entries(writingByProject).forEach(([proj, words]) => {
+        lines.push(`  • ${proj}: ${words.toLocaleString()} words`);
+      });
+    }
     lines.push('');
   }
   if (reportIncludes.pages) {
+    // Per-book breakdown
+    const readingByBook = {};
+    Object.keys(days).filter(inWindow).forEach(k => {
+      (days[k]?.reading||[]).forEach(e => {
+        const key = e.bookTitle || e.bookId || 'Unknown';
+        readingByBook[key] = (readingByBook[key]||0) + (parseInt(e.pagesRead)||0);
+      });
+    });
     lines.push(`PAGES READ`);
     lines.push(`Total: ${totalPagesRead} pages`);
+    if (Object.keys(readingByBook).length > 0) {
+      Object.entries(readingByBook).forEach(([book, pages]) => {
+        lines.push(`  • ${book}: ${pages} pages`);
+      });
+    }
     lines.push('');
   }
   if (reportIncludes.books && (state.books||[]).length > 0) {
-    lines.push(`BOOKS IN PROGRESS`);
+    lines.push(`BOOKS — CURRENT POSITION`);
     (state.books||[]).forEach(b => {
       const cur = parseInt(b.currentPage)||0;
       const tot = parseInt(b.totalPages)||0;
@@ -4226,16 +4911,14 @@ function buildReportHtml(from, to) {
   const inWindow = k => k >= from && k <= to;
   let totalHrs = 0;
   Object.keys(days).filter(inWindow).forEach(k => { totalHrs += parseFloat(days[k]?.hours||0)||0; });
-  const snaps = state.wcSnapshots||{};
-  const snapKeys = Object.keys(snaps).sort();
-  const wordsStart = (snaps[snapKeys.filter(k=>k<=from).pop()]||0);
-  const wordsEnd   = (snaps[snapKeys.filter(k=>k<=to).pop()]||state.wcCurrent||0);
-  const wordsWritten = Math.max(0, wordsEnd - wordsStart);
-  const pSnaps = state.pagesSnapshots||{};
-  const pKeys = Object.keys(pSnaps).sort();
-  const pagesStart = pSnaps[pKeys.filter(k=>k<=from).pop()]||0;
-  const pagesEnd   = pSnaps[pKeys.filter(k=>k<=to).pop()]||0;
-  const totalPages = Math.max(0, pagesEnd - pagesStart);
+  let wordsWritten = 0;
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.writing||[]).forEach(e => { wordsWritten += parseInt(e.wordsWritten)||0; });
+  });
+  let totalPages = 0;
+  Object.keys(days).filter(inWindow).forEach(k => {
+    (days[k]?.reading||[]).forEach(e => { totalPages += parseInt(e.pagesRead)||0; });
+  });
   const completedGoals = [];
   Object.keys(days).filter(inWindow).forEach(k => {
     (days[k]?.goals||[]).forEach(g => {
@@ -4247,16 +4930,46 @@ function buildReportHtml(from, to) {
 
   let html = '';
   if (reportIncludes.hours) html += `<div class="section"><div class="section-title">Hours Worked</div><div class="stat">${totalHrs.toFixed(1)} hours</div></div>`;
-  if (reportIncludes.words) html += `<div class="section"><div class="section-title">Words Written</div><div class="stat">${wordsWritten.toLocaleString()} words</div></div>`;
-  if (reportIncludes.pages) html += `<div class="section"><div class="section-title">Pages Read</div><div class="stat">${totalPages} pages</div></div>`;
+  if (reportIncludes.words) {
+    const writingByProject2 = {};
+    Object.keys(days).filter(inWindow).forEach(k => {
+      (days[k]?.writing||[]).forEach(e => {
+        const key = e.projectTitle || e.projectId || 'Unknown';
+        writingByProject2[key] = (writingByProject2[key]||0) + (parseInt(e.wordsWritten)||0);
+      });
+    });
+    html += '<div class="section"><div class="section-title">Words Written</div><div class="stat">' + wordsWritten.toLocaleString() + ' words</div>';
+    if (Object.keys(writingByProject2).length > 1) {
+      html += '<ul>';
+      Object.entries(writingByProject2).forEach(([proj,words]) => { html += '<li>' + proj + ': ' + words.toLocaleString() + ' words</li>'; });
+      html += '</ul>';
+    }
+    html += '</div>';
+  }
+  if (reportIncludes.pages) {
+    const readingByBook2 = {};
+    Object.keys(days).filter(inWindow).forEach(k => {
+      (days[k]?.reading||[]).forEach(e => {
+        const key = e.bookTitle || e.bookId || 'Unknown';
+        readingByBook2[key] = (readingByBook2[key]||0) + (parseInt(e.pagesRead)||0);
+      });
+    });
+    html += '<div class="section"><div class="section-title">Pages Read</div><div class="stat">' + totalPages + ' pages</div>';
+    if (Object.keys(readingByBook2).length > 0) {
+      html += '<ul>';
+      Object.entries(readingByBook2).forEach(([book,pages]) => { html += '<li>' + book + ': ' + pages + ' pages</li>'; });
+      html += '</ul>';
+    }
+    html += '</div>';
+  }
   if (reportIncludes.books && (state.books||[]).length > 0) {
-    html += `<div class="section"><div class="section-title">Books in Progress</div><ul>`;
+    html += '<div class="section"><div class="section-title">Books — Current Position</div><ul>';
     (state.books||[]).forEach(b => {
       const cur=parseInt(b.currentPage)||0, tot=parseInt(b.totalPages)||0;
       const pct=tot>0?Math.round(cur/tot*100):null;
-      html += `<li>${b.title}: p.${cur}${tot?' / '+tot:''}${pct!==null?' ('+pct+'%)':''}</li>`;
+      html += '<li>' + b.title + ': p.' + cur + (tot?' / '+tot:'') + (pct!==null?' ('+pct+'%)':'') + '</li>';
     });
-    html += `</ul></div>`;
+    html += '</ul></div>';
   }
   if (reportIncludes.goals && completedGoals.length > 0) {
     html += `<div class="section"><div class="section-title">Goals Completed</div><ul>`;
@@ -4282,6 +4995,15 @@ function buildReportHtml(from, to) {
     html += `</div>`;
   }
   return html || '<p style="color:#555">No data in this window.</p>';
+}
+
+async function saveReportRecipientAndSend() {
+  const input = document.getElementById('report-recipient-input');
+  if (input) {
+    state.reportRecipient = input.value.trim();
+    saveState();
+  }
+  emailReport();
 }
 
 async function emailReport() {
@@ -4312,351 +5034,925 @@ async function emailReport() {
   }
 }
 
-// ===================== THEMES =====================
-const THEMES = [
-  {
-    id: 'airy',
-    name: 'Airy',
-    desc: 'Clean white with blue accents',
-    preview: {
-      header: '#4A6CF7', nav: '#ffffff', bg: '#f4f6fb',
-      card: '#ffffff', accent: '#4A6CF7', text: '#1e2028', border: '#e2e6f0'
-    }
-  },
-  {
-    id: 'dark',
-    name: 'Dark Academic',
-    desc: 'Deep ink with gold warmth',
-    preview: {
-      header: '#141210', nav: '#1a1814', bg: '#1a1814',
-      card: '#211f1a', accent: '#c8a96e', text: '#e8e0d0', border: '#332e24'
-    }
-  },
-  {
-    id: 'parchment',
-    name: 'Parchment',
-    desc: 'Warm paper tones & serif type',
-    preview: {
-      header: '#2c1e0f', nav: '#f5ead0', bg: '#fdf6e3',
-      card: '#fdf8f0', accent: '#8b5e3c', text: '#2c1e0f', border: '#ddd0b8'
-    }
-  },
-  {
-    id: 'forest',
-    name: 'Forest',
-    desc: 'Earthy greens & rounded type',
-    preview: {
-      header: '#1a2e1e', nav: '#ffffff', bg: '#f2f7f3',
-      card: '#ffffff', accent: '#2d6a4f', text: '#1a2e1e', border: '#c8dece'
-    }
-  },
-  {
-    id: 'slate',
-    name: 'Slate',
-    desc: 'Dark tech with monospace type',
-    preview: {
-      header: '#090b10', nav: '#0f1117', bg: '#0f1117',
-      card: '#161b27', accent: '#7c9ef5', text: '#f0f4ff', border: '#232b3e'
-    }
-  },
-  ,
-  {
-    id: 'solarized',
-    name: 'Solarized',
-    desc: 'The classic warm-cream developer scheme',
-    preview: {
-      header: '#073642', nav: '#eee8d5', bg: '#fdf6e3',
-      card: '#fdf6e3', accent: '#268bd2', text: '#657b83', border: '#ddd6c1'
-    }
-  },
-  {
-    id: 'lavender',
-    name: 'Lavender Fields',
-    desc: 'Soft violet tones, rounded type',
-    preview: {
-      header: '#2d2540', nav: '#ffffff', bg: '#f7f4ff',
-      card: '#ffffff', accent: '#7c5cbf', text: '#2d2540', border: '#d8cfee'
-    }
-  },
-  {
-    id: 'terminal',
-    name: 'Terminal',
-    desc: 'Matrix green on pure black',
-    preview: {
-      header: '#000000', nav: '#000000', bg: '#000000',
-      card: '#050505', accent: '#00ff41', text: '#00ff41', border: '#004400'
-    }
-  },
-  {
-    id: 'neonnoir',
-    name: 'Neon Noir',
-    desc: 'Dark charcoal with hot pink & cyan',
-    preview: {
-      header: '#0d0d1a', nav: '#0d0d1a', bg: '#1a1a2e',
-      card: '#1e1e3a', accent: '#ff2d78', text: '#e8e0f0', border: '#2a2a4a'
-    }
-  },
-  {
-    id: 'vaporwave',
-    name: 'Vaporwave',
-    desc: 'Hot pink & cyan, retro 80s gradient',
-    preview: {
-      header: '#0d001a', nav: '#0d001a', bg: '#1a0533',
-      card: '#220844', accent: '#ff71ce', text: '#f0e6ff', border: '#3a1050'
-    }
-  },
-  {
-    id: 'crayola',
-    name: 'Crayola',
-    desc: 'Primary colors, bubbly font, pure fun',
-    preview: {
-      header: '#ee1111', nav: '#ffcc00', bg: '#fff9f0',
-      card: '#ffffff', accent: '#0066cc', text: '#1a1a1a', border: '#ddccbb'
-    }
-  },
-  {
-    id: 'chalkboard',
-    name: 'Chalkboard',
-    desc: 'Dark green board, chalk handwriting',
-    preview: {
-      header: '#1a2a1a', nav: '#1e301e', bg: '#2a3d2a',
-      card: '#2e4030', accent: '#f5e642', text: '#f0ece0', border: '#3a5a3a'
-    }
-  },
-  {
-    id: 'geneva',
-    name: 'Geneva',
-    desc: 'Aged leather, blackletter, deep crimson',
-    preview: {
-      header: '#1a0e05', nav: '#ede0c8', bg: '#f8f0e0',
-      card: '#fdf8f0', accent: '#8b1a1a', text: '#1a0e05', border: '#c8aa88'
-    }
-  },
-  {
-    id: 'westminster',
-    name: 'Westminster Abbey',
-    desc: 'Stone & gold, Gothic gravitas',
-    preview: {
-      header: '#0e0c08', nav: '#151310', bg: '#1c1a16',
-      card: '#222018', accent: '#c8a84a', text: '#f0ece4', border: '#3a3424'
-    }
-  },
-];
+// ===================== AI DASHBOARD =====================
 
-function applyTheme(id) {
-  state.currentTheme = id;
-  document.documentElement.setAttribute('data-theme', id === 'airy' ? '' : id);
+const CATO_DEFAULT_PROMPT = `You are Cato, a virtual research supervisor specializing in Reformed and Puritan theology, with deep expertise in the theology of the Westminster Assembly, covenant theology, and the history of soteriology. You have supervised numerous PhD dissertations in historical and constructive theology.
+
+You have access to the researcher's current project data: their session logs, deadlines, goals, word count progress, and meetings. Use this data to inform your responses.
+
+When giving a review, be direct and honest. You are a supervisor, not a cheerleader — but you are also not harsh. Speak in the first person. Be concise: no more than 3 sentences. If the researcher is on track, say so briefly and point to what matters most right now. If they are behind or unfocused, say so clearly and give one concrete recommendation.
+
+When generating agenda items, think like a supervisor planning the next two to four weeks of research. Suggest specific, actionable goals with realistic dates. Prefer depth over breadth.
+
+You do not speculate about things you cannot know. You do not repeat yourself. You write in a measured, scholarly register — neither casual nor pompous.`;
+
+function getCatoPrompt() {
+  return state.catoSystemPrompt || CATO_DEFAULT_PROMPT;
+}
+
+// Rough token estimator: ~4 chars per token
+function estimateTokens(str) { return Math.ceil(str.length / 4); }
+const CATO_INPUT_TOKEN_CAP = 8000;
+
+function buildCatoContext(includeHistory) {
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const today = todayKey();
+  const wpd = wordsPerDay();
+  const daysLeft = state.finalDeadline
+    ? Math.max(0, Math.ceil((parseKey(state.finalDeadline) - TODAY) / 86400000)) : null;
+
+  const sections = [];
+
+  // ── Project overview ──────────────────────────────────────────────────────
+  sections.push('PROJECT: ' + (proj?.name||'Unknown'));
+  sections.push('Today: ' + today);
+  if (state.finalDeadline) sections.push('Final deadline: ' + state.finalDeadline + ' (' + (daysLeft||0) + ' days away)');
+  if (state.wcGoal > 0) {
+    sections.push('Main project word count: ' + Number(state.wcCurrent||0).toLocaleString() + ' / ' + Number(state.wcGoal).toLocaleString() + ' words');
+    if (wpd > 0) sections.push('Words/day needed to hit deadline: ' + wpd.toFixed(0));
+  }
+
+  // ── Additional writing projects ───────────────────────────────────────────
+  if ((state.writingProjects||[]).length > 0) {
+    const wpLines = (state.writingProjects||[]).map(p => {
+      const pct = p.wcGoal > 0 ? Math.round((p.wcCurrent||0)/p.wcGoal*100) : null;
+      return '  ' + p.title + ': ' + Number(p.wcCurrent||0).toLocaleString() + (p.wcGoal?' / '+Number(p.wcGoal).toLocaleString():'') + (pct!==null?' ('+pct+'%)':'');
+    });
+    sections.push('\nADDITIONAL WRITING PROJECTS:\n' + wpLines.join('\n'));
+  }
+
+  // ── Books ─────────────────────────────────────────────────────────────────
+  if ((state.books||[]).length > 0) {
+    const bookLines = (state.books||[]).map(b => {
+      const cur = parseInt(b.currentPage)||0, tot = parseInt(b.totalPages)||0;
+      const pct = tot > 0 ? Math.round(cur/tot*100) : null;
+      return '  ' + b.title + ': p.' + cur + (tot?' / '+tot:'') + (pct!==null?' ('+pct+'%)':'');
+    });
+    sections.push('\nBOOKS IN PROGRESS:\n' + bookLines.join('\n'));
+  }
+
+  // ── All sessions (oldest first) ───────────────────────────────────────────
+  const allSessionKeys = Object.keys(state.days||{}).sort();
+  const sessionLines = [];
+  allSessionKeys.forEach(k => {
+    const d = state.days[k];
+    if (!d) return;
+    let line = k;
+    if (d.hours) line += ' (' + d.hours + 'h)';
+    if (d.accomplished) line += ': ' + d.accomplished;
+    const reading = (d.reading||[]).map(r => r.pagesRead + ' pages of ' + r.bookTitle).filter(Boolean);
+    const writing = (d.writing||[]).map(w => w.wordsWritten + ' words on ' + w.projectTitle).filter(Boolean);
+    if (reading.length) line += ' | Read: ' + reading.join(', ');
+    if (writing.length) line += ' | Wrote: ' + writing.join(', ');
+    if (line !== k) sessionLines.push('  ' + line);
+  });
+  if (sessionLines.length) sections.push('\nALL SESSIONS (oldest to newest):\n' + sessionLines.join('\n'));
+  else sections.push('\nNo sessions logged yet.');
+
+  // ── All goals ─────────────────────────────────────────────────────────────
+  const completedGoals = [], pendingGoals = [];
+  Object.keys(state.days||{}).sort().forEach(k => {
+    (state.days[k]?.goals||[]).forEach(g => {
+      const text = typeof g === 'string' ? g : g.text;
+      const done = typeof g === 'object' && g.done;
+      if (done) completedGoals.push('[done] ' + k + ': ' + text);
+      else pendingGoals.push('[pending] ' + k + ': ' + text);
+    });
+  });
+  if (completedGoals.length) sections.push('\nCOMPLETED GOALS:\n' + completedGoals.map(g=>'  '+g).join('\n'));
+  if (pendingGoals.length)   sections.push('\nPENDING GOALS:\n'   + pendingGoals.map(g=>'  '+g).join('\n'));
+
+  // ── All deadlines ─────────────────────────────────────────────────────────
+  const doneDls = (state.deadlines||[]).filter(d=>d.complete).map(d=>'  [done] '+d.date+': '+d.desc);
+  const pendDls = (state.deadlines||[]).filter(d=>!d.complete).sort((a,b)=>a.date.localeCompare(b.date)).map(d=>'  [pending] '+d.date+': '+d.desc);
+  if (doneDls.length)  sections.push('\nCOMPLETED DEADLINES:\n' + doneDls.join('\n'));
+  if (pendDls.length)  sections.push('\nUPCOMING DEADLINES:\n'  + pendDls.join('\n'));
+
+  // ── All meetings ──────────────────────────────────────────────────────────
+  const mtgLines = (state.meetings||[]).sort((a,b)=>a.date.localeCompare(b.date)).map(m => {
+    const done = (m.actions||[]).filter(a=>a.done).map(a=>a.text||a);
+    const pend = (m.actions||[]).filter(a=>!a.done).map(a=>a.text||a);
+    let line = '  ' + m.date + ' — ' + (m.supervisor||'Meeting');
+    if (m.notes) line += '\n    Notes: ' + m.notes.slice(0,200);
+    if (done.length) line += '\n    Completed actions: ' + done.join('; ');
+    if (pend.length) line += '\n    Pending actions: '   + pend.join('; ');
+    return line;
+  });
+  if (mtgLines.length) sections.push('\nALL MEETINGS:\n' + mtgLines.join('\n'));
+
+  let context = sections.filter(Boolean).join('\n');
+
+  // ── Token cap: trim oldest sessions if over limit ─────────────────────────
+  if (estimateTokens(context) > CATO_INPUT_TOKEN_CAP) {
+    // Rebuild with fewer sessions
+    const trimmedSessions = sessionLines.slice(-30); // keep most recent 30
+    // Trim to last 30 sessions if over token cap
+    const rebuiltContext = context.replace(
+      /ALL SESSIONS[^:]*:[\s\S]*?(?=\nADDITIONAL|\nBOOKS|\nCOMPLETED|\nPENDING|\nUPCOMING|\nALL MEETINGS|$)/,
+      'RECENT SESSIONS (last 30):\n' + trimmedSessions.join('\n') + '\n'
+    );
+    context = rebuiltContext;
+  }
+
+  // ── Previous reviews (history) ────────────────────────────────────────────
+  if (includeHistory) {
+    const history = (state.catoHistory||[]).slice(0,3);
+    if (history.length > 0) {
+      const histLines = history.map((h,i) =>
+        '  [' + new Date(h.ts).toLocaleDateString() + '] ' + h.response.slice(0,300)
+      );
+      context += '\n\nMY PREVIOUS REVIEWS (most recent first):\n' + histLines.join('\n---\n');
+    }
+  }
+
+  return context;
+}
+
+function logCatoUsage(feature, inputTokens, outputTokens) {
+  if (!state.catoUsageLog) state.catoUsageLog = [];
+  state.catoUsageLog.unshift({
+    ts: new Date().toISOString(),
+    feature,
+    inputTokens: inputTokens || 0,
+    outputTokens: outputTokens || 0,
+  });
+  // Keep last 50 entries
+  if (state.catoUsageLog.length > 50) state.catoUsageLog = state.catoUsageLog.slice(0, 50);
   saveState();
 }
 
-function renderThemes(mp) {
-  const cards = THEMES.map(t => {
-    const p = t.preview;
-    const isActive = state.currentTheme === t.id;
-    return `<div class="theme-card${isActive?' active':''}" onclick="applyTheme('${t.id}');renderThemes(document.getElementById('main-pane'))">
-      <div class="theme-preview" style="background:${p.bg}">
-        <div class="theme-preview-header" style="background:${p.header}"></div>
-        <div class="theme-preview-nav" style="background:${p.nav};border-bottom:1px solid ${p.border}"></div>
-        <div class="theme-preview-body">
-          <div class="theme-preview-main">
-            <div class="theme-preview-card" style="background:${p.card};border:1px solid ${p.border}"></div>
-            <div class="theme-preview-card" style="background:${p.accent};opacity:.7"></div>
-            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
-            <div class="theme-preview-card2" style="background:${p.card};border:1px solid ${p.border}"></div>
-          </div>
-          <div class="theme-preview-side" style="border-color:${p.border};background:${p.nav}"></div>
-        </div>
-      </div>
-      <div class="theme-name">
-        ${t.name} <span class="theme-check">✓</span>
-        <div style="font-size:.65rem;font-weight:400;color:var(--muted);margin-top:2px">${t.desc}</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  mp.innerHTML = `
-    <div class="section-title">Themes</div>
-    <div class="card">
-      <h3>Choose a Theme</h3>
-      <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.55">
-        Select a theme below. Your choice is saved automatically.
-      </p>
-      <div class="theme-grid">${cards}</div>
-    </div>`;
-}
-
-// ── Migration: convert old flat diss_* keys to first project ────────────────
-function migrateIfNeeded() {
-  // Check if old-style flat keys exist and no projects exist yet
-  const hasOldData = (isElectron ? _storeCache['diss_days'] : localStorage.getItem('diss_days')) !== null &&
-                     (isElectron ? _storeCache['diss_days'] : localStorage.getItem('diss_days')) !== undefined ||
-                     (isElectron ? _storeCache['diss_lastAccomplished'] : localStorage.getItem('diss_lastAccomplished')) !== null &&
-                     (isElectron ? _storeCache['diss_lastAccomplished'] : localStorage.getItem('diss_lastAccomplished')) !== undefined;
-  const existingProjects = getProjectList();
-  if (!hasOldData || existingProjects.length > 0) return false;
-
-  // Create "Ball Dissertation" project from old data
-  const id = generateProjectId();
-  const oldFields = ['lastAccomplished','lastPlan','lastHours','days','deadlines','finalDeadline',
-                     'wcGoal','wcCurrent','alexaEnabled','alexaRecipient','alexaLastSent',
-                     'alexaLastStatus','currentTheme','meetings'];
-  for (const k of oldFields) {
-    const v = isElectron ? _storeCache['diss_'+k] : localStorage.getItem('diss_'+k);
-    if (v !== null && v !== undefined) store(projKey(id, k), JSON.parse(v));
+async function callCato(userPrompt, feature) {
+  if (state.catoEnabled === false) {
+    alert('AI is disabled. Enable it using the toggle on the AI Dashboard.');
+    return null;
   }
-  // Migrate global fields
-  const globalMigrate = ['alexaClientId','alexaSenderEmail'];
-  for (const k of globalMigrate) {
-    const v = isElectron ? _storeCache['diss_'+k] : localStorage.getItem('diss_'+k);
-    if (v !== null && v !== undefined) store(globalKey(k), JSON.parse(v));
+  if (!state.anthropicKey) {
+    alert('Please add your Anthropic API key in the AI Dashboard under API Settings.');
+    return null;
   }
-  // Migrate encrypted blobs to global keys
-  const sec = localStorage.getItem('diss_enc_clientSecret');
-  const tok = localStorage.getItem('diss_enc_refreshToken');
-  if (sec) localStorage.setItem(globalKey('enc_clientSecret'), sec);
-  if (tok) localStorage.setItem(globalKey('enc_refreshToken'), tok);
-
-  // Save project list
-  saveProjectList([{ id, name: 'Ball Dissertation', created: new Date().toISOString() }]);
-  setActiveProjectId(id);
-
-  // Remove old flat keys
-  Object.keys(_storeCache).filter(k => k.startsWith('diss_') && !k.startsWith('diss_proj_') && !k.startsWith('diss_global_')).forEach(k => { delete _storeCache[k]; if(isElectron) window.electronStorage.removeItem(k); else localStorage.removeItem(k); });
-  return true;
+  state.catoLastCallStatus  = 'calling';
+  state.catoLastCallFeature = feature;
+  state.catoLastCallTime    = new Date().toISOString();
+  if (currentPane === 'ai') renderAIDashboard(document.getElementById('main-pane'));
+  const context = buildCatoContext(feature === 'Review');
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': state.anthropicKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1024,
+        system: getCatoPrompt(),
+        messages: [{ role: 'user', content: context + '\n\n---\n\n' + userPrompt }],
+      }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(()=>({}));
+      throw new Error(err.error?.message || 'API error ' + resp.status);
+    }
+    const data = await resp.json();
+    const text = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+    logCatoUsage(feature, data.usage?.input_tokens, data.usage?.output_tokens);
+    state.catoLastCallStatus = 'ok';
+    state.catoLastCallTime   = new Date().toISOString();
+    return text;
+  } catch(e) {
+    state.catoLastCallStatus = 'error';
+    state.catoLastCallTime   = new Date().toISOString();
+    throw e;
+  }
 }
 
-// ── Update header subtitle with active project name ─────────────────────────
-function updateHeaderProject() {
-  const proj = getProjectList().find(p => p.id === state._activeProjectId);
-  const sub = document.querySelector('.subtitle');
-  if (sub && proj) sub.textContent = proj.name;
+// ── Render ────────────────────────────────────────────────────────────────────
+function renderAIDashboard(mp) {
+  const review      = state.catoReview     || '';
+  const reviewDate  = state.catoReviewDate || '';
+  const agendaItems = state.catoAgendaItems || [];
+  const usageLog    = state.catoUsageLog   || [];
+  const hasKey      = !!state.anthropicKey;
+  const enabled     = state.catoEnabled !== false;
+
+  const monitorStatusClass = state.catoLastCallStatus === 'calling' ? 'active'
+    : state.catoLastCallStatus === 'error' ? 'error' : '';
+  const monitorText = state.catoLastCallStatus === 'calling'
+    ? 'Calling API...'
+    : state.catoLastCallTime
+      ? (state.catoLastCallStatus === 'error' ? 'Error: ' : 'Last call: ')
+        + state.catoLastCallFeature + '  '
+        + new Date(state.catoLastCallTime).toLocaleTimeString()
+      : 'No API calls this session';
+
+  const agendaHtml = agendaItems.length === 0
+    ? '<p style="font-size:.82rem;color:var(--muted);font-style:italic">No agenda items yet. Click Generate Agenda to get Cato\'s recommendations.</p>'
+    : agendaItems.map((item, i) =>
+        '<div class="agenda-item">' +
+        '<input type="checkbox" ' + (item.approved?'checked':'') + ' onchange="toggleAgendaItem(' + i + ',this.checked)">' +
+        '<div class="agenda-item-body">' +
+        '<div class="agenda-item-type">' + item.type + '</div>' +
+        '<div class="agenda-item-title">' + item.title + '</div>' +
+        '<div class="agenda-item-date">' + (item.date||'') + '</div>' +
+        '</div></div>'
+      ).join('');
+
+  const totalTokens = usageLog.reduce((t,e)=>t+(e.inputTokens||0)+(e.outputTokens||0),0);
+  const totalCostUsd = ((totalTokens * 3 / 1e6) * 0.3 + (usageLog.reduce((t,e)=>t+(e.outputTokens||0),0) * 15 / 1e6) * 0.7).toFixed(6);
+  const usageHtml = usageLog.length === 0
+    ? '<div style="font-size:.78rem;color:var(--muted)">No API calls recorded yet.</div>'
+    : usageLog.slice(0,20).map(e =>
+        '<div class="usage-log-row">' +
+        '<span>' + new Date(e.ts).toLocaleString() + '</span>' +
+        '<span>' + e.feature + '</span>' +
+        '<span>in:' + (e.inputTokens||0) + ' out:' + (e.outputTokens||0) + ' = ' + ((e.inputTokens||0)+(e.outputTokens||0)) + ' total</span>' +
+        '</div>'
+      ).join('');
+
+  const canAct = hasKey && enabled;
+
+  mp.innerHTML = '<div class="ai-wrap">' +
+    '<div class="ai-monitor">' +
+      '<div class="ai-monitor-status ' + monitorStatusClass + '">' + monitorText + '</div>' +
+      '<span style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.65rem;color:var(--muted)">' + (enabled ? 'AI Active' : '<span style="color:var(--red-dead)">AI Disabled</span>') + '</span>' +
+    '</div>' +
+    (!enabled ? '<div class="ai-disabled-banner">AI is disabled. Enable it under Settings &amp; Reports below.</div>' : '') +
+    '<div class="overview-hero" style="margin-bottom:24px">' +
+      '<div class="overview-hero-label">Cato\'s Review</div>' +
+      '<div class="overview-hero-text" id="cato-review-text" style="min-height:52px">' +
+        (review || '<span style="opacity:.4;font-style:italic">No review yet. Click Refresh to get Cato\'s assessment.</span>') +
+      '</div>' +
+      (reviewDate ? '<div class="cato-review-meta">Last updated ' + new Date(reviewDate).toLocaleString() + '</div>' : '') +
+      '<button class="cato-refresh-btn" id="cato-refresh-btn" onclick="catoRefreshReview()" ' + (canAct?'':'disabled') + '>Refresh Review</button>' +
+      '<div id="cato-review-status" style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.68rem;color:rgba(255,255,255,.5);margin-top:8px;min-height:14px"></div>' +
+    '</div>' +
+    '<div class="card" style="margin-bottom:20px">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">' +
+        '<h3 style="margin:0">Cato\'s Agenda</h3>' +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+          (agendaItems.length > 0 ?
+            '<button class="btn btn-sm" style="margin-top:0" onclick="catoApproveAll()">Approve All</button>' +
+            '<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="catoClearAgenda()">Clear All</button>' +
+            '<button class="btn btn-sage btn-sm" style="margin-top:0" onclick="catoAddApproved()">Add Approved to Planner</button>'
+          : '') +
+          '<button class="btn btn-sm" style="margin-top:0" onclick="catoGenerateAgenda()" ' + (canAct?'':'disabled') + '>Generate Agenda</button>' +
+        '</div>' +
+      '</div>' +
+      '<div id="cato-agenda-list">' + agendaHtml + '</div>' +
+      '<div id="cato-agenda-status" style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.68rem;color:var(--muted);margin-top:10px;min-height:14px"></div>' +
+    '</div>' +
+    '<details style="margin-bottom:20px">' +
+      '<summary style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:8px 0">Settings &amp; Reports</summary>' +
+      '<div style="padding:16px 0">' +
+
+        // ── Kill switch ────────────────────────────────────────────────────
+        '<div class="card" style="margin-bottom:14px">' +
+          '<h3>AI Kill Switch</h3>' +
+          '<div class="toggle-row">' +
+            '<div>' +
+              '<div class="toggle-label">' + (enabled?'Cato is Active':'Cato is Disabled') + '</div>' +
+              '<div class="toggle-sublabel">When disabled, no API calls will be made under any circumstances</div>' +
+            '</div>' +
+            '<label class="toggle">' +
+              '<input type="checkbox" ' + (enabled?'checked':'') + ' onchange="toggleCatoKillSwitch(this.checked)">' +
+              '<span class="toggle-slider"></span>' +
+            '</label>' +
+          '</div>' +
+        '</div>' +
+
+        // ── API Key ────────────────────────────────────────────────────────
+        '<div class="card" style="margin-bottom:14px">' +
+          '<h3>Anthropic API Key</h3>' +
+          '<p style="font-size:.78rem;color:var(--muted);margin-bottom:8px;line-height:1.5">Used for Cato\'s Review and Agenda. Get yours at console.anthropic.com.</p>' +
+          '<div style="display:flex;gap:8px">' +
+            '<input type="password" id="cato-api-key" placeholder="' + (state._hasEncryptedAnthropicKey?'(encrypted - enter to replace)':'sk-ant-...') + '" value="" style="flex:1">' +
+            '<button class="btn btn-sm" style="margin-top:0;flex-shrink:0" onclick="saveCatoApiKey()">Save &amp; Encrypt</button>' +
+          '</div>' +
+          '<div style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.63rem;color:var(--sage);margin-top:4px;min-height:14px">' +
+            (state._hasEncryptedAnthropicKey ? 'Encrypted.' : '') +
+          '</div>' +
+        '</div>' +
+
+        // ── Usage & Cost (link to console) ─────────────────────────────────
+        '<div class="card" style="margin-bottom:14px">' +
+          '<h3>Usage &amp; Cost</h3>' +
+          '<p style="font-size:.82rem;color:var(--muted);line-height:1.55;margin-bottom:12px">View your full API usage and cost breakdown in the Anthropic Console.</p>' +
+          '<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="openAnthropicConsole()">Open Anthropic Console</button>' +
+        '</div>' +
+
+        // ── In-app usage log ────────────────────────────────────────────────
+        '<div class="card" style="margin-bottom:14px">' +
+          '<h3>In-App Usage Log</h3>' +
+          '<div style="font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.65rem;color:var(--muted);margin-bottom:8px">' +
+            'Total tokens this project: <strong>' + totalTokens.toLocaleString() + '</strong>' +
+            ' &nbsp;|&nbsp; Est. cost: <strong>$' + ((usageLog.reduce((t,e)=>t+(e.inputTokens||0),0)*3/1e6)+(usageLog.reduce((t,e)=>t+(e.outputTokens||0),0)*15/1e6)).toFixed(4) + '</strong>' +
+          '</div>' +
+          '<div>' + usageHtml + '</div>' +
+        '</div>' +
+
+        // ── System Prompt ──────────────────────────────────────────────────
+        '<div class="card">' +
+          '<h3>Cato\'s System Prompt</h3>' +
+          '<textarea id="cato-system-prompt" style="min-height:180px;font-family:\'Consolas\',\'DM Mono\',monospace;font-size:.75rem;line-height:1.6">' + getCatoPrompt() + '</textarea>' +
+          '<div style="display:flex;gap:8px;margin-top:8px">' +
+            '<button class="btn btn-sm" style="margin-top:0" onclick="saveCatoPrompt()">Save Prompt</button>' +
+            '<button class="btn btn-ghost btn-sm" style="margin-top:0" onclick="resetCatoPrompt()">Reset to Default</button>' +
+          '</div>' +
+        '</div>' +
+
+      '</div>' +
+    '</details>' +
+  '</div>';
 }
 
-// ── Switch to a project by ID ────────────────────────────────────────────────
-function switchProject(id) {
-  setActiveProjectId(id);
-  state._activeProjectId = id;
-  // Reset per-project state to defaults before loading
-  Object.assign(state, {
-    lastAccomplished:'', lastPlan:'', lastHours:'',
-    currentTheme:'airy', meetings:[], days:{}, deadlines:[],
-    finalDeadline:'', wcGoal:0, wcCurrent:0,
-    alexaEnabled:false, alexaRecipient:'', alexaLastSent:'', alexaLastStatus:'',
-    calView:'week', calDate:new Date(TODAY),
+function toggleCatoKillSwitch(val) {
+  state.catoEnabled = val;
+  saveState();
+  if (currentPane === 'config') renderMain();
+  if (currentPane === 'overview') renderOverview();
+}
+
+
+// ── Cato actions ──────────────────────────────────────────────────────────────
+async function catoRefreshReview() {
+  const btn = document.getElementById('cato-refresh-btn');
+  const txt = document.getElementById('cato-review-text');
+  const status = document.getElementById('cato-review-status');
+  if (btn) btn.disabled = true;
+  if (status) status.textContent = 'Asking Cato...';
+  if (txt) txt.innerHTML = '<span style="opacity:.4;font-style:italic">Generating...</span>';
+  try {
+    const review = await callCato(
+      'Please give me a brief review (1-3 sentences) of how my research project is progressing based on the data above. Be honest, direct, and supervisory.',
+      'Review'
+    );
+    if (review) {
+      state.catoReview     = review;
+      state.catoReviewDate = new Date().toISOString();
+      // Store in history (keep last 3)
+      if (!state.catoHistory) state.catoHistory = [];
+      state.catoHistory.unshift({ ts: state.catoReviewDate, response: review });
+      if (state.catoHistory.length > 3) state.catoHistory = state.catoHistory.slice(0, 3);
+      saveState();
+      if (txt) txt.textContent = review;
+      if (status) status.textContent = '';
+      if (currentPane === 'overview') renderOverview();
+    }
+  } catch(e) {
+    if (txt) txt.innerHTML = '<span style="opacity:.5;font-style:italic">Error: ' + e.message + '</span>';
+    if (status) status.textContent = 'Error: ' + e.message;
+    if (currentPane === 'ai') renderAIDashboard(document.getElementById('main-pane'));
+  }
+  if (btn) btn.disabled = false;
+}
+
+async function catoGenerateAgenda() {
+  const status = document.getElementById('cato-agenda-status');
+  const list   = document.getElementById('cato-agenda-list');
+  if (status) status.textContent = 'Generating agenda...';
+  if (list)   list.innerHTML = '<div style="font-size:.82rem;color:var(--muted);font-style:italic;padding:10px 0">Asking Cato...</div>';
+  try {
+    const raw = await callCato(
+      'Generate a recommended agenda for the next 2-4 weeks. Return ONLY a JSON array (no markdown, no explanation) with objects like:\n[{"type":"goal","title":"...","date":"YYYY-MM-DD"},{"type":"deadline","title":"...","date":"YYYY-MM-DD"}]\nToday is ' + todayKey() + '. Include 5-10 items. Types must be "goal" or "deadline" only.',
+      'Agenda'
+    );
+    const jsonMatch = raw.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) throw new Error('Could not parse agenda from response');
+    const items = JSON.parse(jsonMatch[0]);
+    state.catoAgendaItems = items.map(item => ({ ...item, approved: false }));
+    saveState();
+    if (status) status.textContent = 'Generated ' + items.length + ' items. Check the ones you want and click "Add Approved".';
+    if (currentPane === 'deadlines') renderMain();
+  } catch(e) {
+    if (status) status.textContent = 'Error: ' + e.message;
+    if (list)   list.innerHTML = '<div style="font-size:.82rem;color:var(--muted)">Failed to generate agenda. Try again.</div>';
+    if (currentPane === 'ai') renderAIDashboard(document.getElementById('main-pane'));
+  }
+}
+
+function toggleAgendaItem(i, val) {
+  if (state.catoAgendaItems?.[i]) {
+    state.catoAgendaItems[i].approved = val;
+    saveState();
+  }
+}
+
+function catoApproveAll() {
+  (state.catoAgendaItems||[]).forEach(item => item.approved = true);
+  saveState();
+  if (currentPane === 'deadlines') renderMain();
+}
+
+function catoClearAgenda() {
+  state.catoAgendaItems = [];
+  saveState();
+  if (currentPane === 'deadlines') renderMain();
+}
+
+function catoAddApproved() {
+  const approved = (state.catoAgendaItems||[]).filter(i=>i.approved);
+  if (!approved.length) { alert('No items approved. Check the checkboxes first.'); return; }
+  let added = { goals: 0, deadlines: 0 };
+  approved.forEach(item => {
+    if (item.type === 'goal' && item.date) {
+      if (!state.days[item.date]) state.days[item.date] = { goals: [] };
+      if (!state.days[item.date].goals) state.days[item.date].goals = [];
+      const goal = { text: item.title, done: false, gcalEventId: null };
+      state.days[item.date].goals.push(goal);
+      if (state.gcalSyncGoals && item.date >= todayKey()) {
+        gcalCreateEvent(item.title, item.date, 'Goal').then(id => {
+          if (id) { goal.gcalEventId = id; saveState(); }
+        });
+      }
+      added.goals++;
+    } else if (item.type === 'deadline' && item.date) {
+      const dl = { desc: item.title, date: item.date, complete: false, gcalEventId: null };
+      state.deadlines.push(dl);
+      if (state.gcalSyncDeadlines) {
+        gcalCreateEvent(item.title, item.date, 'Deadline').then(id => { if (id) { dl.gcalEventId = id; saveState(); } });
+      }
+      added.deadlines++;
+    }
   });
+  state.catoAgendaItems = (state.catoAgendaItems||[]).filter(i=>!i.approved);
+  saveState();
+  if (currentPane === 'deadlines') renderMain();
+  renderSide();
+  const msg = [
+    added.goals     ? added.goals     + ' goal'     + (added.goals    !==1?'s':'') : '',
+    added.deadlines ? added.deadlines + ' deadline' + (added.deadlines!==1?'s':'') : '',
+  ].filter(Boolean).join(', ');
+  const status = document.getElementById('cato-agenda-status');
+  if (status) { status.style.color='var(--green-done)'; status.textContent = 'Added: ' + msg; }
+}
+
+function openAnthropicConsole() {
+  const url = 'https://platform.claude.com/workspaces/default/cost';
+  if (typeof window.electronShell !== 'undefined') {
+    window.electronShell.openExternal(url);
+  } else {
+    window.open(url, '_blank');
+  }
+}
+
+function saveCatoApiKey() {
+  const keyInput = document.getElementById('cato-api-key')?.value.trim() || '';
+  if (!keyInput) return;
+  state.anthropicKey = keyInput;
+  const hasOtherCreds = state._hasEncryptedSecret || state._hasEncryptedToken ||
+                        state._hasEncryptedNotionKey || state._hasEncryptedAnthropicKey;
+  if (hasOtherCreds) {
+    const savedPw = getSavedPassword();
+    if (savedPw) {
+      saveEncryptedCreds(savedPw).then(() => { saveState(); renderAIDashboard(document.getElementById('main-pane')); });
+    } else {
+      showPasswordModal('enter', async (pw) => {
+        await loadEncryptedCreds(pw);
+        state.anthropicKey = keyInput;
+        await saveEncryptedCreds(pw);
+        saveState(); renderAIDashboard(document.getElementById('main-pane'));
+      });
+    }
+  } else {
+    showPasswordModal('set', async (pw) => {
+      await saveEncryptedCreds(pw);
+      saveState(); renderAIDashboard(document.getElementById('main-pane'));
+    });
+  }
+}
+
+function saveCatoPrompt() {
+  state.catoSystemPrompt = document.getElementById('cato-system-prompt')?.value || '';
+  saveState();
+  const btn = event.target;
+  const orig = btn.textContent; btn.textContent = 'Saved';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+function resetCatoPrompt() {
+  state.catoSystemPrompt = '';
+  saveState();
+  const el = document.getElementById('cato-system-prompt');
+  if (el) el.value = CATO_DEFAULT_PROMPT;
+}
+
+// ===================== NOTION SYNC =====================
+
+function buildNotionExport() {
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const projName = proj ? proj.name : 'Project';
+  const now = new Date().toISOString();
+  const items = [];
+
+  function slugify(str) {
+    return (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+  }
+
+  Object.keys(state.days || {}).sort().forEach(dateKey => {
+    (state.days[dateKey]?.goals || []).forEach((g, i) => {
+      const text = typeof g === 'string' ? g : (g.text || '');
+      const done = typeof g === 'object' && !!g.done;
+      const gcalId = typeof g === 'object' ? g.gcalEventId : null;
+      const externalId = gcalId ? 'gcal:' + gcalId : 'goal:' + dateKey + ':' + slugify(text);
+      items.push({ external_id: externalId, type: 'goal', title: text, date: dateKey, done, updated_at: now });
+    });
+  });
+
+  (state.deadlines || []).forEach(dl => {
+    const externalId = dl.gcalEventId ? 'gcal:' + dl.gcalEventId : 'deadline:' + dl.date + ':' + slugify(dl.desc);
+    items.push({ external_id: externalId, type: 'deadline', title: dl.desc, date: dl.date, done: !!dl.complete, updated_at: now });
+  });
+
+  (state.meetings || []).forEach(m => {
+    const meetingExtId = 'meeting:' + m.id;
+    items.push({ external_id: meetingExtId, type: 'meeting', title: m.supervisor || 'Meeting', date: m.date, supervisor: m.supervisor || '', notes: m.notes || '', done: false, updated_at: now });
+    (m.actions || []).forEach((a, i) => {
+      const aText = typeof a === 'string' ? a : (a.text || '');
+      const aDone = typeof a === 'object' && !!a.done;
+      items.push({ external_id: meetingExtId + ':action:' + i, type: 'meeting_action', title: aText, date: m.date, done: aDone, meeting_external_id: meetingExtId, updated_at: now });
+    });
+  });
+
+  Object.keys(state.days || {}).sort().forEach(dateKey => {
+    const d = state.days[dateKey];
+    if (!d || (!d.accomplished && !d.hours)) return;
+    items.push({ external_id: 'session:' + dateKey, type: 'session', date: dateKey, hours: parseFloat(d.hours || 0) || 0, accomplished: d.accomplished || '', plan: d.goals ? d.goals.map(g => typeof g === 'string' ? g : g.text).filter(Boolean).join('; ') : '', done: true, updated_at: now });
+  });
+
+  (state.books || []).forEach(b => {
+    const cur = parseInt(b.currentPage) || 0, tot = parseInt(b.totalPages) || 0;
+    const pct = tot > 0 ? Math.round(cur / tot * 100) : 0;
+    items.push({ external_id: 'book:' + slugify(b.title), type: 'book', title: b.title, current_page: cur, total_pages: tot, percent: pct, done: tot > 0 && cur >= tot, updated_at: now });
+  });
+
+  return { _schema_version: 1, _exported_at: now, _project_name: projName, items };
+}
+
+function downloadNotionExport() {
+  const data = buildNotionExport();
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const slug = (proj?.name || 'project').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  const filename = slug + '-notion-export-' + todayKey() + '.json';
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  const counts = {};
+  data.items.forEach(i => { counts[i.type] = (counts[i.type]||0) + 1; });
+  return Object.entries(counts).map(([t,n]) => n + ' ' + t + (n!==1?'s':'')).join(', ');
+}
+
+async function copyNotionExport() {
+  const data = buildNotionExport();
+  try { await navigator.clipboard.writeText(JSON.stringify(data, null, 2)); return true; }
+  catch(e) { return false; }
+}
+
+async function pushToNotion(showStatus) {
+  if (!state.notionApiKey || !state.notionDbId) {
+    if (showStatus) alert('Please configure your Notion API key and database ID.');
+    return false;
+  }
+  const data = buildNotionExport();
+  const statusEl = document.getElementById('notion-sync-status');
+  if (statusEl) { statusEl.style.color = 'var(--muted)'; statusEl.textContent = 'Syncing to Notion...'; }
+  const NOTION_API = 'https://api.notion.com/v1';
+  const headers = { 'Authorization': 'Bearer ' + state.notionApiKey, 'Content-Type': 'application/json', 'Notion-Version': '2022-06-28' };
+  const typeMap = { goal:'Goal', deadline:'Deadline', meeting:'Meeting', meeting_action:'Meeting action', session:'Session', book:'Book' };
+  let synced = 0, errors = 0;
+  for (const item of data.items) {
+    try {
+      const props = {
+        'Name':        { title:     [{ text: { content: item.title || '' } }] },
+        'Type':        { select:    { name: typeMap[item.type] || item.type } },
+        'External ID': { rich_text: [{ text: { content: item.external_id } }] },
+        'Done':        { checkbox:  item.done },
+        'Updated At':  { date:      { start: item.updated_at } },
+      };
+      if (item.date)         props['Date']           = { date: { start: item.date } };
+      if (item.notes)        props['Notes']          = { rich_text: [{ text: { content: item.notes.slice(0,2000) } }] };
+      if (item.supervisor)   props['Supervisor']     = { rich_text: [{ text: { content: item.supervisor } }] };
+      if (item.hours)        props['Hours']          = { number: item.hours };
+      if (item.accomplished) props['Accomplished']   = { rich_text: [{ text: { content: item.accomplished.slice(0,2000) } }] };
+      if (item.current_page !== undefined) props['Current Page'] = { number: item.current_page };
+      if (item.total_pages)  props['Total Pages']   = { number: item.total_pages };
+      if (item.percent !== undefined) props['Percent'] = { number: item.percent };
+      if (item.meeting_external_id) props['Meeting ID'] = { rich_text: [{ text: { content: item.meeting_external_id } }] };
+      const searchResp = await fetch(NOTION_API + '/databases/' + state.notionDbId + '/query', {
+        method: 'POST', headers,
+        body: JSON.stringify({ filter: { property: 'External ID', rich_text: { equals: item.external_id } } }),
+      });
+      const searchData = await searchResp.json();
+      const existing = searchData.results?.[0];
+      if (existing) {
+        await fetch(NOTION_API + '/pages/' + existing.id, { method: 'PATCH', headers, body: JSON.stringify({ properties: props }) });
+      } else {
+        await fetch(NOTION_API + '/pages', { method: 'POST', headers, body: JSON.stringify({ parent: { database_id: state.notionDbId }, properties: props }) });
+      }
+      synced++;
+    } catch(e) { console.error('Notion sync error:', item.external_id, e); errors++; }
+  }
+  const now = new Date().toISOString();
+  state.notionLastSync = now; saveState();
+  const msg = errors > 0 ? 'Synced ' + synced + ' items, ' + errors + ' errors.' : 'Synced ' + synced + ' items at ' + new Date(now).toLocaleTimeString();
+  if (statusEl) { statusEl.style.color = errors > 0 ? 'var(--red-dead)' : 'var(--green-done)'; statusEl.textContent = (errors>0?'':'OK: ') + msg; }
+  return errors === 0;
+}
+
+// ===================== PROJECT INIT =====================
+// ===================== GIST SYNC =====================
+
+function buildSyncPayload() {
+  // Build a complete snapshot of all project data for mobile sync
+  const proj = getProjectList().find(p => p.id === state._activeProjectId);
+  const allProjects = getProjectList();
+
+  // Collect all project data
+  const projectData = {};
+  for (const p of allProjects) {
+    projectData[p.id] = {};
+    for (const k of PROJECT_FIELDS) {
+      const v = retrieve(projKey(p.id, k));
+      if (v !== null) projectData[p.id][k] = v;
+    }
+  }
+
+  return {
+    _syncVersion: 1,
+    _pushedAt: new Date().toISOString(),
+    _activeProjectId: state._activeProjectId,
+    _projectList: allProjects,
+    _projectData: projectData,
+    // Global non-sensitive fields
+    notionDbId: state.notionDbId,
+    gistId: state.gistId,
+    // Note: encrypted blobs deliberately excluded from sync payload
+    // (API keys, tokens never leave the device that owns them)
+  };
+}
+
+async function pushToGist(silent) {
+  if (!state.gistToken || !state.gistId) {
+    if (!silent) alert('Configure your Gist ID and GitHub token in Configuration → Data first.');
+    return false;
+  }
+  try {
+    const payload = buildSyncPayload();
+    const resp = await fetch('https://api.github.com/gists/' + state.gistId, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': 'Bearer ' + state.gistToken,
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        files: {
+          'jjs-planner-sync.json': {
+            content: JSON.stringify(payload, null, 2)
+          }
+        }
+      })
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || resp.statusText);
+    }
+    state.gistLastSync = new Date().toISOString();
+    store(globalKey('gistLastSync'), state.gistLastSync);
+    if (!silent) {
+      const el = document.getElementById('gist-sync-status');
+      if (el) { el.style.color = 'var(--green-done)'; el.textContent = 'Pushed at ' + new Date().toLocaleTimeString(); }
+    }
+    return true;
+  } catch(e) {
+    console.error('Gist push failed:', e);
+    if (!silent) {
+      const el = document.getElementById('gist-sync-status');
+      if (el) { el.style.color = 'var(--red-dead)'; el.textContent = 'Push failed: ' + e.message; }
+    }
+    return false;
+  }
+}
+
+async function fetchFromGist() {
+  // Non-Electron only — load project data from Gist on startup
+  if (isElectron || !state.gistId) return false;
+  try {
+    const resp = await fetch('https://api.github.com/gists/' + state.gistId, {
+      headers: state.gistToken
+        ? { 'Authorization': 'Bearer ' + state.gistToken, 'X-GitHub-Api-Version': '2022-11-28' }
+        : { 'X-GitHub-Api-Version': '2022-11-28' }
+    });
+    if (!resp.ok) return false;
+    const gist = await resp.json();
+    const fileContent = gist.files['jjs-planner-sync.json']?.content;
+    if (!fileContent) return false;
+    const payload = JSON.parse(fileContent);
+    if (!payload._syncVersion) return false;
+
+    // Load project list and data into store cache (in-memory only for web)
+    if (payload._projectList) {
+      localStorage.setItem(globalKey('projectList'), JSON.stringify(payload._projectList));
+    }
+    if (payload._projectData) {
+      for (const [projId, fields] of Object.entries(payload._projectData)) {
+        for (const [k, v] of Object.entries(fields)) {
+          localStorage.setItem(projKey(projId, k), JSON.stringify(v));
+        }
+      }
+    }
+    if (payload._activeProjectId) {
+      localStorage.setItem(globalKey('activeProject'), JSON.stringify(payload._activeProjectId));
+      state._activeProjectId = payload._activeProjectId;
+    }
+    if (payload.notionDbId) localStorage.setItem(globalKey('notionDbId'), JSON.stringify(payload.notionDbId));
+
+    // Reload state from the freshly populated store
+    loadState();
+    applyTheme(state.currentTheme || 'airy');
+    updateHeaderProject();
+    renderMain();
+    renderSide();
+
+    const banner = document.getElementById('sync-loaded-banner');
+    if (banner) {
+      banner.textContent = 'Synced from desktop · ' + new Date(payload._pushedAt).toLocaleString();
+      banner.style.display = 'block';
+      setTimeout(() => { banner.style.display = 'none'; }, 4000);
+    }
+    return true;
+  } catch(e) {
+    console.error('Gist fetch failed:', e);
+    return false;
+  }
+}
+
+async function syncGistNow() {
+  const statusEl = document.getElementById('gist-sync-status');
+  if (statusEl) { statusEl.style.color = 'var(--muted)'; statusEl.textContent = 'Pushing...'; }
+  await pushToGist(false);
+  if (currentPane === 'config') renderMain();
+}
+
+function saveGistToken() {
+  const tokenInput = document.getElementById('gist-token-input')?.value.trim();
+  const idInput    = document.getElementById('gist-id-input')?.value.trim();
+  if (idInput) { state.gistId = idInput; }
+  if (!tokenInput) { saveState(); renderMain(); return; }
+  state.gistToken = tokenInput;
+  const hasCreds = state._hasEncryptedSecret || state._hasEncryptedToken ||
+                   state._hasEncryptedNotionKey || state._hasEncryptedAnthropicKey ||
+                   state._hasEncryptedAdminKey   || state._hasEncryptedGistToken;
+  if (hasCreds) {
+    const savedPw = getSavedPassword();
+    if (savedPw) {
+      saveEncryptedCreds(savedPw).then(() => { saveState(); renderMain(); });
+    } else {
+      showPasswordModal('enter', async (pw) => {
+        await loadEncryptedCreds(pw);
+        state.gistToken = tokenInput;
+        await saveEncryptedCreds(pw);
+        saveState(); renderMain();
+      });
+    }
+  } else {
+    showPasswordModal('set', async (pw) => {
+      await saveEncryptedCreds(pw);
+      saveState(); renderMain();
+    });
+  }
+}
+
+async function initApp() {
+  await initStoreCache();
+  migrateIfNeeded();
+  let projects = getProjectList();
+  if (projects.length === 0) {
+    const id = generateProjectId();
+    projects = [{ id, name: 'My Project', created: new Date().toISOString() }];
+    saveProjectList(projects);
+    setActiveProjectId(id);
+  }
+  state._activeProjectId = getActiveProjectId() || projects[0].id;
+  setActiveProjectId(state._activeProjectId);
   loadState();
+  for (const k of GLOBAL_FIELDS) {
+    const v = retrieve(globalKey(k));
+    if (v !== null) state[k] = v;
+  }
+  state._hasEncryptedSecret       = !!(isElectron ? _storeCache[globalKey('enc_clientSecret')]      : localStorage.getItem(globalKey('enc_clientSecret')));
+  state._hasEncryptedToken        = !!(isElectron ? _storeCache[globalKey('enc_refreshToken')]       : localStorage.getItem(globalKey('enc_refreshToken')));
+  state._hasEncryptedNotionKey    = !!(isElectron ? _storeCache[globalKey('enc_notionApiKey')]       : localStorage.getItem(globalKey('enc_notionApiKey')));
+  state._hasEncryptedAnthropicKey = !!(isElectron ? _storeCache[globalKey('enc_anthropicKey')]       : localStorage.getItem(globalKey('enc_anthropicKey')));
+  state._hasEncryptedAdminKey     = !!(isElectron ? _storeCache[globalKey('enc_anthropicAdminKey')] : localStorage.getItem(globalKey('enc_anthropicAdminKey')));
+  state._hasEncryptedGistToken    = !!(isElectron ? _storeCache[globalKey('enc_gistToken')]          : localStorage.getItem(globalKey('enc_gistToken')));
   applyTheme(state.currentTheme || 'airy');
+  const _todayEl = document.getElementById('today-display');
+  if (_todayEl) _todayEl.textContent = DAYS_SHORT[TODAY.getDay()] + ' ' + MONTHS[TODAY.getMonth()] + ' ' + TODAY.getDate() + ', ' + TODAY.getFullYear();
   updateHeaderProject();
   showPane('overview');
   renderSide();
   initDocxWatcher();
-}
-
-// ── Create a new blank project ───────────────────────────────────────────────
-function createProject(name) {
-  const id = generateProjectId();
-  const list = getProjectList();
-  list.push({ id, name, created: new Date().toISOString() });
-  saveProjectList(list);
-  switchProject(id);
-  return id;
-}
-
-// ── Delete a project ─────────────────────────────────────────────────────────
-function deleteProject(id) {
-  const list = getProjectList().filter(p => p.id !== id);
-  saveProjectList(list);
-  // Remove all project keys
-  Object.keys(_storeCache).filter(k => k.startsWith(`diss_proj_${id}_`)).forEach(k => { delete _storeCache[k]; if(isElectron) window.electronStorage.removeItem(k); else localStorage.removeItem(k); });
-  // If we deleted the active project, switch to first remaining or create new
-  if (state._activeProjectId === id) {
-    if (list.length > 0) {
-      switchProject(list[0].id);
+  // On non-Electron (mobile/web), try to load synced data from Gist
+  if (!isElectron && state.gistId) {
+    fetchFromGist().catch(() => {});
+  }
+  if (state._hasEncryptedSecret || state._hasEncryptedToken || state._hasEncryptedNotionKey || state._hasEncryptedAnthropicKey || state._hasEncryptedAdminKey) {
+    const savedPw = getSavedPassword();
+    if (savedPw) {
+      await loadEncryptedCreds(savedPw);
+      renderSide();
     } else {
-      const newId = createProject('My Project');
-      switchProject(newId);
+      const hasPersisted = !!(isElectron ? _storeCache[PW_PERSIST_KEY] : localStorage.getItem(PW_PERSIST_KEY));
+      showPasswordModal('enter', async (pw) => {
+        const ok = await loadEncryptedCreds(pw);
+        if (!ok) { alert('Incorrect password.'); }
+        renderSide();
+        if (currentPane === 'config') renderMain();
+        if (currentPane === 'ai') renderMain();
+      });
     }
   }
-}
+  window.addEventListener('beforeunload', () => {
+    if (state.alexaEnabled && state.alexaRefreshToken && (state.lastAccomplished || state.lastPlan)) {
+      sendAlexaEmail(false);
+    }
+    if (state.notionSyncOnClose && state.notionApiKey && state.notionDbId) {
+      pushToNotion(false).catch(() => {});
+    }
+    if (isElectron && state.gistAutoSync && state.gistToken && state.gistId) {
+      pushToGist(true).catch(() => {});
+    }
+  });
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target===this) closeModal();
+  });
 
-// ── Rename a project ─────────────────────────────────────────────────────────
-function renameProject(id, newName) {
-  const list = getProjectList().map(p => p.id === id ? { ...p, name: newName } : p);
-  saveProjectList(list);
-  if (id === state._activeProjectId) updateHeaderProject();
-}
-
-// ── INIT ─────────────────────────────────────────────────────────────────────
-// In Electron, load the store cache first, then proceed
-async function initApp() {
-  await initStoreCache();
-
-  migrateIfNeeded();
-
-  let projects = getProjectList();
-if (projects.length === 0) {
-  // Brand new install — create default project
-  const id = generateProjectId();
-  projects = [{ id, name: 'My Project', created: new Date().toISOString() }];
-  saveProjectList(projects);
-  setActiveProjectId(id);
-}
-
-state._activeProjectId = getActiveProjectId() || projects[0].id;
-setActiveProjectId(state._activeProjectId);
-loadState();
-
-// Load global fields
-for (const k of GLOBAL_FIELDS) {
-  const v = retrieve(globalKey(k));
-  if (v !== null) state[k] = v;
-}
-state._hasEncryptedSecret = !!(isElectron ? _storeCache[globalKey('enc_clientSecret')] : localStorage.getItem(globalKey('enc_clientSecret')));
-state._hasEncryptedToken  = !!(isElectron ? _storeCache[globalKey('enc_refreshToken')] : localStorage.getItem(globalKey('enc_refreshToken')));
-
-applyTheme(state.currentTheme || 'airy');
-
-// Set today display
-const _todayEl = document.getElementById('today-display');
-if (_todayEl) _todayEl.textContent = `${DAYS_SHORT[TODAY.getDay()]} ${MONTHS[TODAY.getMonth()]} ${TODAY.getDate()}, ${TODAY.getFullYear()}`;
-
-// Update header subtitle with active project name
-updateHeaderProject();
-
-showPane('overview');
-renderSide();
-
-// Unlock encrypted credentials — try saved password first
-if (state._hasEncryptedSecret || state._hasEncryptedToken) {
-  const savedPw = getSavedPassword();
-  if (savedPw) {
-    loadEncryptedCreds(savedPw).then(ok => {
-      if (ok) { renderMain(); renderSide(); }
-      else {
-        forgetSavedPassword();
-        setTimeout(() => showPasswordModal('enter', async (pw) => {
-          const ok2 = await loadEncryptedCreds(pw);
-          if (ok2) { renderMain(); renderSide(); }
-        }), 300);
+  // Belt-and-suspenders fix for Electron number input focus bug:
+  // After innerHTML re-renders, number inputs can lose keyboard input.
+  // Intercept mousedown in capture phase and explicitly focus the target.
+  if (isElectron) {
+    document.addEventListener('mousedown', function(e) {
+      const el = e.target;
+      if (el && el.tagName === 'INPUT' && el.type === 'number') {
+        setTimeout(() => { el.focus(); }, 0);
       }
-    });
+    }, true);
+  }
+} // end initApp
+
+function saveNotionCreds() {
+  const keyInput = document.getElementById('notion-api-key')?.value.trim() || '';
+  const dbInput  = document.getElementById('notion-db-id')?.value.trim()  || '';
+  if (dbInput) state.notionDbId = dbInput;
+  if (keyInput) {
+    state.notionApiKey = keyInput;
+    if (state._hasEncryptedSecret || state._hasEncryptedToken || state._hasEncryptedNotionKey) {
+      const savedPw = getSavedPassword();
+      if (savedPw) {
+        saveEncryptedCreds(savedPw).then(() => { saveState(); renderMain(); });
+      } else {
+        showPasswordModal('enter', async (pw) => {
+          await loadEncryptedCreds(pw);
+          state.notionApiKey = keyInput;
+          await saveEncryptedCreds(pw);
+          saveState(); renderMain();
+        });
+      }
+    } else {
+      showPasswordModal('set', async (pw) => {
+        await saveEncryptedCreds(pw);
+        saveState(); renderMain();
+      });
+    }
   } else {
-    setTimeout(() => showPasswordModal('enter', async (pw) => {
-      const ok = await loadEncryptedCreds(pw);
-      if (ok) { renderMain(); renderSide(); }
-    }), 300);
+    saveState(); renderMain();
   }
 }
 
-window.addEventListener('beforeunload', () => {
-  if (state.alexaEnabled && state.alexaRefreshToken && (state.lastAccomplished || state.lastPlan)) {
-    sendAlexaEmail(false);
+async function handleNotionSync() {
+  await pushToNotion(true);
+  if (currentPane === 'config') renderMain();
+}
+
+function handleNotionDownload() {
+  const summary = downloadNotionExport();
+  const statusEl = document.getElementById('notion-sync-status');
+  if (statusEl) { statusEl.style.color = 'var(--green-done)'; statusEl.textContent = 'Downloaded: ' + summary; }
+}
+
+async function handleNotionCopy() {
+  const ok = await copyNotionExport();
+  const statusEl = document.getElementById('notion-sync-status');
+  if (statusEl) {
+    statusEl.style.color = ok ? 'var(--green-done)' : 'var(--red-dead)';
+    statusEl.textContent = ok ? 'Copied to clipboard' : 'Copy failed - try Download instead';
   }
-});
-document.getElementById('modal').addEventListener('click', function(e) {
-  if (e.target===this) closeModal();
-});
-} // end initApp
+}
 
 initApp();
 </script>
