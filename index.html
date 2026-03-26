@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JJ's Project Planner</title>
+<title>Research Planner</title>
 <style>
   /* Font fallbacks for offline/Electron use — maps Google Fonts to Windows system fonts */
   /* Lato → Segoe UI (Windows default, very similar) */
@@ -45,6 +45,22 @@
 
   /* ── Mobile sidebar toggle button ── */
   .sidebar-toggle-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--ink); font-size: 1.4rem; line-height: 1; margin-left: auto; }
+  html[data-theme="dark"] .sidebar-toggle-btn,
+  html[data-theme="parchment"] .sidebar-toggle-btn,
+  html[data-theme="forest"] .sidebar-toggle-btn,
+  html[data-theme="slate"] .sidebar-toggle-btn,
+  html[data-theme="solarized"] .sidebar-toggle-btn,
+  html[data-theme="lavender"] .sidebar-toggle-btn,
+  html[data-theme="terminal"] .sidebar-toggle-btn,
+  html[data-theme="neonnoir"] .sidebar-toggle-btn,
+  html[data-theme="vaporwave"] .sidebar-toggle-btn,
+  html[data-theme="chalkboard"] .sidebar-toggle-btn,
+  html[data-theme="geneva"] .sidebar-toggle-btn,
+  html[data-theme="westminster"] .sidebar-toggle-btn { color: rgba(255,255,255,.85); }
+  html[data-theme="crayola"] .sidebar-toggle-btn { color: #fff; }
+  html[data-theme="terminal"] .sidebar-toggle-btn { color: #00ff41; }
+  html[data-theme="neonnoir"] .sidebar-toggle-btn { color: #ff2d78; }
+  html[data-theme="vaporwave"] .sidebar-toggle-btn { color: #ff71ce; }
   .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 199; }
 
   /* ── Tablet: tighten up ── */
@@ -1057,6 +1073,22 @@
     .ymm-name { font-size: .88rem !important; }
     .ymm-dow { font-size: .58rem !important; }
     .ymm-cell { font-size: .7rem !important; }
+
+    /* Date inputs — strip native chrome so CSS sizing applies on iOS/mobile */
+    input[type="date"] {
+      -webkit-appearance: none;
+      appearance: none;
+      font-size: .82rem;
+      padding: 8px 10px;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Report date window — stack vertically on mobile */
+    .report-window-row { flex-direction: column; align-items: stretch; }
+    .report-window-row > div { width: 100%; }
+    .report-window-row button { align-self: flex-start; }
   }
 </style>
 </head>
@@ -1064,7 +1096,7 @@
 
 <header>
   <div>
-    <h1>JJ's Project Planner</h1>
+    <h1>Research Planner</h1>
     <div class="subtitle">Research · Progress · Accountability</div>
   </div>
   <div id="today-display" style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--gold-light);letter-spacing:.08em;"></div>
@@ -1719,13 +1751,11 @@ function showPane(pane) {
     b.classList.toggle('active', ['overview','session','calendar','deadlines','wordcount','books','meetings','report','config','help'][i]===pane));
   const appEl = document.getElementById('app-layout');
   const sideEl = document.getElementById('side-pane');
-  if (pane === 'overview' || pane === 'config') {
-    if (appEl) appEl.style.display = 'block';
-    if (sideEl) sideEl.style.display = 'none';
-  } else {
-    if (appEl) appEl.style.display = 'flex';
-    if (sideEl) sideEl.style.display = 'flex';
-  }
+  const toggleBtn = document.querySelector('.sidebar-toggle-btn');
+  const noSidebar = pane === 'overview' || pane === 'config';
+  if (appEl) appEl.style.display = noSidebar ? 'block' : 'flex';
+  if (sideEl) sideEl.style.display = noSidebar ? 'none' : 'flex';
+  if (toggleBtn) toggleBtn.style.display = noSidebar ? 'none' : '';
   renderMain(); renderSide();
 }
 function renderMain() {
@@ -4114,7 +4144,7 @@ function renderHelp(mp) {
     <div class="card" style="margin-bottom:18px">
       <h3>About</h3>
       <p style="font-size:.85rem;line-height:1.7;color:var(--ink)">
-        <strong>JJ&#39;s Project Planner</strong> is a personal research and writing management tool built for long-form academic work. All data is saved locally on your device — nothing is sent to any server except the optional Gmail check-in email. Back up your data regularly using <strong>Configuration → Data</strong>.
+        <strong>Research Planner</strong> is a personal research and writing management tool built for long-form academic work. All data is saved locally on your device — nothing is sent to any server except the optional Gmail check-in email. Back up your data regularly using <strong>Configuration → Data</strong>.
       </p>
     </div>
 
