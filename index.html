@@ -79,25 +79,37 @@
     .overview-hero > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 14px !important; }
     .overview-hero-plan { margin-top: 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.12); }
 
-    /* Calendar controls — stack on mobile */
+    /* Calendar controls */
     .cal-controls { flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .cal-controls .view-btns { order: 1; }
     .cal-nav { order: 2; margin-left: 0; }
     .cal-nav .cal-label { min-width: 140px; font-size: .85rem; }
 
-    /* Week view — vertical list on mobile */
-    .week-grid { display: flex; flex-direction: column; gap: 4px; }
-    .week-day { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; min-height: 0; border-radius: 8px; }
-    .week-day .day-name-num { display: flex; flex-direction: column; align-items: center; min-width: 36px; flex-shrink: 0; padding-top: 2px; }
-    .week-day .day-name { font-size: .6rem; letter-spacing: .06em; }
-    .week-day .day-num { font-size: 1.1rem; margin: 2px 0 0; }
-    .week-day .day-right { flex: 1; min-width: 0; }
-    .week-day .day-hours { font-size: .65rem; margin-bottom: 2px; }
-    .week-day .day-content { font-size: .72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-    .week-day .goal-item { font-size: .68rem; padding: 1px 5px; }
-    .week-day .deadline-chip, .week-day .meeting-chip { font-size: .6rem; padding: 1px 5px; margin-top: 2px; }
+    /* Calendar week view — vertical list (scoped to #main-pane only, not overview mini-weeks) */
+    #main-pane .week-grid { display: flex; flex-direction: column; gap: 4px; }
+    #main-pane .week-day { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; min-height: 0; border-radius: 8px; }
+    #main-pane .week-day .day-name-num { display: flex; flex-direction: column; align-items: center; min-width: 36px; flex-shrink: 0; padding-top: 2px; }
+    #main-pane .week-day .day-name { font-size: .6rem; letter-spacing: .06em; }
+    #main-pane .week-day .day-num { font-size: 1.1rem; margin: 2px 0 0; }
+    #main-pane .week-day .day-right { flex: 1; min-width: 0; }
+    #main-pane .week-day .day-hours { font-size: .65rem; margin-bottom: 2px; }
+    #main-pane .week-day .day-content { font-size: .72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+    #main-pane .week-day .goal-item { font-size: .68rem; padding: 1px 5px; }
+    #main-pane .week-day .deadline-chip, #main-pane .week-day .meeting-chip { font-size: .6rem; padding: 1px 5px; margin-top: 2px; }
 
-    /* Month view — strip down cells */
+    /* Overview mini-week grids — keep as 7-column grid, just tighten sizing */
+    .overview-week .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+    .overview-week .week-day { display: block; padding: 4px 3px; min-height: 48px; }
+    .overview-week .week-day .day-name-num { display: block; }
+    .overview-week .week-day .day-right { display: block; }
+    .overview-week .week-day .day-num { font-size: .85rem; margin: 1px 0 3px; }
+    .overview-week .week-day .day-name { font-size: .52rem; }
+    .overview-week .week-day .day-hours { font-size: .55rem; }
+    .overview-week .week-day .day-content { display: none; }
+    .overview-week .week-day .goal-item { display: none; }
+    .overview-week .week-day .deadline-chip, .overview-week .week-day .meeting-chip { display: none; }
+
+    /* Month view */
     .month-day { padding: 3px 4px; min-height: 36px; }
     .month-day .md-num { font-size: .72rem; }
     .month-day .md-hours { display: none; }
@@ -106,21 +118,20 @@
     .month-day .dl-dot, .month-day .mtg-dot { width: 4px; height: 4px; }
     .month-header-cell { font-size: .55rem; padding: 4px 0; }
 
-    /* Year view — 2 columns on mobile */
-    .year-view-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    /* Year view — 2 columns, enlarged */
+    .year-view-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .year-mini-month { padding: 14px; }
+    .ymm-name { font-size: .88rem; }
+    .ymm-dow { font-size: .58rem; }
+    .ymm-cell { font-size: .7rem; }
 
-    /* Stats — stack naturally, fix internal layout */
+    /* Stats */
     .overview-stats { padding: 14px 16px; }
     .ov-stat-title { font-size: .8rem; margin-bottom: 10px; }
     .ov-stat-val { font-size: .95rem; }
     .ov-stat-label { font-size: .62rem; min-width: 52px; }
-    .year-mini-month { padding: 10px; }
-    .ymm-name { font-size: .75rem; }
 
-    /* Overview week grids — also go vertical */
-    .overview-week .week-grid { display: flex; flex-direction: column; gap: 4px; }
-    .overview-week .week-day { display: flex; align-items: flex-start; gap: 10px; padding: 6px 10px; min-height: 0; }
-
+    /* Config */
     .config-wrap { flex-direction: column !important; }
     .config-tab-bar { width: 100% !important; flex-direction: row !important; overflow-x: auto; overflow-y: hidden; border-right: none !important; border-bottom: 1px solid var(--border); padding-bottom: 0 !important; scrollbar-width: none; -webkit-overflow-scrolling: touch; min-height: auto !important; }
     .config-tab-bar::-webkit-scrollbar { display: none; }
@@ -1038,6 +1049,15 @@
   .theme-name { font-family: 'Segoe UI', 'Inter', sans-serif; font-size: .78rem; font-weight: 600; text-align: center; padding: 8px 6px 10px; color: var(--ink); }
   .theme-check { display: none; color: var(--blue); font-size: .75rem; }
   .theme-card.active .theme-check { display: inline; }
+
+  /* ── Mobile overrides (must come after all desktop rules) ── */
+  @media (max-width: 768px) {
+    .year-view-grid { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .year-mini-month { padding: 14px !important; }
+    .ymm-name { font-size: .88rem !important; }
+    .ymm-dow { font-size: .58rem !important; }
+    .ymm-cell { font-size: .7rem !important; }
+  }
 </style>
 </head>
 <body>
