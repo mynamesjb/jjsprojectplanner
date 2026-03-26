@@ -5740,19 +5740,42 @@ async function pushToGist(silent) {
 
 async function fetchFromGist() {
   // Non-Electron only — load project data from Gist on startup
-  if (isElectron || !state.gistId) return false;
+  if (isElectron) return false;
+
+  // Check URL query parameter for gist ID first (?gist=GIST_ID)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlGistId = urlParams.get('gist');
+  if (urlGistId && urlGistId !== state.gistId) {
+    state.gistId = urlGistId;
+    store(globalKey('gistId'), urlGistId);
+  }
+
+  if (!state.gistId) {
+    console.log('JJS Sync: no Gist ID configured — add ?gist=YOUR_GIST_ID to the URL');
+    return false;
+  }
+
+  console.log('JJS Sync: fetching from Gist', state.gistId);
   try {
     const resp = await fetch('https://api.github.com/gists/' + state.gistId, {
-      headers: state.gistToken
-        ? { 'Authorization': 'Bearer ' + state.gistToken, 'X-GitHub-Api-Version': '2022-11-28' }
-        : { 'X-GitHub-Api-Version': '2022-11-28' }
+      headers: { 'X-GitHub-Api-Version': '2022-11-28' }
     });
-    if (!resp.ok) return false;
+    if (!resp.ok) {
+      console.log('JJS Sync: fetch failed', resp.status, resp.statusText);
+      return false;
+    }
     const gist = await resp.json();
     const fileContent = gist.files['jjs-planner-sync.json']?.content;
-    if (!fileContent) return false;
+    if (!fileContent) {
+      console.log('JJS Sync: jjs-planner-sync.json not found in Gist');
+      return false;
+    }
     const payload = JSON.parse(fileContent);
-    if (!payload._syncVersion) return false;
+    if (!payload._syncVersion) {
+      console.log('JJS Sync: invalid payload');
+      return false;
+    }
+    console.log('JJS Sync: loaded payload pushed at', payload._pushedAt);
 
     // Load project list and data into store cache (in-memory only for web)
     if (payload._projectList) {
@@ -5858,8 +5881,9 @@ async function initApp() {
   renderSide();
   initDocxWatcher();
   // On non-Electron (mobile/web), try to load synced data from Gist
-  if (!isElectron && state.gistId) {
-    fetchFromGist().catch(() => {});
+  // fetchFromGist() also checks the ?gist= URL parameter so no pre-check needed
+  if (!isElectron) {
+    fetchFromGist().catch(e => console.error('JJS Sync fetch error:', e));
   }
   if (state._hasEncryptedSecret || state._hasEncryptedToken || state._hasEncryptedNotionKey || state._hasEncryptedAnthropicKey || state._hasEncryptedAdminKey) {
     const savedPw = getSavedPassword();
